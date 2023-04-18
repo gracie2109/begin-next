@@ -1,20 +1,21 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ArrowLeftOutlined 
-} from '@ant-design/icons';
-import React, { useState , PropsWithChildren } from 'react';
-import MenuAdmin from "./Menu";
+import {BreadcrumbCustom} from '@/components/common';
+import MenuAdmin from './Menu';
 import { Layout } from 'antd';
-import BreadcrumbCustom from '@/components/common/Breadcrumb';
-const { Header, Sider, Content } = Layout;
+import { SharedIcons } from '@/utils';
+import React, { useState , PropsWithChildren } from 'react';
 
+const { Header, Sider, Content } = Layout;
+const { MenuFoldOutlined,  MenuUnfoldOutlined,  ArrowLeftOutlined} = SharedIcons;
 
 const  AdminTheme = ({children}:PropsWithChildren) => {
   const [collapsed, setCollapsed] = useState(false);
+ 
   return (
       <Layout className="layout" >
-        <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log("broken", broken);
+        }}>
             <div className='logo'>
               <ArrowLeftOutlined />
             </div>

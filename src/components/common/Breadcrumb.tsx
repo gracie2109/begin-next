@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import { Breadcrumb } from 'antd';
+import { formatWord } from '@/utils';
 import { useRouter } from 'next/router';
 
-const BreadcrumbCustom = () => {
+export const BreadcrumbCustom = () => {
 
   const router = useRouter()
   const linkPath = router.asPath.split('/');
@@ -15,7 +16,7 @@ const BreadcrumbCustom = () => {
 
   const data = pathArray.map((item) => {
     return {
-      title: (<Link href={`${item.href}`} key={item.breadcrumb}>{item.breadcrumb}</Link>)
+      title: (<Link href={`${item.href}`} key={item.breadcrumb}>{formatWord(item.breadcrumb, "title")}</Link>)
     }
   })
 
@@ -28,5 +29,3 @@ const BreadcrumbCustom = () => {
 
   );
 };
-
-export default BreadcrumbCustom;
