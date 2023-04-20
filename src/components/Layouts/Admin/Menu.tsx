@@ -35,8 +35,10 @@ const items: MenuItem[] = [
     "room",
     <ClusterOutlined />
   ),
-  getItem(<Link href="/admin/movie">Phim</Link>, "movie", <MdMovieCreation />),
-  getItem(<Link href="/admin/movie">Voucher</Link>, "voucher", <MdWeekend />),
+  getItem(<Link href="/admin/movie">Phim</Link>, "movie", <MdMovieCreation />, [
+    getItem(<Link href="/admin/movie-type">Thể loại phim</Link>, "movie-type", <MdMovieCreation />),
+  ]),
+  getItem(<Link href="/admin/voucher">Voucher</Link>, "voucher", <MdWeekend />),
 ];
 
 // submenu keys of first level

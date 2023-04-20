@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Empty, Table, Typography } from 'antd';
+import { Empty, Table, Typography, Button, Col, Row , Tooltip} from 'antd';
 import type { TableRowSelection } from 'antd/es/table/interface';
-import { filterOldDataByDate } from '@/utils';
+import { ConditionType, filterOldDataByDate,SharedIcons } from '@/utils';
 
 type Props = {
   columnsExpanded?: any,
@@ -11,12 +11,14 @@ type Props = {
   expandTable: boolean,
   loading?: boolean,
   scrollWidth?: any,
-  PS:number
+  PS:number,
+  selectedArr: any,
+  setSelectedArr:any,
+  filterOldCondition:ConditionType
 }
-
 const { Paragraph, Text } = Typography;
-
-export const DataTable = ({ columnsExpanded, dataExpanded, data, columns, expandTable, loading, scrollWidth,PS }: Props) => 
+const { MdSyncAlt , MdOutlineClear, AiOutlineClear,BsListColumnsReverse } = SharedIcons
+export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable, loading, scrollWidth,PS, selectedArr, setSelectedArr }: Props) => 
 {
 
   const pageOptionSize = () => {
@@ -27,71 +29,109 @@ export const DataTable = ({ columnsExpanded, dataExpanded, data, columns, expand
     }
     return data
   }
-  
   const renderTableExpand = () => {
     return <Table columns={columnsExpanded} dataSource={dataExpanded} pagination={false} />
   };
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [dataHasSelect, setDataHasSelect] = useState<any[]>([]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
+    setDataHasSelect(data.map((item:any) => (item.key + 1)))
   };
+
+  const handleAll = () => {
+    setSelectedRowKeys(dataHasSelect)
+  }
+  const reset = () => {
+    setSelectedRowKeys([]);
+    setDataHasSelect([]);
+    setSelectedArr([])
+  }
+
+  const updateStatus = () => {
+    const res: any[] = [];
+    for (const a in data) {
+      for (const b of selectedRowKeys) {
+          if(b == (+a + 1)){
+             res.push(data[a])
+          }
+  
+      }
+    }
+    setSelectedArr(res)
+  }
+
+
+
+  console.log("selectedRowKeys", selectedRowKeys)
   const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
     onChange: onSelectChange,
     selections: [
-      Table.SELECTION_ALL,
-      Table.SELECTION_INVERT,
-      Table.SELECTION_NONE,
-      {
-        key: 'odd',
-        text: 'Select Odd Row',
-        onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-            if (index % 2 !== 0) {
-              return false;
-            }
-            return true;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
-        },
-      },
-      {
-        key: 'even',
-        text: 'Select Even Row',
-        onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-            if (index % 2 !== 0) {
-              return true;
-            }
-            return false;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
-        },
-      },
       {
         key: 'release',
-        text: 'Select Release Too Far',
-        onSelect: (changeableRowKeys) => {
-          const response = filterOldDataByDate(data, "release");
+        text: 'Release > 1 month',
+        onSelect: () => {
+          const response = filterOldDataByDate(data, filterOldCondition);
           const key = response.map((item) => Number(item.key) + 1);
-          setSelectedRowKeys(key)
+          setSelectedRowKeys(key);
+          setDataHasSelect(response);
         },
       },
+      {
+        key: "all",
+        text: "Select all data",
+        onSelect: (changeableRowKeys) => {
+          setSelectedRowKeys(changeableRowKeys);
+          const hasSl = data.filter((item:any) => !changeableRowKeys.includes((item?.key) + 1));
+          const hasSlKey = hasSl.map((item:any) => (item.key) + 1);
+          setDataHasSelect([...changeableRowKeys, ...hasSlKey]);
+        }
+      },
+      {
+        key: "clear",
+        text: "Clear all",
+        onSelect: () => {reset()}
+      }
     ],
   };
 
   return (
     <>
-      {selectedRowKeys.length > 0 && <Paragraph>
-        All  <Text strong>{selectedRowKeys.length} items</Text> has choose
-      </Paragraph>}
+      {selectedRowKeys.length > 0 && dataHasSelect.length > 0 && 
+      (
+        <Row justify="start" align="middle" gutter={[16, 16]}>
+          <Col>
+            <Paragraph style={{paddingTop: '1rem'}}>
+              All  <Text strong>{selectedRowKeys.length} / {dataHasSelect?.length} items</Text> has choose
+            </Paragraph>
+          </Col>
+          <Col>
+            { selectedRowKeys.length !== dataHasSelect?.length && (
+              <Tooltip title="Choose All">
+                <Button icon={<BsListColumnsReverse />} onClick={() => handleAll()}></Button>
+              </Tooltip>
+            )}
+          </Col>
+          <Col>
+            <Tooltip title="Clear All">
+              <Button icon={<AiOutlineClear />} onClick={reset} ></Button>
+            </Tooltip>
+          </Col>
+         
+          <Col>
+            <Tooltip title="Chuyển trạng thái">
+              <Button icon={<MdSyncAlt />} onClick={updateStatus}></Button>
+            </Tooltip>
+          </Col>
+        </Row>
+      )}
+
       <Table
         dataSource={data?.map((item: any, index: number) => {
-          return { ...item, key: index + 1 };
+          return { ...item, key: index + 1};
         })}
         columns={[
           {

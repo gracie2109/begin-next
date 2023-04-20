@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import { MyAppProps } from "@/models/common";
 import { Layouts } from "@/components/Layouts";
+import { wrapper } from "@/app/store";
+
 function MyApp({ Component, pageProps }: MyAppProps) {
   const Layout = Layouts[Component.Layout] ?? ((page: any) => page);
   return (
@@ -9,4 +11,4 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     </Layout>
   );
 }
-export default MyApp;
+export default wrapper.withRedux(MyApp);

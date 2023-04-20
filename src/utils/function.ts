@@ -48,12 +48,8 @@ export const compareDate =  (input: number | Date | string) => {
   return { covertDate: covertDate, compare: compare}
 }
 
-export type ConditionType = "release" | "timeEnd";
-
-export type CompareType = {
-  inputData: string | object[] | Date,
-}
-export const filterOldDataByDate = (inputData:CompareType, filterCondition?:ConditionType) => {
+export type ConditionType = "release" | "timeEnd" | "updatedAt" | "createdAt";
+export const filterOldDataByDate = (inputData:string | object[] | Date, filterCondition?:ConditionType) => {
   const input = JSON.parse(JSON.stringify(inputData));
   const data = [];
   const conditions =  ["month", "year"] as any;
@@ -68,5 +64,6 @@ export const filterOldDataByDate = (inputData:CompareType, filterCondition?:Cond
       }
     }
   }
+
   return data
 }
