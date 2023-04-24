@@ -63,6 +63,7 @@ const MenuAdmin = () => {
       onOpenChange={onOpenChange}
       theme="dark"
       items={items}
+      className="shadow-lg"
     />
   );
 };

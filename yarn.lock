@@ -370,6 +370,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-slick@^0.23.10":
+  version "0.23.10"
+  resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.10.tgz#56126e6e4e95cdce7771535b2811c2c1931a7caa"
+  integrity sha512-ZiqdencANDZy6sWOWJ54LDvebuXFEhDlHtXU9FFipQR2BcYU2QJxZhvJPW6YK7cocibUiNn+YvDTbt1HtCIBVA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@18.0.35":
   version "18.0.35"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.35.tgz#192061cb1044fe01f2d3a94272cd35dd50502741"
@@ -536,6 +543,15 @@ anymatch@~3.1.2:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
+
+aos@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/aos/-/aos-2.3.4.tgz#eb1c29f5c1806a197cf6323080747547edd3db8e"
+  integrity sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==
+  dependencies:
+    classlist-polyfill "^1.0.3"
+    lodash.debounce "^4.0.6"
+    lodash.throttle "^4.0.1"
 
 arg@^5.0.2:
   version "5.0.2"
@@ -755,6 +771,11 @@ chokidar@^3.5.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
+classlist-polyfill@^1.0.3:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz#935bc2dfd9458a876b279617514638bcaa964a2e"
+  integrity sha512-GzIjNdcEtH4ieA2S8NmrSxv7DfEV5fmixQeyTmqmRmRJPGpRBaSnA2a0VrCjyT8iW8JjEdMbKzDotAJf+ajgaQ==
+
 classnames@2.x, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
@@ -948,6 +969,11 @@ enhanced-resolve@^5.12.0:
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
+
+enquire.js@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/enquire.js/-/enquire.js-2.1.6.tgz#3e8780c9b8b835084c3f60e166dbc3c2a3c89814"
+  integrity sha512-/KujNpO+PT63F7Hlpu4h3pE3TokKRHN26JYmQpPyjkRD/N57R7bPDNojMXdi7uveAKjYB7yQnartCxZnFWr0Xw==
 
 es-abstract@^1.19.0, es-abstract@^1.20.4:
   version "1.21.2"
@@ -1883,10 +1909,20 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.debounce@^4.0.6, lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.throttle@^4.0.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
 
 loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
@@ -2700,6 +2736,17 @@ react-redux@^8.0.5:
     react-is "^18.0.0"
     use-sync-external-store "^1.0.0"
 
+react-slick@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.29.0.tgz#0bed5ea42bf75a23d40c0259b828ed27627b51bb"
+  integrity sha512-TGdOKE+ZkJHHeC4aaoH85m8RnFyWqdqRfAGkhd6dirmATXMZWAxOpTLmw2Ll/jPTQ3eEG7ercFr/sbzdeYCJXA==
+  dependencies:
+    classnames "^2.2.5"
+    enquire.js "^2.1.6"
+    json2mq "^0.2.0"
+    lodash.debounce "^4.0.8"
+    resize-observer-polyfill "^1.5.0"
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
@@ -2752,7 +2799,7 @@ reselect@^4.1.8:
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.8.tgz#3f5dc671ea168dccdeb3e141236f69f02eaec524"
   integrity sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==
 
-resize-observer-polyfill@^1.5.1:
+resize-observer-polyfill@^1.5.0, resize-observer-polyfill@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
@@ -2870,6 +2917,11 @@ source-map-js@^1.0.2:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+ssr-window@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-4.0.2.tgz#dc6b3ee37be86ac0e3ddc60030f7b3bc9b8553be"
+  integrity sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==
+
 stop-iteration-iterator@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stop-iteration-iterator/-/stop-iteration-iterator-1.0.0.tgz#6a60be0b4ee757d1ed5254858ec66b10c49285e4"
@@ -2981,6 +3033,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-9.2.3.tgz#557b5872f711de0e9a80c8cb2901c645f7937b19"
+  integrity sha512-hxqcjIsYPP1fv+KIXPqGywl6ik8RBp0y0i9+TOIh55ca6SpZ5FrgNJ4QXPhsl6mlSBMEYPmh5zOKtZpI8zpWeQ==
+  dependencies:
+    ssr-window "^4.0.2"
 
 synckit@^0.8.5:
   version "0.8.5"

@@ -12,10 +12,7 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
  
   return (
       <Layout className="layout" >
-        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log("broken", broken);
-        }}>
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0">
             <div className='logo'>
               <ArrowLeftOutlined />
             </div>
