@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
 import { Layout } from 'antd';
-import HeaderClient from './Header';
+import HeaderClient from './Header/index';
 import FooterClient from './Footer';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const ClientTheme = ({ children }: PropsWithChildren) => {
   return (

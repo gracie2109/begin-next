@@ -19,7 +19,7 @@ const Category = () => {
       <>
         <Row align="middle" justify="space-between">
           <Col span={8}>
-            <Typography.Title>Danh mục nổi bật</Typography.Title>
+            <Typography.Title data-aos="fade-right"  data-aos-offset="300"  data-aos-easing="ease-in-sine">Danh mục nổi bật</Typography.Title>
           </Col>
           <Col span={8}>
             <Row justify="end" gutter={[48, 16]}>

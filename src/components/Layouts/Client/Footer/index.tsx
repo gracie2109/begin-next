@@ -77,7 +77,7 @@ const FooterClient = () => {
             <div className="mb-4">
               <Typography.Title level={4}>Nhóm liên kết</Typography.Title>
             </div>
-            <div className="mb-4">
+            <div className="m-4">
                   {Footer_Extenal_Link.map((item, index) => (
                     <ul key={index} className="mb-3 list-disc hover:text-gray-400"  >
                       <li><Link href={item.url}>{item.name}</Link></li>

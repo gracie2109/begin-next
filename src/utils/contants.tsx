@@ -10,14 +10,14 @@ import {
   MoreOutlined,
   PlusOutlined,
   DeleteOutlined,
-  SearchOutlined ,
-  LeftOutlined ,
+  SearchOutlined,
+  LeftOutlined,
   RightOutlined
 } from "@ant-design/icons";
 import { MdWeekend, MdMovieCreation, MdSyncAlt, MdOutlineClear } from "react-icons/md";
 import { BsListNested, BsListColumnsReverse } from "react-icons/bs";
-import { FaArrowRight, FaChevronDown,FaFacebookF ,FaTwitter,FaInstagram,FaTiktok,FaYoutube } from "react-icons/fa";
-import { AiOutlineClear, AiOutlineSend,AiFillThunderbolt } from "react-icons/ai";
+import { FaArrowRight, FaChevronDown, FaFacebookF, FaTwitter, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+import { AiOutlineClear, AiOutlineSend, AiFillThunderbolt } from "react-icons/ai";
 import { SiThemoviedatabase } from "react-icons/si";
 
 
@@ -446,9 +446,9 @@ export const MENU_URL = [{
 ];
 
 export const SLIDERS = [
-  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_2_img.jpg?v=147"  },
-  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_1_img.jpg?v=147"  },
-  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_3_img.jpg?v=147"  },
+  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_2_img.jpg?v=147" },
+  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_1_img.jpg?v=147" },
+  { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_3_img.jpg?v=147" },
 ]
 
 export const Category_data = [
@@ -589,6 +589,124 @@ export const Products_data = [
     images: [
       "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
     ]
+  },
+
+
+
+
+  {
+    name: "sản phẩm 9",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: undefined,
+    combo: true,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 12",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 13",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: true,
+    combo: true,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 14",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+
+
+  {
+    name: "sản phẩm 15",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: undefined,
+    combo: true,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 16",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 17",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: true,
+    combo: true,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
+  },
+  {
+    name: "sản phẩm 18",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined,
+    images: [
+      "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+    ]
   }
 ]
 
@@ -639,3 +757,62 @@ export const Footer_Extenal_Link = [
     url: "/"
   }
 ]
+export const ProductPage_Brands = [
+  "Khác",
+  "Mode Fashion",
+  "PRADA"
+]
+
+export const ProductPage_Colors = [
+  "#8cea29",
+  "#2758ee",
+  "#10b9a4",
+  "#2cf282",
+  "#34d480",
+  "#ae6ffd",
+  "#3f1e8b",
+  "#81cefd"
+]
+
+export const ProductPage_Sizes = [
+  "S",
+  "M",
+  "L",
+  "XL",
+  "XXL",
+  "36",
+  "37",
+  "38",
+  "39",
+]
+
+export const ProductPage_Options = [
+  {
+    label:  "Giá: Tăng dần",
+    value: "tang-dan"
+  },
+  {
+    label:  "Giá: Giảm dần",
+    value: "giam-dan"
+  },
+  {
+    label:  "Tên: A-Z",
+    value: "ten-a-z"
+  },
+  {
+    label:  "Tên: Z-A",
+    value: "ten-z-a"
+  },
+  {
+    label:  "Cũ nhất",
+    value: "oldest"
+  },
+  {
+    label:  "Mới nhất",
+    value: "newest"
+  },
+  {
+    label:  "Bán chạy nhất",
+    value: "best-sell"
+  }
+] 
