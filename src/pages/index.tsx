@@ -12,8 +12,8 @@ const Index: MyPage = (props: Props) => {
       <SliderShow slideChildren={SLIDERS} type="slider"/>
       <div className='m-[3rem]'>
          <Category />
-         <SaleProduct />
       </div>
+      <SaleProduct />
    </>
   )
 }

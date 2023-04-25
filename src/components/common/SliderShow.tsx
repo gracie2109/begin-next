@@ -1,10 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/free-mode";
+import 'swiper/swiper-bundle.css'
 
 type Props = {
   slideChildren: any;

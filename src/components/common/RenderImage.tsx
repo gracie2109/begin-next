@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 type Props = {
     source: any,
     width?:any,
+    preview?:boolean
 }
 
-export const RenderImage = ({ source , width}: Props) => {
+export const RenderImage = ({ source , width,preview}: Props) => {
     const [path, setPath] = useState<any>(FALL_BACK_IMG);
 
     useEffect(() => {
@@ -19,6 +20,7 @@ export const RenderImage = ({ source , width}: Props) => {
         <Image
             width={width ??"60px"}
             src={path ?? "error"}
+            preview={preview}
         />
     )
 }

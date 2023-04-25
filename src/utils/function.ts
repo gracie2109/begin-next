@@ -1,4 +1,6 @@
 import moment from "moment";
+import { FREE_SHIP_MONEY } from ".";
+
 
 const toTitleCase = (str: string) => {
   return str.replace(
@@ -66,4 +68,18 @@ export const filterOldDataByDate = (inputData:string | object[] | Date, filterCo
   }
 
   return data
+}
+
+export const getPriceAfterSale = (price: number, salePercent: number) => {
+  return formatCurrency(Number(price) - Number(salePercent))
+}
+
+export const calcShippingFee = (userPrice: number) => {
+  const a = 100 - ((FREE_SHIP_MONEY  - userPrice) / FREE_SHIP_MONEY) * 100;
+  const b = FREE_SHIP_MONEY  - userPrice;
+  
+  return {
+      needMore: b <= 0? 0 : formatCurrency(b),
+      percent:  `${a}%`
+  };
 }
