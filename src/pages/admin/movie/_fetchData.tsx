@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Button, Tooltip, Typography, Row, Col, Modal, Tabs } from 'antd';
+import { Button, Tooltip, Typography, Row, Col, Modal } from 'antd';
 import { compareDate,getColumnTable, SharedIcons } from '@/utils';
 import { DataTable, RenderImage } from '@/components/common';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useSearchTable } from '@/hooks';
 import { useRouter } from 'next/router';
 const { Text } = Typography;
@@ -11,21 +11,14 @@ const { InfoCircleOutlined, HighlightOutlined, MoreOutlined } = SharedIcons;
 type Props = {
   dataSource: any,
   loading: boolean,
-  compStatus: string
+  compStatus?: string
 }
 
-const FetchData = ({ dataSource, loading , compStatus }: Props) => {
+const FetchData = ({ dataSource, loading  }: Props) => {
   const { getColumnSearchProps } = useSearchTable();
   const route = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArr, setSelectedArr] = useState<any>([]);
-
-
-  const res = [...selectedArr, compStatus];
-  console.log("update data", res);
-
-
-
 
 
   const columns: any = [

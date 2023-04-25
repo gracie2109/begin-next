@@ -10,9 +10,7 @@ export const listMovie = createAsyncThunk(
         if(response?.data) {
           return response?.data
         }
-      } catch (error) {
-        console.log("error register:", error);
-      }
+      } catch (error) { /* empty */ }
     }
   );
   

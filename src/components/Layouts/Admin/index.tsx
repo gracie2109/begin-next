@@ -1,4 +1,4 @@
-import {BreadcrumbCustom} from '@/components/common';
+import { BreadcrumbCustom } from '@/components/common';
 import MenuAdmin from './Menu';
 import { Layout } from 'antd';
 import { SharedIcons } from '@/utils';
@@ -12,10 +12,7 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
  
   return (
       <Layout className="layout" >
-        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log("broken", broken);
-        }}>
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0">
             <div className='logo'>
               <ArrowLeftOutlined />
             </div>

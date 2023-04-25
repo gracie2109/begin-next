@@ -17,7 +17,7 @@ const MovieFormat: MyPage = () => {
   const route = useRouter();
   const [selectedArr, setSelectedArr] = useState<any>([]);
   const dispatch = useAppDispatch()
-  const { data, pending, error } = useAppSelector((state) => state.listMovieTypeReducer);
+  const { data, pending } = useAppSelector((state) => state.listMovieTypeReducer);
 
   useEffect(() => {
     (async () => { await dispatch(listMovieTypes()) })();
@@ -37,7 +37,7 @@ const MovieFormat: MyPage = () => {
     {
       title: "action",
       key: "action",
-      render: (_: any, { id, name }: any) => (
+      render: (_: any, { id }: any) => (
         <Tooltip title="Edit"> <HighlightOutlined onClick={() => { route.push(`/admin/movie/${id}`) }} /></Tooltip>
       ),
       width: 120
@@ -54,7 +54,6 @@ const MovieFormat: MyPage = () => {
       createdAt: item.createdAt
     }
   })
-  console.log("selectedArr", selectedArr);
 
   const components = [
     {

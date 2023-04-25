@@ -17,8 +17,8 @@ type Props = {
   filterOldCondition:ConditionType
 }
 const { Paragraph, Text } = Typography;
-const { MdSyncAlt , MdOutlineClear, AiOutlineClear,BsListColumnsReverse } = SharedIcons
-export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable, loading, scrollWidth,PS, selectedArr, setSelectedArr }: Props) => 
+const { MdSyncAlt , AiOutlineClear,BsListColumnsReverse } = SharedIcons
+export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable, loading, scrollWidth,PS, setSelectedArr }: Props) => 
 {
 
   const pageOptionSize = () => {
@@ -62,10 +62,6 @@ export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, da
     }
     setSelectedArr(res)
   }
-
-
-
-  console.log("selectedRowKeys", selectedRowKeys)
   const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
     onChange: onSelectChange,

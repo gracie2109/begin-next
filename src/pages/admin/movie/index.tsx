@@ -12,7 +12,7 @@ const { FaArrowRight, PlusOutlined } = SharedIcons;
 
 const Index:MyPage = () => {
   const dispatch = useAppDispatch()
-  const { data, pending, error } = useAppSelector((state) => state.listMovieReducer);
+  const { data, pending } = useAppSelector((state) => state.listMovieReducer);
   const [dataActive, setDataActive] = useState<any[]>([]);
   const [dataInActive, setDataInActive] = useState<any[]>([]);
 

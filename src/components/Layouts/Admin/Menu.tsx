@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { SharedIcons } from "@/utils";
 const { ClusterOutlined, UserOutlined, MdWeekend, MdMovieCreation } = SharedIcons;
 
@@ -63,6 +62,7 @@ const MenuAdmin = () => {
       onOpenChange={onOpenChange}
       theme="dark"
       items={items}
+      className="shadow-lg"
     />
   );
 };
