@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
-import HeaderClient from './Header'
 import { Layout } from 'antd';
+import HeaderClient from './Header';
+import FooterClient from './Footer';
 
 const { Content, Footer } = Layout;
 
@@ -12,8 +13,8 @@ const ClientTheme = ({ children }: PropsWithChildren) => {
         <Content style={{ height: "auto", minHeight: "100vh"}}>
          {children}
         </Content>
-        <Footer style={{ textAlign: 'center', position: "relative", bottom: 0, width: '100%' }}>Ant Design ©2023 Created by Ant UED</Footer>
       </div>
+      <FooterClient />
     </Layout>
 
   )
