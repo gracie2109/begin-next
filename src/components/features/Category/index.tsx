@@ -12,8 +12,6 @@ const {  LeftOutlined, RightOutlined, FaArrowRight } = SharedIcons
 const Category = () => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
-
-  // eslint-disable-next-line no-unused-vars
   const [init, setInit] = useState(false);
 
   return (
@@ -45,8 +43,8 @@ const Category = () => {
                 <div className=" relative w-full h-full max-w-[332px] max-h-[449px]">
                   <img src={item.img} alt={item.name} style={{ width: "100%", height: "100%" }} />
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-[5rem] bg-slate-100 opacity-[0.6]">
-                  <Link href={item.name} className="opacity-1 block text-black opacity-1 mt-[1.5rem]">
+                <div className="absolute bottom-0 left-0 w-full h-[5rem] backdrop-sepia-0 bg-white/60">
+                  <Link href={item.name} className=" block  mt-[1.5rem]">
                     <Row justify="space-around" align="middle" >
                       <Col>
                         <Typography.Title level={4}  >{formatWord(item.name, "title")}</Typography.Title>
