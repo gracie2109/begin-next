@@ -36,7 +36,7 @@ const ProductCard = ({ child }: Props) => {
                   <Col span={4} >
                     <div className="w-[30px] h-[30px] [&>img:inline-block] [&>img:mb-2]" >
                       <Tooltip title={child?.name}> <img src="https://shopfront-cdn.tekoapis.com/cart/gift-filled.png" alt="" /></Tooltip>
-                      <Tooltip title={child?.name}><img src="https://file.hstatic.net/200000592359/file/icon_video_2d253ef605b0407da214e359ac3bdea5.png"/></Tooltip>
+                      <Tooltip title={child?.name}><img src="https://file.hstatic.net/200000592359/file/icon_video_2d253ef605b0407da214e359ac3bdea5.png" width="40px" height="40px" /></Tooltip>
                     </div>
                   </Col>
               </Row>

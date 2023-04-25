@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Col, Row, Button, Typography } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { SharedIcons, Products_data ,formatWord} from "@/utils";
+import { SharedIcons, Products_data, formatWord } from "@/utils";
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
-import CountDown  from "../CountDown";
+import CountDown from "../CountDown";
 import 'swiper/swiper-bundle.css'
 import ProductCard from "@/components/common/ProductCard";
 
@@ -21,22 +21,28 @@ const SaleProduct = () => {
 
   return (
     <div className="bg-[#faefec]">
-        <div className=" my-[5rem] mx-[3rem] py-7">
+      <div className=" my-[5rem] mx-[3rem] py-7">
         <Row align="middle" justify="space-between">
           <Col span={16}>
-            <Row align="middle" justify="start" gutter={[16,16]}>
-                <Col>
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-600 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
-                  </span>
-                </Col>
-                <Col>
-                    <Typography.Title level={2} className="inline-block">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
-                </Col>
-                <Col>
-                    <CountDown  targetDate={dateTimeAfterSevenDays}/>
-                </Col>
+            <Row align="middle" justify="start" gutter={[16, 16]}>
+              <Col>
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-600 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                </span>
+              </Col>
+              <Col>
+                <Typography.Title
+                  data-aos="fade-up"
+                  data-aos-anchor-placement="top-bottom"
+                  level={2}
+                  className="inline-block">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
+              </Col>
+              <Col>
+                <div  data-aos="fade-up"  data-aos-anchor-placement="top-bottom">
+                    <CountDown targetDate={dateTimeAfterSevenDays}/>
+                </div>
+              </Col>
             </Row>
           </Col>
           <Col span={4}>
@@ -56,18 +62,18 @@ const SaleProduct = () => {
             onInit={() => setInit(true)}
             freeMode={true}
           >
-              {Products_data.map((item, index) => (
-                  <SwiperSlide key={index}>
-                      <ProductCard child={item}/>
-                  </SwiperSlide>
-              ))}
+            {Products_data.map((item, index) => (
+              <SwiperSlide key={index}>
+                <ProductCard child={item} />
+              </SwiperSlide>
+            ))}
           </Swiper>
 
         </div>
         <div className="mt-[3rem] w-full grid place-content-center">
-           <button className="w-[50rem] bg-slate-300 text-black font-bold p-3 outline-none border-none rounded cursor-pointer">Xem tất cả</button>
-        </div> 
+          <button className="w-[50rem] bg-slate-300 text-black font-bold p-3 outline-none border-none rounded cursor-pointer">Xem tất cả</button>
         </div>
+      </div>
     </div>
   )
 }
