@@ -1,13 +1,12 @@
 import { useState } from 'react'
-import { Layout, Row, Col, Typography, Input, Space, Divider } from 'antd';
+import { Layout, Row, Col, Typography, Input, Divider } from 'antd';
 import Link from 'next/link';
 import { MENU_URL, SharedIcons } from "@/utils/contants"
 import DrawerCommon from './Search';
 
 const {SearchOutlined, MdWeekend} = SharedIcons
-type Props = {}
-const { Header, Content, Footer } = Layout;
-const HeaderClient = (props: Props) => {
+const { Header } = Layout;
+const HeaderClient = () => {
     const [open, setOpen] = useState(false);
     const [searchText,setSearchText]  = useState("")
     return (

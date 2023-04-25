@@ -1,7 +1,6 @@
 import { Button, Input, InputRef, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useRef, useState } from "react";
-import type { FilterConfirmProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words'
 import type { ColumnType } from 'antd/es/table';
 
@@ -14,7 +13,7 @@ export const useSearchTable = () => {
 
    const handleSearch = (
       selectedKeys: string[],
-      confirm: (param?: FilterConfirmProps) => void,
+      confirm: () => void,
       dataIndex: any,
    ) => {
       confirm();

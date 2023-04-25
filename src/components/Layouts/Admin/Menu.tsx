@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { SharedIcons } from "@/utils";
 const { ClusterOutlined, UserOutlined, MdWeekend, MdMovieCreation } = SharedIcons;
 

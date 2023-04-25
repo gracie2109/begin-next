@@ -444,3 +444,74 @@ export const SLIDERS = [
   { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_1_img.jpg?v=147"  },
   { url: "https://theme.hstatic.net/200000592359/1001008166/14/slide_3_img.jpg?v=147"  },
 ]
+
+export const Category_data = [
+  {
+    name: "Thời trang nam",
+    img: "https://theme.hstatic.net/200000592359/1001008166/14/home_category_1_img.jpg?v=147"
+  },
+  {
+    name: "Thời trang nữ",
+    img: "	https://theme.hstatic.net/200000592359/1001008166/14/home_category_2_img.jpg?v=147"
+  },
+  {
+    name: "Thời trang mùa đông",
+    img: "https://theme.hstatic.net/200000592359/1001008166/14/home_category_3_img.jpg?v=147"
+  },
+  {
+    name: "Thời trang nổi bật 2023",
+    img: "https://theme.hstatic.net/200000592359/1001008166/14/home_category_4_img.jpg?v=147"
+  },
+  {
+    name: "Phụ kiện",
+    img: "https://theme.hstatic.net/200000592359/1001008166/14/home_category_5_img.jpg?v=147"
+  }
+]
+
+
+export const Products_data = [
+  {
+    name: "sản phẩm 1",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: undefined,
+    combo: true
+  },
+  {
+    name: "sản phẩm 2",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined
+  },
+  {
+    name: "sản phẩm 3",
+    colors: [
+      "blue", "red", "yellow"
+    ],
+    sizes: ["XL", "L", "M"],
+    price: 120000,
+    quantity: 12,
+    sale_percent: 10,
+    video: true,
+    combo: true
+  },
+  {
+    name: "sản phẩm 4",
+    colors: undefined,
+    sizes: ["XL", "L", "M"],
+    price: 200000,
+    quantity: 12,
+    sale_percent: undefined,
+    video: undefined,
+    combo: undefined
+  }
+]

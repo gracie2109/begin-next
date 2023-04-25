@@ -1,14 +1,11 @@
-import { HeaderAction } from "@/components/common";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { Form, Input, Avatar, Row, Col, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 const MovieFormatDetailForm = () => {
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    alert(`values:${values}`)
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    alert(`errorInfo:${errorInfo}`)
   };
   return (
     <Form

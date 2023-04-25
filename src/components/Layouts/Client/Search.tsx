@@ -1,8 +1,6 @@
-import { Button, Drawer, Input, Space } from 'antd';
-import { ReactNode, useState } from 'react';
-import { SharedIcons } from "@/utils/contants";
+import { Button, Drawer, Space } from 'antd';
+import { ReactNode } from 'react';
 
-const {SearchOutlined} = SharedIcons
 type Props = {
     setOpen: void | any,
     open: any,
@@ -12,8 +10,7 @@ type Props = {
     id: string
 }
 
-const DrawerCommon = ({setOpen, open, drawerChildren,icon, placement, id}: Props) => {
-    const [searchText, setSearchText] = useState("")
+const DrawerCommon = ({setOpen, open, drawerChildren,icon, placement}: Props) => {
     return (
         <>
             <Space>

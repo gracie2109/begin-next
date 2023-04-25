@@ -1,6 +1,4 @@
-import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const MovieDetail: MyPage = () => {

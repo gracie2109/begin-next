@@ -1,4 +1,4 @@
-import {BreadcrumbCustom} from '@/components/common';
+import { BreadcrumbCustom } from '@/components/common';
 import MenuAdmin from './Menu';
 import { Layout } from 'antd';
 import { SharedIcons } from '@/utils';

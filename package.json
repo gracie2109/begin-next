@@ -32,13 +32,24 @@
     "react-slick": "^0.29.0",
     "swiper": "^9.2.3",
     "tailwindcss": "3.3.1",
-    "typescript": "5.0.4",
-    "uuid": "^9.0.0"
+    "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^13.3.1",
     "@types/js-cookie": "^3.0.3",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-slick": "^0.23.10",
-    "@types/uuid": "^9.0.1"
+    "@types/uuid": "^9.0.1",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "prettier": "2.8.8"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx,json,jsx,scss,css}": [
+      "prettier --write '**/*.{js,jsx,ts,tsx,scss,css,json}'",
+      "eslint --ext .js,.jsx,.ts,.tsx src --color",
+      "git add ."
+    ]
   }
 }

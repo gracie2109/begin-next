@@ -8,12 +8,9 @@ export const listMovieTypes = createAsyncThunk(
         const response = await axiosInstance.get(url, {})
   
         if(response?.data) {
-          console.log('action', response.data)
           return response?.data
         }
-      } catch (error) {
-        console.log("error register:", error);
-      }
+      } catch (error) { /* empty */ }
     }
   );
   

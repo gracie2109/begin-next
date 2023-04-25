@@ -1,5 +1,5 @@
-import { Typography, Image, Col, Row, Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined, } from '@ant-design/icons';
+import { Card, Avatar } from 'antd';
+import { EditOutlined, SettingOutlined, } from '@ant-design/icons';
 import React from 'react'
 
 type Props = {
@@ -25,7 +25,7 @@ const ProductCard = ({ productChild }: Props) => {
         <Meta
           avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
           title="Card title"
-          description="This is the description"
+          description={productChild}
         />
       </Card>
     </div>

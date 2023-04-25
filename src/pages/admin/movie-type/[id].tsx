@@ -3,17 +3,15 @@ import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import MovieFormatDetailForm from './_form';
-import { Divider, Typography, Row, Col, Button, Collapse, Radio, Space, Card } from 'antd';
+import { Divider, Typography, Row, Col, Button, Radio, Space, Card } from 'antd';
 import { SharedIcons } from '@/utils';
 import type { RadioChangeEvent } from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
-const { SiThemoviedatabase, FaChevronDown, AiOutlineSend } = SharedIcons;
-const { Panel } = Collapse;
+const { Paragraph, Text } = Typography;
+const { SiThemoviedatabase, AiOutlineSend } = SharedIcons;
 
 const MovieFormatDetail: MyPage = () => {
     const route = useRouter();
     const id = route.query.id;
-    console.log("id", id);
 
     const [value, setValue] = useState(1);
     const [action, setAction] = useState("");
