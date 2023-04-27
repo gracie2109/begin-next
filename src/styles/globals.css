@@ -5,8 +5,10 @@
 *, *::after, *::before{
     padding: 0;
     margin: 0;
-    box-sizing: border-box
-
+    box-sizing: border-box;
+}
+body, html{
+  background-color: #fff;
 }
 a{
   color: inherit
@@ -74,3 +76,9 @@ a:hover{
   align-items: center !important;
   padding: .5rem 0 !important;
 }
+
+/* .mySwiper_thumb img,.swiper-slide .swiper-slide-visible .swiper-slide-active{
+  height: 5rem !important;
+  max-height: 5rem !important;
+  overflow: hidden
+} */
