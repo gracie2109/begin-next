@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {  Col, Row, Button, Typography } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Category_data ,formatWord} from "@/utils";
@@ -13,22 +13,29 @@ const Category = () => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
   const [init, setInit] = useState(false);
-
+  const [screenWidth, setScreenWidth] = useState(0);
+  const [typo, setTypo]= useState(1); 
   return (
     <div>
       <>
-        <Row align="middle" justify="space-between">
-          <Col span={8}>
-            <Typography.Title data-aos="fade-right"  data-aos-offset="300"  data-aos-easing="ease-in-sine">Danh mục nổi bật</Typography.Title>
+        <Row align="middle" justify="space-between" >
+          <Col span={8} xs={12}>
+    
+           <Typography.Title 
+             data-aos="fade-right" 
+             data-aos-offset="300"  
+             data-aos-easing="ease-in-sine"
+             level={typo}
+             >Danh mục nổi bật</Typography.Title>
           </Col>
-          <Col span={8}>
+          <Col span={8} xs={12}>
             <Row justify="end" gutter={[48, 16]}>
               <Col> <Button type="text" icon={<LeftOutlined />} ref={(node) => setPrevEl(node)}></Button> </Col>
               <Col> <Button type="text" icon={<RightOutlined />} ref={(node) => setNextEl(node)} ></Button> </Col>
             </Row>
           </Col>
         </Row>
-        <div>
+        <div >
           <Swiper
             modules={[Navigation, Pagination, A11y, FreeMode]}
             spaceBetween={30}
@@ -36,6 +43,7 @@ const Category = () => {
             navigation={{ prevEl, nextEl }}
             onInit={() => setInit(true)}
             freeMode={true}
+            className="mobile:hidden tablet:block"
           >
 
             {Category_data.map((item, index) => (
