@@ -5,11 +5,10 @@ import { SharedIcons , Footer_IMG_Payment, Footer_IMG_Shipping, Footer_Extenal_L
 const { Footer } = Layout;
 
 
-const { FaFacebookF,FaTwitter ,FaInstagram,FaTiktok,FaYoutube } = SharedIcons
+const { FaFacebookF,FaTwitter ,FaInstagram ,FaTiktok, FaYoutube } = SharedIcons
 const FooterClient = () => {
   return (
     <Footer
-      className="shadow-lg"
       style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" , height: "auto"}}
     >
       <div className="container mx-auto">

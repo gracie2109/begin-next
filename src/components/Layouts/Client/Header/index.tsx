@@ -21,7 +21,7 @@ const HeaderClient = () => {
                     <Col span={16} >
                         <Row align="middle" justify="space-between">
                             {MENU_URL.map((item, index) => (
-                                <Col key={index}><Link href="/">{item.name}</Link></Col>
+                                <Col key={index}><Link href="/" style={{color: "#000"}}>{item.name}</Link></Col>
                             ))}
                         </Row>
 

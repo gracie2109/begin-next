@@ -9,7 +9,7 @@ type Props = {
 const { AiOutlineInfoCircle } = SharedIcons;
 
 export const VoucherCard = ({ data }: Props) => {
-
+  console.log("data", data)
   const RenderVoucherDetail = () => {
     return (
       <>
@@ -22,7 +22,7 @@ export const VoucherCard = ({ data }: Props) => {
     <Card style={{ fontSize: 36, marginBottom: "1rem" }} bodyStyle={{ padding: ".7rem" }} >
       <Row align="middle">
         <Col span={6}>
-          <img src={data.img} alt="voucher_image" style={{width: '3rem', height: "3rem"}}/>
+          <img src={data?.img} alt="voucher_image" style={{width: '3rem', height: "3rem"}}/>
         </Col>
         <Col span={18}>
           <Space className="mb-2">
@@ -45,10 +45,9 @@ export const VoucherCard = ({ data }: Props) => {
                 <Typography.Text type="secondary" >HSD:  {data.due}</Typography.Text>
               </Col>
             </Row>
-            <div className="border border-solid border-red-600">
-              <Typography.Text copyable={{ text: `${data.code}`, tooltips: false}} >
-                saoc Lấy mã
-              </Typography.Text>
+            <div className="mr-3">
+                <Typography.Text copyable={{ text: `${data.code}`, tooltips: "sao chép mã"}} >
+                </Typography.Text>
             </div>
           </Space>
         </Col>

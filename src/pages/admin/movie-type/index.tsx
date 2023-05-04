@@ -44,7 +44,7 @@ const MovieFormat: MyPage = () => {
     },
 
   ];
-  const dataSource: any[] = data.map((item: any, index: any) => {
+  const dataSource: any[] = data?.map((item: any, index: any) => {
     return {
       key: index,
       id: item._id,
