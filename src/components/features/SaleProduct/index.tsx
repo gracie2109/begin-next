@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { Col, Row, Button, Typography } from 'antd';
+import { Col, Row, Button, Typography, Grid } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Products_data, formatWord } from "@/utils";
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
 import CountDown from "../CountDown";
 import 'swiper/swiper-bundle.css'
 import ProductCard from "@/components/common/ProductCard";
-
+const { useBreakpoint } = Grid;
 const { LeftOutlined, RightOutlined } = SharedIcons
 
 const SaleProduct = () => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
   const [init, setInit] = useState<boolean>(false);
-
+  const screens = useBreakpoint();
 
   const SEVEN_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000; // Expires after 1 days!!!
   const NOW_IN_MS = new Date().getTime();
@@ -36,19 +36,12 @@ const SaleProduct = () => {
                 </span>
               </Col>
               <Col>
-                  <>
                     <Typography.Title
                     data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
-                    level={2}
-                    className="inline-block laptop:block mobile:hidden">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
-
-                    <Typography.Title
-                    data-aos="fade-up"
-                    data-aos-anchor-placement="top-bottom"
-                    level={4}
-                    className="inline-block mobile:block laptop:hidden">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
-                  </>
+                    level={screens.xs ? 4: 1}
+                    className="inline-block">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
+             
               </Col>
               </Row>
             
@@ -68,13 +61,11 @@ const SaleProduct = () => {
           </Col>
         </Row>
 
-        <>
-
-          <div className="mt-[3rem]  mobile:hidden  tablet:hidden laptop:block desktop:block">
+          <div className="mt-[3rem]">
             <Swiper
               modules={[Navigation, Pagination, A11y, FreeMode]}
               spaceBetween={30}
-              slidesPerView={5}
+              slidesPerView={screens.xs ? 1: 5}
               navigation={{ prevEl, nextEl }}
               onInit={() => setInit(true)}
               freeMode={true}
@@ -85,46 +76,9 @@ const SaleProduct = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-
           </div>
-          <div className="mt-[3rem]  mobile:hidden  tablet:block laptop:hidden desktop:hidden">
-            <Swiper
-              modules={[Navigation, Pagination, A11y, FreeMode]}
-              spaceBetween={30}
-              slidesPerView={2}
-              navigation={{ prevEl, nextEl }}
-              onInit={() => setInit(true)}
-              freeMode={true}
-            >
-              {Products_data.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <ProductCard child={item} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-          </div>
-          {/* Mobile carousel */}
-          <div className="mt-[3rem] mobile:block  tablet:hidden laptop:hidden desktop:hidden">
-            <Swiper
-              modules={[Navigation, Pagination, A11y, FreeMode]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation={{ prevEl, nextEl }}
-              onInit={() => setInit(true)}
-              freeMode={true}
-            >
-              {Products_data.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <ProductCard child={item} />
-                </SwiperSlide>
-              ))}
-            </Swiper></div>
-        </>
-
-
         <div className="mt-[3rem] w-full grid place-content-center">
-          <button className="w-[50rem] bg-slate-300 text-black font-bold p-3 outline-none border-none rounded cursor-pointer">Xem tất cả</button>
+          <button className="min-w-[300px] bg-slate-300 text-black font-bold p-3 outline-none border-none rounded cursor-pointer">Xem tất cả</button>
         </div>
       </div>
     </div>

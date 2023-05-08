@@ -31,8 +31,8 @@ const Checkouts:MyPage = () => {
 
     return (
         <Card>
-            <Row gutter={[16, 16]}>
-                <Col span={12} className=""> 
+            <Row >
+                <Col md={12} xs={24}> 
                    <div className="mb-5"> 
                         {/* App Name  */}
                         <Typography.Title level={4}>
@@ -56,23 +56,23 @@ const Checkouts:MyPage = () => {
                             </Col>
                             <Col span={24}>
                                 <Form form={form}>
-                                    <Row>
-                                        <Col span={18}>
+                                    <Row gutter={[0, 0]}>
+                                        <Col span={24}>
                                             <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item>
                                         </Col>
-                                        <Col span={18}>
-                                            <Row gutter={[4, 0]}>
-                                                <Col span={16}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                              <Col span={8}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                                <Col span={24}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item></Col>
+                                        <Col span={24}>
+                                            <Row gutter={[0, 0]}>
+                                                <Col md={16} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
+                                                <Col md={8} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
+                                                <Col span={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
                                                 <Col></Col>
                                             </Row>
                                         </Col>
-                                        <Col span={18}>
-                                                <Row justify="space-between">
+                                        <Col span={24}>
+                                                <Row justify="space-between" gutter={[4, 4]}>
                                                     <Col><Typography.Text><Link href="/cart">Giỏ hàng</Link> </Typography.Text></Col>
                                                     <Col>
-                                                        <button className="outline-none border-none bg-[#338dbc] text-white p-3"><Link href="/checkouts?step=2">Tiếp tục đến phương thức thanh toán</Link></button>
+                                                        <button className="outline-none border-none bg-[#338dbc] p-3"><Link href="/checkouts?step=2" style={{color: "#fff"}}>Tiếp tục đến phương thức thanh toán</Link></button>
                                                     </Col>
                                                 </Row>
                                         </Col>
@@ -82,7 +82,7 @@ const Checkouts:MyPage = () => {
                         </Row>
                    </div>
                 </Col>
-                <Col span={12}>
+                <Col md={12} xs={24}>
                    <Card>
                         <List
                                 dataSource={cloneList}
@@ -115,9 +115,9 @@ const Checkouts:MyPage = () => {
                   
                     <Row justify="space-between">
                         <Col span={12}><Typography.Text>Tạm tính: </Typography.Text></Col>
-                        <Col span={4} offset={6}> <Typography.Text>{formatCurrency(money)}</Typography.Text></Col>
+                        <Col span={12} style={{textAlign: "end"}}> <Typography.Text>{formatCurrency(money)}</Typography.Text></Col>
                         <Col span={12}><Typography.Text>Phí vận chuyển: </Typography.Text></Col>
-                        <Col span={4} offset={6}><Typography.Text>_</Typography.Text></Col>
+                        <Col span={12} style={{textAlign: "end"}}><Typography.Text>_</Typography.Text></Col>
                     </Row>
                     <Divider /> 
                     <Row justify="space-between">

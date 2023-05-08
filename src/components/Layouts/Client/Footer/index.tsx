@@ -1,19 +1,25 @@
 import React from "react";
-import { Layout, Row, Col, Space, Input, Typography, Button } from "antd";
+import { Layout, Row, Col, Space, Input, Typography, Button, Grid } from "antd";
 import Link from "next/link";
 import { SharedIcons , Footer_IMG_Payment, Footer_IMG_Shipping, Footer_Extenal_Link} from "@/utils";
 const { Footer } = Layout;
-
+const { useBreakpoint } = Grid;
 
 const { FaFacebookF,FaTwitter ,FaInstagram ,FaTiktok, FaYoutube } = SharedIcons
 const FooterClient = () => {
+  const screens = useBreakpoint();
+  console.log("screens",screens);
+
+
+
+
   return (
     <Footer
       style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" , height: "auto"}}
     >
       <div className="container mx-auto">
-        <Row align="stretch" gutter={[64, 16]}>
-          <Col span={6}>
+        <Row align="stretch" gutter={[64, 16]} >
+          <Col xs={24} sm={6} md={6} xl={6}>
             <div className="mb-4">
               <Typography.Title level={4}>Về Mode Fashion</Typography.Title>
             </div>
@@ -43,7 +49,7 @@ const FooterClient = () => {
               </Row>
             </div>
           </Col>
-          <Col span={6} >
+          <Col xs={24} sm={6} md={6} xl={6}>
             <div className="mb-4">
               <Typography.Title level={4}>Thông tin liên hệ</Typography.Title>
             </div>
@@ -72,7 +78,7 @@ const FooterClient = () => {
               </Row>
             </div>
           </Col>
-          <Col span={6}>
+          <Col xs={24} sm={6} md={6} xl={6}>
             <div className="mb-4">
               <Typography.Title level={4}>Nhóm liên kết</Typography.Title>
             </div>
@@ -84,7 +90,7 @@ const FooterClient = () => {
                   ))}
             </div>
           </Col>
-          <Col span={6}>
+          <Col xs={24} sm={6} md={6} xl={6}>
           <div className="mb-4">
               <Typography.Title level={4}>Đăng ký nhận tin</Typography.Title>
             </div>

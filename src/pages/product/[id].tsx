@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, Skeleton } from "antd";
+import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, Skeleton, Grid } from "antd";
 import { Products_data, vouchers_data, policy_data, formatWord, SharedIcons } from "@/utils";
 import { VoucherCard, SliderShow } from '@/components/common';
 import { useRouter } from 'next/router';
 import TabsProduct from "@/components/features/TabsProduct";
 import Link from "next/link"
 const { BsFacebook, BsPinterest, FaFacebookMessenger, AiFillTwitterCircle, ImLink, AiFillThunderbolt } = SharedIcons;
+const { useBreakpoint } = Grid;
 
 const DetailProduct: MyPage = () => {
     const router = useRouter();
     const [product, setProduct] = useState<any>()
     const id = router.query.id;
+    const screens = useBreakpoint();
+    console.log(screens);
 
 
+    
     useEffect(() => {
         const prd = Products_data.find((item: any) => item?.id == id);
         setProduct(prd)

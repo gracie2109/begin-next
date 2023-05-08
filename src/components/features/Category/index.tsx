@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import {  Col, Row, Button, Typography } from 'antd';
+import {  Col, Row, Button, Typography, Grid } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Category_data ,formatWord} from "@/utils";
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
 import 'swiper/swiper-bundle.css'
 import Link from "next/link";
-
+const { useBreakpoint } = Grid;
 
 const {  LeftOutlined, RightOutlined, FaArrowRight } = SharedIcons
 
@@ -13,19 +13,19 @@ const Category = () => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
   const [init, setInit] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(0);
-  const [typo, setTypo]= useState(1); 
+  const screens = useBreakpoint();
+
+
   return (
     <div>
       <>
         <Row align="middle" justify="space-between" >
           <Col span={8} xs={12}>
-    
            <Typography.Title 
              data-aos="fade-right" 
              data-aos-offset="300"  
              data-aos-easing="ease-in-sine"
-             level={typo}
+             level={screens.xs ? 4 : screens.sm ? 3 : 1}
              >Danh mục nổi bật</Typography.Title>
           </Col>
           <Col span={8} xs={12}>
@@ -35,11 +35,11 @@ const Category = () => {
             </Row>
           </Col>
         </Row>
-        <div >
+        <div>
           <Swiper
             modules={[Navigation, Pagination, A11y, FreeMode]}
             spaceBetween={30}
-            slidesPerView={4}
+            slidesPerView={screens.xs ? 1 : 4}
             navigation={{ prevEl, nextEl }}
             onInit={() => setInit(true)}
             freeMode={true}
@@ -55,7 +55,7 @@ const Category = () => {
                   <Link href={item.name} className=" block  mt-[1.5rem]">
                     <Row justify="space-around" align="middle" >
                       <Col>
-                        <Typography.Title level={4}  >{formatWord(item.name, "title")}</Typography.Title>
+                        <Typography.Title level={screens.xs ? 5: 4}  >{formatWord(item.name, "title")}</Typography.Title>
                       </Col>
                       <Col>
                         <Button type="text" icon={<FaArrowRight />}></Button>

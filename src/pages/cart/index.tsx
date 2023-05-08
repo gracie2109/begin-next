@@ -1,25 +1,29 @@
 import {useState, useEffect} from "react";
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, List , Avatar, Skeleton, Badge,Input, Form } from "antd";
+import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, List , Avatar, Grid as AntdGrid, Badge,Input, Form } from "antd";
 import { Products_data,vouchers_data, formatWord, SharedIcons , calcShippingFee,FREE_SHIP_MONEY, formatCurrency} from "@/utils";
 import { VoucherCard, SliderShow } from '@/components/common';
-import { useRouter } from 'next/router';
-import TabsProduct from "@/components/features/TabsProduct";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, A11y, FreeMode ,Grid} from "swiper";
 import Link from "next/link";
 import 'swiper/swiper-bundle.css'
-const { BsTruck ,FaRegCheckCircle,  AiFillCheckCircle,LeftOutlined, RightOutlined} = SharedIcons
+const { BsTruck ,FaRegCheckCircle,  AiFillCheckCircle,LeftOutlined, RightOutlined} = SharedIcons;
+const { useBreakpoint} = AntdGrid;
+
+
 const Cart:MyPage = () => {
     const [form] = Form.useForm();
     const [cloneList, setCloneList] = useState([...Products_data]);
-    const [openHd, setOpenHd] = useState(false)
     const [money, setMoney] = useState(0);
     const [openVat, setOpenVat]= useState(false)
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
     const [init, setInit] = useState<boolean>(false);
-  
+    const  screens = useBreakpoint();
+    console.log("screens", screens);
+
+
+
     useEffect(() => {
         const money = cloneList.reduce((acc, curr) => acc + curr.price, 0);
         setMoney(money);
@@ -34,7 +38,7 @@ const Cart:MyPage = () => {
     return (
         <Card className="my-3">
             <Row  gutter={[32, 16]} align="stretch" >
-            <Col span={14} > 
+            <Col span={14} xs={24} md={14}> 
                 {/* title */}
                 <Row justify="space-between">
                     <Col>
@@ -51,7 +55,7 @@ const Cart:MyPage = () => {
                     <>
                         {/* Fee chart */}
                         <div className="mb-3">
-                            <Row className="my-3">
+                            <Row className="my-3" gutter={[8, 8]}>
                                 <Col span={24}>
                                     {money && money > FREE_SHIP_MONEY ? (
                                         <Typography.Text>Bạn đã được <Typography.Text strong>MIỄN PHÍ VẬN CHUYỂN</Typography.Text></Typography.Text>
@@ -82,31 +86,31 @@ const Cart:MyPage = () => {
                         
                             <Card  className="my-3" >
                                         <List
+                                           
                                             dataSource={cloneList}
                                             renderItem={(item) => (
-                                            <List.Item key={item.id}>
-                                            <List.Item.Meta
-                                                avatar={
-                                                <>
-                                                    <Badge count={1} onClick={() => { deleteItem(item)}} className="cursor-pointer">
-                                                        <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={80}/>
-                                                    </Badge>
-                                                </>
-                                                }
-                                                title={<a href="https://ant.design">{item?.name}</a>}
-                                                description={formatCurrency(item?.price)}
+                                            <List.Item key={item.id} style={{width: '100%'}}>
+                                                        <List.Item.Meta
+                                                            avatar={
+                                                            <>
+                                                                <Badge count={1} onClick={() => { deleteItem(item)}} className="cursor-pointer">
+                                                                    <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={80}/>
+                                                                </Badge>
+                                                            </>
+                                                            }
+                                                            title={<a href="https://ant.design">{item?.name}</a>}
+                                                            description={formatCurrency(item?.price)}
 
-                                            />
-                                            <div> </div>    
-
-                                            <div>
-                                                <Row gutter={[8,8]} align ="middle">
-                                                    <Col span={24}><Typography.Text strong >{formatCurrency(item?.price)}</Typography.Text></Col>
-                                                    <Col span={24}>
-                                                        <InputNumber style={{width: "200px"}} addonBefore={<Button type="link" onClick={() => console.log("add")} > +</Button>} addonAfter={<Button type="link" onClick={() => console.log("add")}> -</Button>} defaultValue={100} />
-                                                    </Col>
-                                                </Row>
-                                            </div>
+                                                        />
+                                                    <Row  align ="middle" style={{textAlign: "end"}}>
+                                                        <Col span={24}><Typography.Text strong >{formatCurrency(item?.price)}</Typography.Text></Col>
+                                                        <Col span={24}>
+                                                            <InputNumber 
+                                                            style={{width: "auto", maxWidth: "120px"}}
+                                                            addonBefore={<Button style={{padding: 0}} type="link" onClick={() => console.log("add")} > +</Button>} 
+                                                            addonAfter={<Button style={{padding: 0}} type="link" onClick={() => console.log("add")}> -</Button>} defaultValue={100} />
+                                                        </Col>
+                                                    </Row>
                                             </List.Item>
                                         )}
                                         />
@@ -126,7 +130,7 @@ const Cart:MyPage = () => {
 
                             {/* VAT */}
                             <Card>  
-                                <Row  gutter={[32, 16]} >
+                                <Row justify="start" gutter={[8,8]}>
                                     <Col>
                                          {!openVat ? (
                                             <FaRegCheckCircle size={24}  onClick={() => setOpenVat(!openVat)} className="cursor-pointer"/>
@@ -140,11 +144,11 @@ const Cart:MyPage = () => {
                                     <div data-aos="fade-up"  data-aos-anchor-placement="top-bottom" className="mt-3">
                                         <Form form={form}>
                                             <Row gutter={[16,0]}>
-                                                <Col span={8}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                                <Col span={8}><Form.Item name="companyVatCode" >  <Input placeholder="Mã số thuế...."/>  </Form.Item></Col>
-                                                <Col span={8}><Form.Item name="companyVatEmail" >  <Input placeholder="Email...."/>  </Form.Item></Col>
-                                                <Col span={24}><Form.Item name="companyVatAdr" >  <Input placeholder="Địa chỉ công ty...."/>  </Form.Item></Col>
-                                                <Col span={24}><Button htmlType="submit" style={{backgroundColor: "#dcdcdc"}}>Lưu thông tin</Button></Col>
+                                                <Col md={8} xs={24}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item></Col>
+                                                <Col md={8} xs={24}><Form.Item name="companyVatCode" >  <Input placeholder="Mã số thuế...."/>  </Form.Item></Col>
+                                                <Col md={8} xs={24}><Form.Item name="companyVatEmail" >  <Input placeholder="Email...."/>  </Form.Item></Col>
+                                                <Col md={24} xs={24}><Form.Item name="companyVatAdr" >  <Input placeholder="Địa chỉ công ty...."/>  </Form.Item></Col>
+                                                <Col md={24} xs={24}><Button htmlType="submit" style={{backgroundColor: "#dcdcdc"}}>Lưu thông tin</Button></Col>
                                             </Row>
                                         </Form>
                                     </div>
@@ -159,7 +163,7 @@ const Cart:MyPage = () => {
                 )}
 
             </Col>
-            <Col span={8}>
+            <Col span={8} xs={24} md={8}>
                 <Card title={<Typography.Text strong>Thông tin đơn hàng</Typography.Text>}>
                     <Row justify={"space-between"}>
                         <Col><Typography.Text strong> Tổng tiền: </Typography.Text></Col>
@@ -220,7 +224,7 @@ const Cart:MyPage = () => {
 
                     </Row>
                     </Card>
-                </Col>
+            </Col>
                 
             </Row>
         </Card>
