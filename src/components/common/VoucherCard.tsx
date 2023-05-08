@@ -9,7 +9,6 @@ type Props = {
 const { AiOutlineInfoCircle } = SharedIcons;
 
 export const VoucherCard = ({ data }: Props) => {
-  console.log("data", data)
   const RenderVoucherDetail = () => {
     return (
       <>

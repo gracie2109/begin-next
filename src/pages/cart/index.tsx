@@ -20,9 +20,6 @@ const Cart:MyPage = () => {
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
     const [init, setInit] = useState<boolean>(false);
     const  screens = useBreakpoint();
-    console.log("screens", screens);
-
-
 
     useEffect(() => {
         const money = cloneList.reduce((acc, curr) => acc + curr.price, 0);
@@ -92,11 +89,10 @@ const Cart:MyPage = () => {
                                             <List.Item key={item.id} style={{width: '100%'}}>
                                                         <List.Item.Meta
                                                             avatar={
-                                                            <>
-                                                                <Badge count={1} onClick={() => { deleteItem(item)}} className="cursor-pointer">
-                                                                    <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={80}/>
+                                                                <Badge count={<span onClick={() => {deleteItem(item)}}>1</span>} className="pointer-cursor">
+                                                                    <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={80} className="relative">
+                                                                    </Avatar>
                                                                 </Badge>
-                                                            </>
                                                             }
                                                             title={<a href="https://ant.design">{item?.name}</a>}
                                                             description={formatCurrency(item?.price)}
@@ -107,8 +103,8 @@ const Cart:MyPage = () => {
                                                         <Col span={24}>
                                                             <InputNumber 
                                                             style={{width: "auto", maxWidth: "120px"}}
-                                                            addonBefore={<Button style={{padding: 0}} type="link" onClick={() => console.log("add")} > +</Button>} 
-                                                            addonAfter={<Button style={{padding: 0}} type="link" onClick={() => console.log("add")}> -</Button>} defaultValue={100} />
+                                                            addonBefore={<Button style={{padding: 0}} type="link"  > +</Button>} 
+                                                            addonAfter={<Button style={{padding: 0}} type="link"> -</Button>} defaultValue={100} />
                                                         </Col>
                                                     </Row>
                                             </List.Item>
