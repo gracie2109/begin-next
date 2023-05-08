@@ -46,16 +46,16 @@ const ProductList: MyPage = () => {
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
     const handleChange = (tag: string, checked: boolean) => {
-        console.log(tag);
+        console.log("checked", checked)
         const nextSelectedTags = checked
         ? [...selectedTags, tag]
         : selectedTags.filter((t) => t !== tag);
         setSelectedTags(nextSelectedTags);
     }
-
+    console.log("v", selectedTags)
     const handleChangeSort = (value: string) => {
         console.log(`selected ${value}`);
-      };
+    };
 
     return (
         <div className='w-full'>
@@ -110,10 +110,13 @@ const ProductList: MyPage = () => {
                                                             key={item}
                                                             checked={selectedTags.includes(item)}
                                                             onChange={(checked) => handleChange(item, checked)}
-                                                            className="checkableTag"
+                                                            className="checkableTag "
+                                                            
                                                         >
-                                                            <Button shape="circle"  style={{backgroundColor: `${item}`}}></Button>
-                                                        </Tag.CheckableTag>
+                                                            {/* , boxShadow: 'inset 0 0 0 2px black' */}
+                                                          
+                                                            <Button shape="circle" style={{backgroundColor: `${item}`}}></Button>
+                                                            </Tag.CheckableTag>
                                                         </Col>
                                                     ))}
                                             </Row>

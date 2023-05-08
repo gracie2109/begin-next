@@ -85,3 +85,6 @@ a:hover{
   max-height: 5rem !important;
   overflow: hidden
 } */
+.ant-tag-checkable:not(.ant-tag-checkable-checked):hover, .ant-tag-checkable-checked {
+  background-color: transparent!important;
+}
