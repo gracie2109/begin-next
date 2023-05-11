@@ -1,16 +1,10 @@
 import {useState, useEffect} from "react";
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, List , Avatar, Skeleton, Badge,Input, Form,Breadcrumb } from "antd";
-import { Products_data,vouchers_data, formatWord, SharedIcons , calcShippingFee,FREE_SHIP_MONEY, formatCurrency} from "@/utils";
-import { VoucherCard, SliderShow } from '@/components/common';
-import { useRouter } from 'next/router';
-import TabsProduct from "@/components/features/TabsProduct";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, A11y, FreeMode ,Grid} from "swiper";
+import { Row, Col, Typography, Space, Card, Divider, Button,Input, Form,Breadcrumb } from "antd";
+import { Products_data, formatCurrency} from "@/utils";
 import Link from "next/link";
 import 'swiper/swiper-bundle.css'
-const { BsTruck ,FaRegCheckCircle,  AiFillCheckCircle,LeftOutlined, RightOutlined} = SharedIcons;
-
+import OrderFinal from "./components/OrderFinal"
 
 const Checkouts:MyPage = () => {
     const [form] = Form.useForm();
@@ -72,7 +66,7 @@ const Checkouts:MyPage = () => {
                                                 <Row justify="space-between" gutter={[4, 4]}>
                                                     <Col><Typography.Text><Link href="/cart">Giỏ hàng</Link> </Typography.Text></Col>
                                                     <Col>
-                                                        <button className="outline-none border-none bg-[#338dbc] p-3"><Link href="/checkouts?step=2" style={{color: "#fff"}}>Tiếp tục đến phương thức thanh toán</Link></button>
+                                                        <button className="outline-none border-none bg-[#338dbc] p-3"><Link href="/checkouts/step2" style={{color: "#fff"}}>Tiếp tục đến phương thức thanh toán</Link></button>
                                                     </Col>
                                                 </Row>
                                         </Col>
@@ -84,27 +78,7 @@ const Checkouts:MyPage = () => {
                 </Col>
                 <Col md={12} xs={24}>
                    <Card>
-                        <List
-                                dataSource={cloneList}
-                                renderItem={(item) => (
-                                <List.Item key={item.id}>
-                                <List.Item.Meta
-                                    avatar={
-                                    <>
-                                        <Badge count={1} color={"rgba(0, 0, 0, 0.25)"} >
-                                            <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={64}/>
-                                        </Badge>
-                                    </>
-                                    }
-                                    title={<a href="https://ant.design">{item?.name}</a>}
-                                    description={"Xám / S"}
-                                />
-                                <div>
-                                <Typography.Text strong >{formatCurrency(item?.price)}</Typography.Text>
-                                </div>
-                                </List.Item>
-                            )}
-                        />
+                        <OrderFinal />
                    </Card> 
                    <Divider /> 
                     <Space.Compact block size="large">

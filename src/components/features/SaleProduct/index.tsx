@@ -36,12 +36,11 @@ const SaleProduct = () => {
                 </span>
               </Col>
               <Col>
-                    <Typography.Title
-                    data-aos="fade-up"
-                    data-aos-anchor-placement="top-bottom"
-                    level={screens.xs ? 4: 1}
-                    className="inline-block">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
-             
+                <Typography.Title
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+                level={screens.xs ? 4: 1}
+                className="inline-block">{formatWord("Sản phẩm khuyến mãi", "title")}</Typography.Title>
               </Col>
               </Row>
             
@@ -65,16 +64,18 @@ const SaleProduct = () => {
             <Swiper
               modules={[Navigation, Pagination, A11y, FreeMode]}
               spaceBetween={30}
-              slidesPerView={screens.xs ? 1: 5}
+              slidesPerView={(screens.xs) ? 1 : 2 }
               navigation={{ prevEl, nextEl }}
               onInit={() => setInit(true)}
               freeMode={true}
             >
-              {Products_data.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <ProductCard child={item} />
-                </SwiperSlide>
-              ))}
+              <Row>
+                {Products_data.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <ProductCard child={item} />
+                    </SwiperSlide>
+                ))}
+              </Row>
             </Swiper>
           </div>
         <div className="mt-[3rem] w-full grid place-content-center">

@@ -3,7 +3,7 @@ import {  Col, Row, Button, Typography, Grid } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Category_data ,formatWord} from "@/utils";
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
-import 'swiper/swiper-bundle.css'
+import 'swiper/swiper-bundle.css';
 import Link from "next/link";
 const { useBreakpoint } = Grid;
 
@@ -25,7 +25,7 @@ const Category = () => {
              data-aos="fade-right" 
              data-aos-offset="300"  
              data-aos-easing="ease-in-sine"
-             level={screens.xs ? 4 : screens.sm ? 3 : 1}
+             level={screens.xs ? 4 : 1}
              >Danh mục nổi bật</Typography.Title>
           </Col>
           <Col span={8} xs={12}>
