@@ -16,7 +16,7 @@ module.exports = {
 
       'desktop': '1280px',
       // => @media (min-width: 1280px) { ... },
-      'mobile': '320px',
+      'mobile': '390px',
       // => @media (min-width: 640px) { ... }
     },
   

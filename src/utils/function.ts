@@ -83,3 +83,8 @@ export const calcShippingFee = (userPrice: number) => {
       percent:  `${a}%`
   };
 }
+
+export const calcProductRateStartPercent = (input:number) => {
+  const a = (input * 100) /100
+  return a
+}

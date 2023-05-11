@@ -13,13 +13,15 @@ import { MyPage } from '@/models/common';
 import { SliderMarks } from 'antd/es/slider';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState } from 'react';
-import { Row, Col, Typography, Collapse, Space ,Card, Checkbox, Slider , Button, Tag, Select } from "antd";
+import { Row, Col, Typography, Collapse, Space ,Card, Checkbox, Slider , Button, Tag, Select, Grid ,Drawer} from "antd";
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
-
+import { SearchOutlined } from '@ant-design/icons';
+import ProductSortOption from "@/pages/product/components/ProductSortOption";
+const {useBreakpoint} = Grid
 const ProductList: MyPage = () => {
     const [checkedList, setCheckedList] = useState<CheckboxValueType[]>([]);
     const MAX_PRICE = 3000000;
-
+    const screens = useBreakpoint()
     const marks: SliderMarks = {
         0: `${formatCurrency(0)}`,
         50: `${formatCurrency(MAX_PRICE / 2)}`,
@@ -30,7 +32,7 @@ const ProductList: MyPage = () => {
           label: <strong>{formatCurrency(MAX_PRICE)}</strong>,
         },
       };
-
+    const [openDrawer, setOpenDrawer] = useState(false);
     const onGetBrands = (list: CheckboxValueType[]) => {
         setCheckedList(list);
         console.log("onChange__list", list)
@@ -62,100 +64,41 @@ const ProductList: MyPage = () => {
             <div className="my-7">
                 Trang chủ / Tất cả sản phẩm
             </div>
-            <Card>
+            <Card bodyStyle={{padding: 10}}>
                 <Row gutter={[32,6]}>
                     {/* left side */}
-                    <Col span={6}>
-                        <div className='mb-3'>
-                            <Typography.Title level={3}>Bộ lọc</Typography.Title>
-                        </div>
-                        <div className='mb-3'>
-                            <Space direction="vertical" className='w-full'>
-                                <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
-                                    <Collapse.Panel header={<Typography.Title level={5}>Danh mục sản phẩm</Typography.Title>} key="1">
-                                        {Footer_Extenal_Link.map((item, index) => (
-                                            <div key={index} className="mb-3 text-gray-400"  >
-                                                <p><Link href={item.url}>{item.name}</Link></p>
-                                            </div>
-                                        ))}
-                                    </Collapse.Panel>
-                                </Collapse>
-
-                                <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
-                                    <Collapse.Panel header={<Typography.Title level={5}>Thương hiệu</Typography.Title>} key="1">
-                                        <Checkbox.Group onChange={onGetBrands}>
-                                            <Row>
-                                                {ProductPage_Brands.map((item, index) => (
-                                                   <Col span={24} key={index}>
-                                                        <Checkbox value={item}>{item}</Checkbox>
-                                                   </Col> 
-                                                ))}
-                                            </Row>
-                                        </Checkbox.Group>
-                                    </Collapse.Panel>
-                                </Collapse>
-
-                                <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
-                                    <Collapse.Panel header={<Typography.Title level={5}>Khoảng giá</Typography.Title>} key="1">
-                                        <Slider  marks={marks} range={{ draggableTrack: true }} step={10}  onChange={onRangSlider}/>
-                                    </Collapse.Panel>
-                                </Collapse>
-
-                                <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
-                                    <Collapse.Panel header={<Typography.Title level={5}>Màu sắc</Typography.Title>} key="1">
-                                            <Row gutter={[8,8]} >
-                                                    {ProductPage_Colors.map((item, index) => (
-                                                        <Col key={index}>
-                                                          <Tag.CheckableTag
-                                                            key={item}
-                                                            checked={selectedTags.includes(item)}
-                                                            onChange={(checked) => handleChange(item, checked)}
-                                                            className="checkableTag "
-                                                            
-                                                        >
-                                                            {/* , boxShadow: 'inset 0 0 0 2px black' */}
-                                                          
-                                                            <Button shape="circle" style={{backgroundColor: `${item}`}}></Button>
-                                                            </Tag.CheckableTag>
-                                                        </Col>
-                                                    ))}
-                                            </Row>
-                                    </Collapse.Panel>
-                                </Collapse>
-
-                                <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
-                                    <Collapse.Panel header={<Typography.Title level={5}>Size</Typography.Title>} key="1">
-                                        <Row gutter={[8,8]}>
-                                            {ProductPage_Sizes.map((item, index) => (
-                                                <Col key={index}><Button>{item}</Button></Col>
-                                            ))}
-                                            
-                                        </Row>
-                                    </Collapse.Panel>
-                                </Collapse>
-
-
-
-                            </Space>
-                        </div>
+                    <Col xs={0}  md={6}>
+                       <>
+                           <ProductSortOption/>
+                       </>
                     </Col>
 
                     {/* right side */}
-                    <Col span={18}>
+                    <Col xs={24}  md={18}>
                         {/* panel */}
-                        <Row gutter={[16, 16]} align="middle" justify="space-around">
-                            <Col span={12}>
-                              <Row gutter={[16, 8]} align="middle">
-                                 <Col><Typography.Title level={3} className="pt-1">Tất cả sản phẩm</Typography.Title></Col>
-                                 <Col><Typography.Text strong>7 </Typography.Text>sản phẩm</Col>                   
+                        <Row gutter={[32, 16]}  align="middle" justify="space-around" style={{paddingLeft: '1rem'}}>
+                            <Col md={12} xs={24}>
+                              <Row gutter={[32, 16]} align="middle">
+                                 <Col ><Typography.Title level={3} className="pt-1">{screens.xs? "Trang chủ" : "Tất cả sản phẩm"}</Typography.Title></Col>
+                                 <Col ><Typography.Text strong>7 </Typography.Text>sản phẩm</Col>
                               </Row>                  
                             </Col>
-                            <Col span={12}>
-                                <Row gutter={[16, 8]} align="middle" justify="end">
-                                    <Col><Typography.Text>Sắp xếp theo</Typography.Text></Col>
-                                    <Col>
+                            <Col md={12} xs={24}>
+                                <Row align="middle">
+                                    <Col xs={8} md={0} xl={0} xxl={0}>
+                                        <Button type="dashed" size="middle" icon={<SearchOutlined />} onClick={() => setOpenDrawer(!openDrawer)}>Bộ lọc</Button>
+                                        <Drawer
+                                            title="Bộ lọc"
+                                            placement="left"
+                                            onClose={() => setOpenDrawer(!openDrawer)}
+                                            open={openDrawer} >
+                                            <ProductSortOption />
+                                        </Drawer>
+                                    </Col>
+                                    <Col xs={6}><Typography.Text style={{fontSize: `${screens.xs ? "11px" : "13px"}`}}>Sắp xếp theo</Typography.Text></Col>
+                                    <Col xs={8}>
                                         <Select
-                                            style={{width: "10rem"}}
+                                            style={{width: "8rem"}}
                                             onChange={handleChangeSort}
                                             options={ProductPage_Options}
                                             size={"large"}
@@ -167,9 +110,9 @@ const ProductList: MyPage = () => {
 
                         {/* Product */}
                         <div className="my-7">
-                            <Row gutter={[32,  48]}>
+                            <Row>
                                 {Products_data.map((item, index) => (
-                                    <Col span={6} key={index}>
+                                    <Col md={6} xs={12} key={index}>
                                         <ProductCard child={item} />
                                     </Col>
                                 ))}

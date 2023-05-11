@@ -60,12 +60,12 @@ export const SliderShow = ({ slideChildren, type }: Props) => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs,Pagination]}
-            
             className="mySwiper_thumb"
+            style={{maxHeight: "5rem", overflow:"hidden"}}
           >
             {slideChildren && slideChildren.map((item: any, index: any) => (
-              <SwiperSlide key={index} >
-                <img src={item} className="object-fit" style={{width: "5rem", height: "5rem"}} />
+              <SwiperSlide key={index}  className="swiper_slide_custom">
+                <img src={item} className="object-fit" style={{width: "5rem",overflow: "hidden"}} />
               </SwiperSlide>
           ))}
           </Swiper>
