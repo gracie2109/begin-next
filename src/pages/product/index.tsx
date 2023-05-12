@@ -110,7 +110,7 @@ const ProductList: MyPage = () => {
 
                         {/* Product */}
                         <div className="my-7">
-                            <Row>
+                            <Row >
                                 {Products_data.map((item, index) => (
                                     <Col md={6} xs={12} key={index}>
                                         <ProductCard child={item} />

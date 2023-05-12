@@ -1,8 +1,9 @@
 import React,{ useState } from 'react'
-import {Layout, Row, Col, Typography, Grid, Drawer, Divider, Input, Button} from 'antd';
+import {Layout, Row, Col, Typography, Grid, Dropdown, Divider, Space,Input, Button, Avatar,Drawer} from 'antd';
 import Link from 'next/link';
-import { MENU_URL, SharedIcons } from "@/utils/contants"
-const { MdWeekend,SiThemoviedatabase, MenuOutlined} = SharedIcons
+import { MENU_URL, SharedIcons } from "@/utils/contants";
+import type { MenuProps } from 'antd';
+const { MenuOutlined, SearchOutlined} = SharedIcons
 const { useBreakpoint } = Grid;
 
 const HeaderClient = () => {
@@ -10,7 +11,7 @@ const HeaderClient = () => {
     const [openSearch, setOpenSearch] = useState(false);
     const [searchText,setSearchText]  = useState("");
     const screens = useBreakpoint();
-
+    console.log("user", user)
     return (
         <Layout.Header className='shadow-lg text-black' style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', backgroundColor: "white" }}>
             <div className="h-[4rem] container mx-auto">
@@ -47,7 +48,7 @@ const HeaderClient = () => {
                     <Col xs={8} md={4} lg={4} xl={4}>
                         <Row align="middle" justify="end" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                             <Col>
-                                <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SiThemoviedatabase />}></Button>
+                                <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SearchOutlined />}></Button>
                                 <Drawer title="Tìm kiếm sản phẩm"
                                     placement="top"
                                     onClose={() => setOpenSearch(!openSearch)} open={openSearch}
@@ -73,7 +74,14 @@ const HeaderClient = () => {
                                 </Drawer>
                             </Col>
                         
-                            <Col><Link href="/"><MdWeekend /></Link></Col>
+                            <Col>
+                                <Dropdown menu={{ items }} placement="bottom" arrow>
+                                    <a onClick={(e) => e.preventDefault()}>
+                                        <Avatar size={screens.xs ? "small" : "large"}  src={"https://fptshop.com.vn/Content/v5d/account/images/img-user-update.png?v=123"} />
+                                    </a>
+                                </Dropdown>
+
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
@@ -82,4 +90,23 @@ const HeaderClient = () => {
     )
 }
 
-export default HeaderClient
+export default HeaderClient;
+export const items: MenuProps['items'] = [
+    {
+        key: '1',
+        label:  <Link href="/account">Tai khoan</Link>
+    },
+    {
+        key: '2',
+        label:  <Link href="/account">Order</Link>
+    },
+    {
+        key: '3',
+        label:  <Link href="/account">Logout</Link>
+    },
+];
+
+export const user:any = {
+    username: "Sue",
+    role: 1,
+}

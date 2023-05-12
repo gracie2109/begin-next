@@ -11,11 +11,16 @@ const { AiFillThunderbolt } = SharedIcons
 const ProductCard = ({ child }: Props) => {
   const router = useRouter()
   return (
-    <div className='h-auto max-h-[373px] min-h-[373px] min-w-[165px] mb-5 '>
+    <div className='h-auto max-h-[373px] mx-auto max-w-[195px]  mb-5 overflow-hidden'>
       <div className=" ">
         <div 
             className="max-h-[80%] min-h-[278px] z-1 cursor-pointer"
-            style={{ backgroundImage: `url(${child.images?.[0]})`, backgroundRepeat: "repeat", backgroundSize: "cover", backgroundPosition: "center"}}
+            style={{ backgroundImage: `url(${child.images?.[0]})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+
+        }}
             onClick={() => router.push(`/product/5`)}
            >
             <div className="p-2" >
@@ -43,7 +48,7 @@ const ProductCard = ({ child }: Props) => {
            </div>
         </div>
         <div className={`animation_button absolute w-full bg-white/50 bottom-0 top-0 h-0 overflow-hidden`}>
-          asdasd
+          saa
         </div>
       </div>
       <div className="prd_card_actions h-[20%] min-h-[96px]">

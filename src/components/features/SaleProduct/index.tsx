@@ -19,12 +19,10 @@ const SaleProduct = () => {
   const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterSevenDays = NOW_IN_MS + SEVEN_DAYS_IN_MS;
 
-
-
   return (
     <div className="bg-[#faefec]">
       <div className=" my-[5rem] mx-[3rem] py-7">
-        <Row align="middle" justify="space-between" wrap>
+        <Row align="middle" justify="space-between" wrap className="grid_cus">
           <Col  xs={24} sm={18}>
             <Row align="middle" justify="start" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col>
@@ -63,8 +61,7 @@ const SaleProduct = () => {
           <div className="mt-[3rem]">
             <Swiper
               modules={[Navigation, Pagination, A11y, FreeMode]}
-              spaceBetween={30}
-              slidesPerView={(screens.xs) ? 1 : 2 }
+              slidesPerView={(screens.xs) ? 1 :5 }
               navigation={{ prevEl, nextEl }}
               onInit={() => setInit(true)}
               freeMode={true}

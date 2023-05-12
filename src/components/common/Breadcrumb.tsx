@@ -8,7 +8,6 @@ export const BreadcrumbCustom = () => {
   const router = useRouter()
   const linkPath = router.asPath.split('/');
   linkPath.shift();
-  console.log("router", router)
   const pathArray = linkPath.map((path, i) => {
     return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') };
   });
