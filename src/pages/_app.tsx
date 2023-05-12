@@ -6,18 +6,15 @@ import { MyAppProps } from "@/models/common";
 import { Layouts } from "@/components/Layouts";
 import { wrapper } from "@/app/store";
 import AOS from "aos";
-import { useEffect } from "react";
-
+import React,{ useEffect } from "react";
 
 function MyApp({ Component, pageProps }: MyAppProps) {
-  const Layout = Layouts[Component.Layout] ?? ((page: any) => page);
-
+  const Layout = Layouts[Component.Layout] || (({ children }:any) => <>{children}</>);
   useEffect(() => {
     AOS.init({
       once: true,
     })
   }, []);
-
   return (
     <Layout>
       <Component {...pageProps} />
