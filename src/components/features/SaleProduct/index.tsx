@@ -21,7 +21,7 @@ const SaleProduct = () => {
 
   return (
     <div className="bg-[#faefec]">
-      <div className=" my-[5rem] mx-[3rem] py-7">
+      <div className={`my-[5rem] ${!screens.xs? "mx-[3rem]" : "mx-[10px]"} py-7 `}>
         <Row align="middle" justify="space-between" wrap className="grid_cus">
           <Col  xs={24} sm={18}>
             <Row align="middle" justify="start" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -61,7 +61,7 @@ const SaleProduct = () => {
           <div className="mt-[3rem]">
             <Swiper
               modules={[Navigation, Pagination, A11y, FreeMode]}
-              slidesPerView={(screens.xs) ? 1 :5 }
+              slidesPerView={(screens.xs) ? 2 : 6 }
               navigation={{ prevEl, nextEl }}
               onInit={() => setInit(true)}
               freeMode={true}

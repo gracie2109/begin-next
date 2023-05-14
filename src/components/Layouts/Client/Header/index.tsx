@@ -1,9 +1,9 @@
-import React,{ useState } from 'react'
-import {Layout, Row, Col, Typography, Grid, Dropdown, Divider, Space,Input, Button, Avatar,Drawer} from 'antd';
+import React, {useEffect, useState} from 'react'
+import {Layout, Row, Col, Typography, Grid, Dropdown, Divider,Input, Button, Avatar,Drawer,Space} from 'antd';
 import Link from 'next/link';
 import { MENU_URL, SharedIcons } from "@/utils/contants";
 import type { MenuProps } from 'antd';
-const { MenuOutlined, SearchOutlined} = SharedIcons
+const { MenuOutlined, SearchOutlined, UserOutlined,BsFillBagFill,LogoutOutlined} = SharedIcons
 const { useBreakpoint } = Grid;
 
 const HeaderClient = () => {
@@ -11,7 +11,7 @@ const HeaderClient = () => {
     const [openSearch, setOpenSearch] = useState(false);
     const [searchText,setSearchText]  = useState("");
     const screens = useBreakpoint();
-    console.log("user", user)
+
     return (
         <Layout.Header className='shadow-lg text-black' style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', backgroundColor: "white" }}>
             <div className="h-[4rem] container mx-auto">
@@ -31,18 +31,19 @@ const HeaderClient = () => {
 
                     {/***** app name *****/}
                     <Col xs={12} md={4} lg={4} xl={4}>
-                        <Typography.Title level={screens.xs ? 5: 3}  style={{ color: "#0000"}}>
-                            <Link href="/" style={{ color: "#0000"}}>Mode Fashion</Link>
+                        <Typography.Title level={screens.xs ? 5: 3} >
+                            <Link href="/">Mode Fashion</Link>
                         </Typography.Title>
                     </Col>
 
                     {/***** PC Menu *****/}
                     <Col xs={0} md={16} lg={16} xl={16}>
-                        <Row align="middle" justify="space-between" className='hidden'>
+                        <Row align="middle" justify="center" gutter={[32,4]} >
                             {MENU_URL.map((item, index) => (
                                 <Col key={index}><Link href="/" style={{color: "#000"}}>{item.name}</Link></Col>
                             ))}
                         </Row>
+
                     </Col>
                     {/**** Right Side ****/}
                     <Col xs={8} md={4} lg={4} xl={4}>
@@ -91,22 +92,32 @@ const HeaderClient = () => {
 }
 
 export default HeaderClient;
-export const items: MenuProps['items'] = [
+const items: MenuProps['items'] = [
     {
         key: '1',
-        label:  <Link href="/account">Tai khoan</Link>
+        label:  (
+            <Space>
+                <UserOutlined />
+                <Link href="/account" className="text-black">Tài khoản</Link>
+            </Space>
+        )
     },
     {
         key: '2',
-        label:  <Link href="/account">Order</Link>
+        label:  (
+            <Space>
+                <BsFillBagFill />
+                <Link href="/account" className="text-black">Đơn hàng của bạn</Link>
+            </Space>
+        )
     },
     {
         key: '3',
-        label:  <Link href="/account">Logout</Link>
+        label:  (
+            <Space>
+                <LogoutOutlined />
+                <Link href="/account" className="text-black">Đăng xuất</Link>
+            </Space>
+        )
     },
 ];
-
-export const user:any = {
-    username: "Sue",
-    role: 1,
-}

@@ -7,7 +7,7 @@ import { Layouts } from "@/components/Layouts";
 import { wrapper } from "@/app/store";
 import AOS from "aos";
 import React,{ useEffect } from "react";
-
+import { ConfigProvider , FloatButton} from 'antd';
 function MyApp({ Component, pageProps }: MyAppProps) {
   const Layout = Layouts[Component.Layout] || (({ children }:any) => <>{children}</>);
   useEffect(() => {
@@ -16,9 +16,20 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     })
   }, []);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+      <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: '#00b96b',
+              wireframe: true
+            },
+          }}
+      >
+        <Layout>
+            <Component {...pageProps} />
+        </Layout>
+
+      </ConfigProvider>
+
   );
 }
 export default wrapper.withRedux(MyApp);

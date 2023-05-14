@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MyPage } from '@/models/common';
 import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, Skeleton, Grid, Tag } from "antd";
-import {Products_data, vouchers_data, policy_data, formatWord, SharedIcons, Category_data} from "@/utils";
+import {Products_data, vouchers_data, policy_data, formatWord, SharedIcons} from "@/utils";
 import { VoucherCard, SliderShow } from '@/components/common';
 import { useRouter } from 'next/router';
 import TabsProduct from "@/components/features/TabsProduct";
@@ -20,6 +20,7 @@ const DetailProduct: MyPage = () => {
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
     const [init, setInit] = useState(false);
+    const [value, setValue] = useState<string | number | null>('10');
 
     useEffect(() => {
         const prd = Products_data.find((item: any) => item?.id == id);
@@ -103,11 +104,11 @@ const DetailProduct: MyPage = () => {
                                                        <InputNumber
                                                            min={1}
                                                            max={99}
-                                                           style={{ width: 200 }}
-                                                           addonBefore={<Button type="link" onClick={() => console.log("add")} > +</Button>}
-                                                           addonAfter={<Button type="link" onClick={() => console.log("add")}> -</Button>}
+                                                           style={{ width: 200 , textAlign: "center"}}
+                                                           value={value} onChange={setValue}
+                                                           addonBefore={<Button type="link" onClick={() =>setValue(Number(value) +1)} > +</Button>}
+                                                           addonAfter={<Button type="link" onClick={() =>setValue(Number(value) -1)}> -</Button>}
                                                            defaultValue={1} />
-
                                                    </Col>
                                                </Row>
                                            </div>
@@ -116,10 +117,10 @@ const DetailProduct: MyPage = () => {
                                            <div className="my-7">
                                                <Row align="middle" justify="space-between" gutter={[8, 8]}>
                                                    <Col xs={24} md={12} >
-                                                       <Button size="large" className="w-full bg-red-600 text-white font-bold hover:text-red-600 hover:bg-slate-200 outline-none ">{formatWord("thêm vào giỏ", "uppercase")}</Button>
+                                                       <Button size="large" type="primary" danger style={{width: "100%", fontWeight: "bold"}}>{formatWord("thêm vào giỏ", "uppercase")}</Button>
                                                    </Col>
                                                    <Col xs={24} md={12}>
-                                                       <Button size="large" className="w-full bg-salte-100 text-red-600 font-bold border border-red-600 outline-none"><Link href="/cart">{formatWord("mua ngay", "uppercase")} </Link></Button>
+                                                       <Button size="large" danger style={{width: "100%", fontWeight: "bold"}}><Link href="/cart">{formatWord("mua ngay", "uppercase")} </Link></Button>
                                                    </Col>
                                                </Row>
                                            </div>

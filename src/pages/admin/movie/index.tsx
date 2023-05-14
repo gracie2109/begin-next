@@ -6,7 +6,7 @@ import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { listMovie } from '@/features/movie/actions';
-import FetchData from './_fetchData';
+import FetchData from './components/_fetchData';
 const { FaArrowRight, PlusOutlined } = SharedIcons;
 
 

@@ -1,53 +1,52 @@
 import {useState, useEffect}   from "react";
-import {Tabs, Card,Grid} from "antd";
+import {Tabs, Card, Grid, Typography, Row, Col, Layout} from "antd";
 import {MyPage} from "@/models/common";
 import { v4 as uuidv4 } from 'uuid';
 import UserInfo from "./components/userInfo";
 import UserOrder from "./components/UserOrder";
 import ChangePassWord from "@/pages/account/components/ChangePassWord";
-const {useBreakpoint} = Grid
+const {useBreakpoint} = Grid;
+import Link from "next/link"
 const Account:MyPage = () => {
-    const screens = useBreakpoint()
+    const screens = useBreakpoint();
+    const [activeKey, setActiveKey] = useState<string>('1');
     const tabs = [
         {
             id:uuidv4(),
-            label: "Info",
-            key: "info",
+            label: <Typography.Text style={{color: `${activeKey === "1" ? "#000" : "#dcdcdc"}`}}>Thông tin</Typography.Text>,
+            key: "1",
             children: <UserInfo />
         },
         {
             id:uuidv4(),
-            label: "Đơn mua",
-            key: "order",
+            label: <Typography.Text style={{color: `${activeKey === "2" ? "#000" : "#dcdcdc"}`}}>Đơn mua</Typography.Text>,
+            key: "2",
             children: <UserOrder />
         },
         {
             id:uuidv4(),
-            label: "Đổi mật khẩu",
-            key: "changePw",
+            label: <Typography.Text style={{color: `${activeKey === "3" ? "#000" : "#dcdcdc"}`}}>Đổi mật khẩu</Typography.Text>,
+            key: "3",
             children: <ChangePassWord />
         },
     ];
-    const [tabPosition, setTabPosition] = useState<any>("");
-
-    useEffect(() => {
-            if(screens.xs || screens.sm) {
-                setTabPosition("top")
-            }else{
-                setTabPosition("left")
-            }
-    },[screens]);
-
+    const onChange = (key:any) => {
+        setActiveKey(key)
+    }
     return (
-       <Card
-           bodyStyle={{padding: "0 10px", minHeight: "100vh" , backgroundColor: "#ffffff", width: "100%"}}>
-           <Tabs
-               defaultActiveKey="info"
-               tabPosition={tabPosition}
-               items={tabs}
-               style={{width: "100%", padding: "0", margin: 0}}
-           />
-       </Card>
+               <div className="w-full mt-5 mx-auto">
+                   <Card
+                       bodyStyle={{padding: "0 10px", minHeight: "100vh" , backgroundColor: "#ffffff", width: "100%"}}>
+                       <Tabs
+                           defaultActiveKey="info"
+                           tabPosition={"top"}
+                           items={tabs}
+                           size="large"
+                           style={{width: "100%", padding: "0", margin: 0}}
+                           onChange={onChange}
+                       />
+                   </Card>
+               </div>
     )
 }
 export default Account;

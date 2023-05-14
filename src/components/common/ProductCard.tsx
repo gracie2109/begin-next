@@ -11,15 +11,14 @@ const { AiFillThunderbolt } = SharedIcons
 const ProductCard = ({ child }: Props) => {
   const router = useRouter()
   return (
-    <div className='h-auto max-h-[373px] mx-auto max-w-[195px]  mb-5 overflow-hidden'>
+    <div className='h-auto max-h-[373px] mx-auto max-w-[200px]  mb-5 overflow-hidden mr-[10px] bg-white shadow rounded-lg'>
       <div className=" ">
         <div 
-            className="max-h-[80%] min-h-[278px] z-1 cursor-pointer"
+            className="max-h-[70%] min-h-[200px] z-1 cursor-pointer"
             style={{ backgroundImage: `url(${child.images?.[0]})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
                 backgroundPosition: "center",
-
         }}
             onClick={() => router.push(`/product/5`)}
            >
@@ -54,12 +53,12 @@ const ProductCard = ({ child }: Props) => {
       <div className="prd_card_actions h-[20%] min-h-[96px]">
         <Row gutter={[8, 4]} className="p-2 text-left">
           <Col span={24}>
-            <Row justify="space-between" className="font-thin text-gray-500" >
+            <Row justify="space-between" className="font-thin text-gray-500" gutter={[0,0]}>
               <Col>
-                {child?.colors?.length > 0 && <Typography.Text >+ {child?.colors?.length} Màu sắc</Typography.Text>}
+                {child?.colors?.length > 0 && <Typography.Text style={{fontSize: "12px"}}>+ {child?.colors?.length}Màu sắc</Typography.Text>}
               </Col>
               <Col span={12} className="text-end">
-                {child?.sizes?.length > 0 && <Typography.Text >+ {child?.sizes?.length} Kích thước</Typography.Text>}
+                {child?.sizes?.length > 0 && <Typography.Text style={{fontSize: "12px"}}>+ {child?.sizes?.length} Kích thước</Typography.Text>}
               </Col>
             </Row>
           </Col>

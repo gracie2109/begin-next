@@ -3,9 +3,8 @@ import {
     Row,
     Col,
     Typography,
-    Grid, Card, Form, Upload, Input, Radio, DatePicker, Button,Avatar
+    Grid, Card, Form, Input, Button,Avatar
 } from "antd";
-import {formatCurrency} from "@/utils";
 const {useBreakpoint} = Grid;
 
 const UserOrder = () => {
@@ -17,7 +16,8 @@ const UserOrder = () => {
         form.resetFields();
     }
     return (
-        <Row gutter={[0, 8]}>
+        <div className={`${!screens.xs ? "w-1/2 mx-auto" : "w-full"}`}>
+            <Row gutter={[0, 8]}>
             <Col md={24} xs={24}>
 
                 <div className="grid place-items-center">
@@ -25,13 +25,14 @@ const UserOrder = () => {
                 </div>
             </Col>
             <Col md={24} xs={24}>
-                <Card>
+                <Card style={{width: "100%", margin: "0 auto"}}>
                     <Form
-                        layout={"vertical"}
+                        layout={"horizontal"}
                         onFinish={onFinish}
+                        style={{width: "100%", margin: "0 auto"}}
                     >
                         {/*  avatar  */}
-                        <Form.Item style={{textAlign: "center",}}>
+                        <Form.Item style={{textAlign: "center"}}>
                             <Avatar size={120} src="https://fptshop.com.vn/Content/v5d/account/images/login-password.png?v=123" />
                         </Form.Item>
                         <Form.Item
@@ -74,7 +75,8 @@ const UserOrder = () => {
                             <Button
                                 htmlType="submit"
                                 type="primary"
-                                style={{backgroundColor: "#cb1c22", width: "100%"}}>
+                                danger
+                                style={{width: "100%"}}>
                                 Lưu thay đổi
                             </Button>
                         </Form.Item>
@@ -82,6 +84,7 @@ const UserOrder = () => {
                 </Card>
             </Col>
         </Row>
+        </div>
     )
 }
 export default UserOrder;

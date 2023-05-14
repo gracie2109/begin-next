@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, List, Avatar, Grid as AntdGrid, Badge, Input, Form } from "antd";
-import { Products_data, vouchers_data, formatWord, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
-import { VoucherCard, SliderShow } from '@/components/common';
+import { Row, Col, Typography, Card, Divider, Rate, Button, InputNumber, List, Avatar, Grid as AntdGrid, Badge, Input, Form } from "antd";
+import { Products_data, vouchers_data, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
+import { VoucherCard } from '@/components/common';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, A11y, FreeMode, Grid } from "swiper";
 import Link from "next/link";
@@ -181,7 +181,7 @@ const Cart: MyPage = () => {
                                 </Typography.Paragraph>
 
                                 <div className="my-7">
-                                    <button className="border-none outline-none text-white uppercase bg-[#ff0000] w-full p-3">
+                                    <button className="border-none outline-none text-white uppercase bg-[#ff0000] w-full p-3 rounded-lg">
                                         <Link href={"/checkouts"}>Thanh toán</Link>
                                     </button>
                                 </div>

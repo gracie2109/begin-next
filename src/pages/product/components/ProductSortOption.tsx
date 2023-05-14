@@ -1,13 +1,15 @@
-import {useState, useEffect}  from "react";
+import {useState, useEffect,Dispatch, SetStateAction}  from "react";
 import {Button, Checkbox, Col, Collapse, Row, Slider, Space, Tag, Typography} from "antd";
 import {Footer_Extenal_Link, formatCurrency, ProductPage_Brands, ProductPage_Colors, ProductPage_Sizes} from "@/utils";
 import Link from "next/link";
 import {CheckboxValueType} from "antd/es/checkbox/Group";
 import {SliderMarks} from "antd/es/slider";
+type Props = {
+    openDrawer?: boolean,
+    setOpenDrawer?: Dispatch<SetStateAction<boolean>>
+}
 
-
-
-const ProductSortOption = () => {
+const ProductSortOption = ({openDrawer,setOpenDrawer}:Props) => {
     const [checkedList, setCheckedList] = useState<CheckboxValueType[]>([]);
     const MAX_PRICE = 3000000;
     const marks: SliderMarks = {
@@ -36,11 +38,10 @@ const ProductSortOption = () => {
             : selectedTags.filter((t) => t !== tag);
         setSelectedTags(nextSelectedTags);
     }
-    console.log("v", selectedTags)
+
 
     return (
         <>
-            <>
             <div className='mb-3'>
                 <Typography.Title level={3}>Bộ lọc</Typography.Title>
             </div>
@@ -50,7 +51,7 @@ const ProductSortOption = () => {
                         <Collapse.Panel header={<Typography.Title level={5}>Danh mục sản phẩm</Typography.Title>} key="1">
                             {Footer_Extenal_Link.map((item, index) => (
                                 <div key={index} className="mb-3 text-gray-400"  >
-                                    <p><Link href={item.url}>{item.name}</Link></p>
+                                    <Link href={item.url} style={{color: "#000"}}>{item.name}</Link>
                                 </div>
                             ))}
                         </Collapse.Panel>
@@ -72,7 +73,7 @@ const ProductSortOption = () => {
 
                     <Collapse expandIconPosition="end" bordered={false} collapsible="header" defaultActiveKey={['1']} >
                         <Collapse.Panel header={<Typography.Title level={5}>Khoảng giá</Typography.Title>} key="1">
-                            <Slider  marks={marks} range={{ draggableTrack: true }} step={10}  onChange={onRangSlider}/>
+                            <Slider marks={marks} range={{ draggableTrack: true }} step={10}  onChange={onRangSlider}/>
                         </Collapse.Panel>
                     </Collapse>
 
@@ -86,10 +87,7 @@ const ProductSortOption = () => {
                                             checked={selectedTags.includes(item)}
                                             onChange={(checked) => handleChange(item, checked)}
                                             className="checkableTag "
-
                                         >
-                                            {/* , boxShadow: 'inset 0 0 0 2px black' */}
-
                                             <Button shape="circle" style={{backgroundColor: `${item}`}}></Button>
                                         </Tag.CheckableTag>
                                     </Col>
@@ -104,7 +102,6 @@ const ProductSortOption = () => {
                                 {ProductPage_Sizes.map((item, index) => (
                                     <Col key={index}><Button>{item}</Button></Col>
                                 ))}
-
                             </Row>
                         </Collapse.Panel>
                     </Collapse>
@@ -113,14 +110,18 @@ const ProductSortOption = () => {
             <div className="mb-5">
                 <Row justify="space-between" align="middle" gutter={[8,8]}>
                     <Col span={12}>
-                        <button className="w-full border-none outline-none text-black cursor-pointer bg-[#f3f4f6] p-3 rounded-md">Huy</button>
+                        <button className="w-full border-none outline-none text-black cursor-pointer bg-[#f3f4f6] p-3 rounded-md"
+                        onClick={() => {
+                            if (setOpenDrawer) {
+                                setOpenDrawer(!openDrawer)
+                            }}}
+                        >Hủy</button>
                     </Col>
                     <Col span={12}>
                         <button className="w-full border-none outline-none text-white cursor-pointer bg-[#333333] p-3 rounded-md">Áp dụng</button>
                     </Col>
                 </Row>
             </div>
-        </>
         </>
     )
 }

@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import { Row, Col, Card, Typography, Button, Space, Popover } from "antd"
-import Image from "next/image";
 import { SharedIcons } from "@/utils";
 
 type Props = {

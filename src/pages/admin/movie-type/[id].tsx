@@ -2,7 +2,7 @@ import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import MovieFormatDetailForm from './_form';
+import MovieFormatDetailForm from './components/_form';
 import { Divider, Typography, Row, Col, Button, Radio, Space, Card } from 'antd';
 import { SharedIcons } from '@/utils';
 import type { RadioChangeEvent } from 'antd';

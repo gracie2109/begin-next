@@ -1,66 +1,140 @@
-import React,{useState, useEffect}   from "react";
+import {useState, useEffect,Fragment}   from "react";
 import {
     Row,
     Col,
     Typography,
-    Grid
+    Grid,
+    Table,
+    Tag,
+    Button,
+    Space,
+    Tooltip
 } from "antd";
 import {formatCurrency} from "@/utils";
+import type { ColumnsType } from 'antd/es/table';
+import { v4 as uuidv4 } from 'uuid';
+import {
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    ExclamationCircleOutlined,
+    DeleteOutlined,
+    SyncOutlined,
+    InfoCircleOutlined
+} from '@ant-design/icons';
+import moment from "moment";
+import {useRouter} from "next/router";
 const {useBreakpoint} = Grid;
 
 const UserOrder = () => {
     const screens = useBreakpoint();
-    const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg'
+    const router = useRouter();
+
+    function getRndInteger(min:any, max:any) {
+        return Math.floor(Math.random() * (max - min) ) + min;
+    }
+
+    const columns: ColumnsType<any> = [
+        {
+            title: '#',
+            dataIndex: 'key',
+            key: 'key',
+            width: 50,
+            fixed: 'left',
+        },
+        {
+            title: 'Ngày mua',
+            dataIndex: 'date',
+            key: 'date',
+            width: 120,
+            fixed: 'left',
+        },
+        {
+            title: 'Mã vận đơn',
+            dataIndex: 'orderCode',
+            key: 'orderCode',
+
+        },
+        {
+            title: `${screens.xs ? "SL" : 'Số lượng'}`,
+            dataIndex: 'quanty',
+            key: 'quanty',
+            width: screens.xs ? 50 : 100,
+        },
+        {
+            title: 'Trạng thái',
+            dataIndex: 'status',
+            key: 'status',
+            width: 150,
+            render: (_:any, {status}:any) => (
+                <>
+                    {status ===0 && (  <Tag color="#2db7f5" icon={<ExclamationCircleOutlined />}>Chờ xác nhận</Tag>  )}
+                    {status ===1 && (  <Tag color="#108ee9" icon={<ExclamationCircleOutlined />}>Chờ lấy hàng  </Tag>  )}
+                    {status ===2 && (  <Tag color="processing" icon={<SyncOutlined spin />}>Đang giao</Tag>  )}
+                    {status ===3 && (  <Tag icon={<CheckCircleOutlined />} color="success"> Đã giao</Tag>  )}
+                    {status ===4 && (  <Tag icon={<CloseCircleOutlined />} color="error">Đã hủy</Tag>  )}
+                </>
+            )
+        },
+        {
+            title: 'Tổng tiền',
+            dataIndex: 'totalPrice',
+            key: 'totalPrice',
+            width: 150,
+        },
+        {
+            title: 'Action',
+            key: 'operation',
+            render: (_:any, {status}:any) => (
+                <>
+                <Space>
+                    <Button type="text" onClick={() => router.push('/account/order/3')}
+                            icon={ <Tooltip title="Chi tiết đơn hàng"><InfoCircleOutlined /></Tooltip>}
+                    ></Button>
+                    {status === 0 || status === 1 &&  <Button type="text" danger icon={ <Tooltip title="Hủy đơn hàng"><DeleteOutlined /></Tooltip>}></Button>}
+                </Space>
+                </>
+            ),
+        },
+    ];
+
+
+    const data: any[] = [];
+    for (let i = 0; i < 10; i++) {
+        data.push({
+            key: i +1,
+            orderCode: uuidv4().slice(0, 20),
+            date: `${moment().format("L")}`,
+            quanty: getRndInteger(1, 90),
+            totalPrice: `${formatCurrency(45000000)}`,
+            status:  getRndInteger(0,5)
+        });
+    }
+
+    const pageOptionSize = () => {
+        const data = [];
+        for (let index = 1; index <= 5; index++) {
+            const res = 10 * index
+            data.push(res)
+        }
+        return data
+    }
     return (
         <Row gutter={[0, 8]}>
             <Col md={24} xs={24}>
-                {/* Avatar   */}
                 <div className="grid place-items-center">
                     <Typography.Title level={3}>  Đơn hàng của bạn </Typography.Title>
+                    {screens.xs && <Typography.Text mark> Kéo sang phải để xem chi tiết bảng</Typography.Text>}
                 </div>
             </Col>
             <Col md={24} xs={24}>
-                    {/* @ts-ignore */}
-                    {/* responsive mobile */}
-                    <Row  style={{backgroundColor: "#fff",width: "100%"}} gutter={[0, 32]}>
-                        {Array.from([0,10], (_:any, key:any) => (
-                            <React.Fragment key={key}>
-                                <Col span={4}>
-                                    <img src={TestImag2} alt="product_image" style={{width: "50px", objectFit: "cover"}} />
-                                </Col>
-                                <Col span={20} style={{marginBottom: "10px"}}>
-                                    <Row>
-                                        <Col span={24}>
-                                            <Typography.Text> iPhone 14 Pro 128GB </Typography.Text>
-                                        </Col>
-                                        <Col span={24} style={{textAlign: "end"}}>
-                                            <Typography.Text type="secondary" > x1</Typography.Text>
-                                        </Col>
-                                        <Col span={24} style={{textAlign: "end", borderBottomColor: "red"}}>
-                                            <Row align="middle">
-                                                <Col span={7} style={{textAlign: "left",border: "1px solid red"}}>
-                                                    <div className="text-orange-700 text-[10px] p-[1px]"> 7 ngày trả hàng</div>
-                                                </Col>
-                                                <Col span={17}> <Typography.Text type="secondary" >{formatCurrency(10000)}</Typography.Text></Col>
-                                            </Row>
-                                        </Col>
-                                        <hr style={{ borderBottomColor: "#dcdcdc", width: "100%", borderTopColor: "transparent", margin: "3px 0"}}/>
-                                        <Col span={24} style={{textAlign: "end"}}>
-                                            <Row justify="space-around" align="top">
-                                                <Col span={12} style={{textAlign: "left"}}>
-                                                    1 sản phẩm
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Typography.Text strong type="danger" style={{paddingRight: "5px"}}>Thành tiền:</Typography.Text>
-                                                    <Typography.Text strong>{formatCurrency(10000)}</Typography.Text>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </React.Fragment>
-                        ))}
-                    </Row>
+                <Table columns={columns} dataSource={data}
+                       scroll={{x: 1000}}
+                       pagination={data &&  data?.length > 10 && {
+                           defaultPageSize: 10,
+                           showSizeChanger: true,
+                           pageSizeOptions: pageOptionSize()
+                       }}
+                />
             </Col>
         </Row>
     )
