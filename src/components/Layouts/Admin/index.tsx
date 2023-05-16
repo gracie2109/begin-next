@@ -12,7 +12,7 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
  
   return (
       <Layout className="layout" >
-        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg">
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="xs">
             <div className='logo'>
               <Link href="/">APP NAME</Link>
             </div>
@@ -36,6 +36,7 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
               style={{
                 margin: '24px 16px',
                 padding: 24,
+                overflow: "hidden"
               }}
           >
             {children}

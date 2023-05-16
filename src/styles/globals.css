@@ -104,10 +104,16 @@ p{
 }
 
 .ant-col.ant-form-item-label {
-    width: 25% !important;
+    width: 20% !important;
     text-align: left!important;
 }
 
 .ant-col.ant-form-item-control{
-    width: 75% !important;
+    width: 80% !important;
+}
+.no-style-form .ant-col.ant-form-item-label,
+.no-style-form .ant-col.ant-form-item-control
+{
+    width: auto !important;
+    display: inline-block !important;
 }
