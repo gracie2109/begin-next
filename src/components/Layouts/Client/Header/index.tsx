@@ -32,7 +32,7 @@ const HeaderClient = () => {
                     {/***** app name *****/}
                     <Col xs={12} md={4} lg={4} xl={4}>
                         <Typography.Title level={screens.xs ? 5: 3} >
-                            <Link href="/" >Mode Fashion</Link>
+                            <Link href="/">Mode Fashion</Link>
                         </Typography.Title>
                     </Col>
 

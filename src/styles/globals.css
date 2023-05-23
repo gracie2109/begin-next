@@ -109,7 +109,7 @@ p{
 }
 
 .ant-col.ant-form-item-control{
-    width: 100% !important;
+    width: 80% !important;
 }
 .no-style-form .ant-col.ant-form-item-label,
 .no-style-form .ant-col.ant-form-item-control

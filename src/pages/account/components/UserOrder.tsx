@@ -8,11 +8,7 @@ import {
     Tag,
     Button,
     Space,
-    Tooltip,
-    Popconfirm,
-    message,
-    notification
-
+    Tooltip
 } from "antd";
 import {formatCurrency} from "@/utils";
 import type { ColumnsType } from 'antd/es/table';
@@ -36,17 +32,6 @@ const UserOrder = () => {
     function getRndInteger(min:any, max:any) {
         return Math.floor(Math.random() * (max - min) ) + min;
     }
-
-    const confirm = (e: React.MouseEvent<HTMLElement>) => {
-        console.log(e);
-        notification.open({
-            type: "success",
-            message: 'Xóa thành công ',
-            description:
-                'Đơn hàng đã được xóa.',
-        });
-    };
-
 
     const columns: ColumnsType<any> = [
         {
@@ -99,28 +84,13 @@ const UserOrder = () => {
         {
             title: 'Action',
             key: 'operation',
-            render: (_:any, {status, orderCode}:any) => (
+            render: (_:any, {status}:any) => (
                 <>
                 <Space>
                     <Button type="text" onClick={() => router.push('/account/order/3')}
                             icon={ <Tooltip title="Chi tiết đơn hàng"><InfoCircleOutlined /></Tooltip>}
                     ></Button>
-                    {status === 0 || status === 1 &&(
-
-                            <Popconfirm
-                                title="Delete the task"
-                                description="Are you sure to delete this task?"
-                                onConfirm={(e:any) =>{confirm(e)}}
-                                okText="Yes"
-                                cancelText="No"
-                            >
-                                <Button type="text" danger icon={<DeleteOutlined />}></Button>
-                            </Popconfirm>
-                        )
-
-
-
-                    }
+                    {status === 0 || status === 1 &&  <Button type="text" danger icon={ <Tooltip title="Hủy đơn hàng"><DeleteOutlined /></Tooltip>}></Button>}
                 </Space>
                 </>
             ),

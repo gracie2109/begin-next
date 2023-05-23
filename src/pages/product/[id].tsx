@@ -106,8 +106,8 @@ const DetailProduct: MyPage = () => {
                                                            max={99}
                                                            style={{ width: 200 , textAlign: "center"}}
                                                            value={value} onChange={setValue}
-                                                           addonBefore={<Button style={{padding: 0}} type="link" onClick={() =>setValue(Number(value) +1)}  > +</Button>}
-                                                           addonAfter={<Button style={{padding: 0}} type="link" disabled={value === 0} onClick={() =>setValue(Number(value) -1)}> -</Button>}
+                                                           addonBefore={<Button type="link" onClick={() =>setValue(Number(value) +1)} > +</Button>}
+                                                           addonAfter={<Button type="link" onClick={() =>setValue(Number(value) -1)}> -</Button>}
                                                            defaultValue={1} />
                                                    </Col>
                                                </Row>
@@ -172,6 +172,7 @@ const DetailProduct: MyPage = () => {
 
                                </Row>
                            </Col>
+                            {/*gutter={[16, 32]}*/}
                             {/* policy */}
                             <Col xs={24} md={18} offset={!screens.xs?6:0}>
                                 <Row gutter={[16, 32]}>

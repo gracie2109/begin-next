@@ -21,9 +21,8 @@ const MovieDetail: MyPage = () => {
             setMode("create");
             setFormType("normal")
         }else{
-            setMode(`Update: ${id?.[0]}`);
-            setFormType("normal");
-            form.setFieldsValue({...data})
+            setMode(`Update thông tin ${id?.[0]}`);
+            setFormType("normal")
         }
     },[id]);
 
@@ -43,6 +42,17 @@ const MovieDetail: MyPage = () => {
                     comp: <Link href="/admin/movie"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
                 },
             ]}/>
+            {mode === "create" && (
+                <>
+                    <Button icon={<SiThemoviedatabase />} type="text" onClick={() =>setFormType("tmdb")}>
+                        Nhập thông tin form từ TMDB API
+                    </Button>
+                    <Button type="text" onClick={() =>setFormType("normal")}>
+                        Nhập thông tin form bằng cơm
+                    </Button>
+                </>
+            )}
+
             <MovieForm
                 form={form}
                 onFinish={onFinish}
@@ -57,16 +67,3 @@ const MovieDetail: MyPage = () => {
 
 export default MovieDetail;
 MovieDetail.Layout = "Admin";
-
-export const data =
-    {
-        key: 1,
-        id: 1,
-        name: "Data1",
-        image: undefined,
-        runTime: 200,
-        revenue: 250000000,
-        release: Date.now(),
-        updateAt: Date.now(),
-        status: 0
-    }

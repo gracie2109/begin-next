@@ -10,7 +10,7 @@ const ClientTheme = ({ children }: PropsWithChildren) => {
     <Layout>
       <HeaderClient />
       <div className="container mx-auto z-0 ">
-        <Content style={{ height: "100%"}}>
+        <Content style={{ height: "auto", minHeight: "100vh"}}>
          {children}
         </Content>
       </div>

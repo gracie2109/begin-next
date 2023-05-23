@@ -38,7 +38,6 @@ const items: MenuItem[] = [
     getItem(<Link href="/admin/movie-type">Thể loại phim</Link>, "movie-type", <MdMovieCreation />),
   ]),
   getItem(<Link href="/admin/voucher">Voucher</Link>, "voucher", <MdWeekend />),
-  getItem(<Link href="/admin/products">Sản phẩm</Link>, "products", <MdWeekend />),
 ];
 
 // submenu keys of first level

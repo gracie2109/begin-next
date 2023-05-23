@@ -19,7 +19,6 @@ const Cart: MyPage = () => {
     const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
     const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
     const [init, setInit] = useState<boolean>(false);
-    const [value, setValue] = useState<string | number | null>('10');
     const screens = useBreakpoint();
 
     useEffect(() => {
@@ -104,14 +103,9 @@ const Cart: MyPage = () => {
                                                     <Col span={24}><Typography.Text strong >{formatCurrency(item?.price)}</Typography.Text></Col>
                                                     <Col span={24}>
                                                         <InputNumber
-                                                            min={1}
-                                                            max={99}
-                                                            readOnly
-                                                            style={{ width: '120px' , textAlign: "center"}}
-                                                            value={value} onChange={setValue}
-                                                            addonBefore={<Button style={{padding: 0}} type="link" onClick={() =>setValue(Number(value) +1)}  > +</Button>}
-                                                            addonAfter={<Button style={{padding: 0}} type="link" disabled={value === 0} onClick={() =>setValue(Number(value) -1)}> -</Button>}
-                                                            defaultValue={1} />
+                                                            style={{ width: "auto", maxWidth: "120px" }}
+                                                            addonBefore={<Button style={{ padding: 0 }} type="link"  > +</Button>}
+                                                            addonAfter={<Button style={{ padding: 0 }} type="link"> -</Button>} defaultValue={100} />
                                                     </Col>
                                                 </Row>
                                             </List.Item>
@@ -187,8 +181,8 @@ const Cart: MyPage = () => {
                                 </Typography.Paragraph>
 
                                 <div className="my-7">
-                                    <button className="border-none font-bold outline-none text-white uppercase bg-[#ff0000] w-full p-3 rounded-lg">
-                                        <Link href={"/checkouts"} style={{color: "#fff"}}>Thanh toán</Link>
+                                    <button className="border-none outline-none text-white uppercase bg-[#ff0000] w-full p-3 rounded-lg">
+                                        <Link href={"/checkouts"}>Thanh toán</Link>
                                     </button>
                                 </div>
                             </Card>

@@ -9,11 +9,7 @@ import AOS from "aos";
 import React,{ useEffect } from "react";
 import { ConfigProvider , FloatButton} from 'antd';
 function MyApp({ Component, pageProps }: MyAppProps) {
-  const Layout = Layouts[Component.Layout] || (({ children }:any) => (
-          <div className="mx-auto container relative top-0 my-7">
-              {children}
-          </div>)
-  );
+  const Layout = Layouts[Component.Layout] || (({ children }:any) => <>{children}</>);
   useEffect(() => {
     AOS.init({
       once: true,

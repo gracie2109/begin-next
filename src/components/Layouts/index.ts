@@ -1,10 +1,13 @@
+import {Fragment} from "react"
 import AdminTheme from "./Admin";
 import ClientTheme from "./Client";
-import AuthTheme from "./Auth";
+import NoLayout from "./NoLayout"
+
+
 export const Layouts = {
     Admin: AdminTheme,
     Main: ClientTheme,
-    Auth:AuthTheme
+    Default:NoLayout
   };
-export type LayoutKeys = keyof typeof Layouts;
+export type LayoutKeys = keyof typeof Layouts; // "Main" | "Admin" | "Default"
  
