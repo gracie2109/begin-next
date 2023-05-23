@@ -91,4 +91,4 @@ const Index:MyPage = () => {
 }
 
 export default Index;
-Index.Layout="Admin"
+Index.Layout="Admin";

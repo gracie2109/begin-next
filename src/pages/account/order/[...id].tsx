@@ -2,7 +2,7 @@ import {useState, useEffect,Fragment} from "react";
 import {
     Row,
     Col,
-    Typography, Button, Card, Space, Grid,Collapse
+    Typography, Button, Card, Space, Grid,Collapse, List
 } from "antd";
 import {formatCurrency, SharedIcons} from "@/utils";
 import Link from "next/link";
@@ -13,6 +13,14 @@ const  OrderItem:MyPage = () => {
     const screens = Grid.useBreakpoint();
     const [open,setOpen] = useState(false)
     const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg'
+    const data = [
+        'Racing car sprays burning fuel into crowd.',
+        'Japanese princess to wed commoner.',
+        'Australian walks 100km after outback crash.',
+        'Man charged over missing wedding girl.',
+        'Los Angeles battles huge wildfires.',
+    ];
+
 
     return (
        <div className={`screens_orrder overflow-hidden ${!screens.xs ? "w-1/2 mx-auto" : "w-full "}`}>
@@ -73,8 +81,9 @@ const  OrderItem:MyPage = () => {
                                   <Col span={24} style={{textAlign: "end"}}>
                                       <Row justify="space-around" align="top">
                                           <Col span={12} style={{textAlign: "left"}}>
-                                              1 sản phẩm
+                                            1 sản phẩm
                                           </Col>
+
                                           <Col span={12}>
                                               <Typography.Text strong type="danger" style={{paddingRight: "5px"}}>Thành tiền:</Typography.Text>
                                               <Typography.Text strong>{formatCurrency(10000)}</Typography.Text>

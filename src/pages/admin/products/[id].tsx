@@ -9,7 +9,7 @@ import Link from "next/link";
 const {SiThemoviedatabase} = SharedIcons;
 const { ArrowLeftOutlined} = SharedIcons;
 
-const MovieDetail: MyPage = () => {
+const ProductDetail: MyPage = () => {
     const [mode, setMode] = useState("");
     const [formType, setFormType] = useState("")
     const route = useRouter();
@@ -40,7 +40,7 @@ const MovieDetail: MyPage = () => {
             <HeaderAction title={`${mode === "create" ? "Thêm mới": `${mode}` }`} components={[
                 {
                     key: 1,
-                    comp: <Link href="/admin/movie"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
+                    comp: <Link href="/admin/products"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
                 },
             ]}/>
             <MovieForm
@@ -50,13 +50,12 @@ const MovieDetail: MyPage = () => {
                 formType={formType}
                 formMode={mode}
             />
-
         </>
     )
 }
 
-export default MovieDetail;
-MovieDetail.Layout = "Admin";
+export default ProductDetail;
+ProductDetail.Layout = "Admin";
 
 export const data =
     {
