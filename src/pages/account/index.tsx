@@ -6,7 +6,7 @@ import UserInfo from "./components/userInfo";
 import UserOrder from "./components/UserOrder";
 import ChangePassWord from "@/pages/account/components/ChangePassWord";
 const {useBreakpoint} = Grid;
-import Link from "next/link"
+
 const Account:MyPage = () => {
     const screens = useBreakpoint();
     const [activeKey, setActiveKey] = useState<string>('1');
