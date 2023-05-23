@@ -3,7 +3,7 @@ import MenuAdmin from './Menu';
 import { Layout } from 'antd';
 import { SharedIcons } from '@/utils';
 import React, { useState , PropsWithChildren } from 'react';
-
+import Link from "next/link";
 const { Header, Sider, Content } = Layout;
 const { MenuFoldOutlined,  MenuUnfoldOutlined,  ArrowLeftOutlined} = SharedIcons;
 
@@ -12,9 +12,9 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
  
   return (
       <Layout className="layout" >
-        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="lg" collapsedWidth="0">
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="xs">
             <div className='logo'>
-              <ArrowLeftOutlined />
+              <Link href="/">APP NAME</Link>
             </div>
           <MenuAdmin />
         </Sider>
@@ -36,9 +36,9 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
               style={{
                 margin: '24px 16px',
                 padding: 24,
+                overflow: "hidden"
               }}
           >
-         
             {children}
           </Content>
         </Layout>

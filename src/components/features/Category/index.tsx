@@ -39,7 +39,7 @@ const Category = () => {
           <Swiper
             modules={[Navigation, Pagination, A11y, FreeMode]}
             spaceBetween={30}
-            slidesPerView={screens.xs ? 1 : 4}
+            slidesPerView={screens.xs ? 2 : 4}
             navigation={{ prevEl, nextEl }}
             onInit={() => setInit(true)}
             freeMode={true}

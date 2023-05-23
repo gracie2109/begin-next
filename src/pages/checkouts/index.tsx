@@ -55,7 +55,7 @@ const Checkouts:MyPage = () => {
                                             <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item>
                                         </Col>
                                         <Col span={24}>
-                                            <Row gutter={[0, 0]}>
+                                            <Row gutter={[4, 0]}>
                                                 <Col md={16} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
                                                 <Col md={8} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
                                                 <Col span={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>

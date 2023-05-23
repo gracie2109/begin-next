@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, Tooltip, Typography } from 'antd';
+import {Button, Form, Tooltip, Typography} from 'antd';
 import { compareDate, formatWord, getColumnTable, SharedIcons } from '@/utils';
 import { DataTable, HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
@@ -8,20 +8,33 @@ import { useSearchTable } from '@/hooks';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { listMovieTypes } from '@/features/movie-type/actions'
+import FilterSection from "@/pages/admin/movie/components/FilterSection";
 const { Text } = Typography;
 const { FaArrowRight, HighlightOutlined, PlusOutlined } = SharedIcons;
 
 
 const MovieFormat: MyPage = () => {
+  const [openFilter,setOpenFilter ] = useState<boolean>(false);
+  const [form] = Form.useForm();
   const { getColumnSearchProps } = useSearchTable();
   const route = useRouter();
   const [selectedArr, setSelectedArr] = useState<any>([]);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const { data, pending } = useAppSelector((state) => state.listMovieTypeReducer);
 
   useEffect(() => {
     (async () => { await dispatch(listMovieTypes()) })();
   }, []);
+
+  const onFinish = (values:any) => {
+    console.log("onFinish", values)
+  }
+
+  const onReset = () => {
+    form.resetFields();
+    setOpenFilter(!openFilter)
+  };
+
 
   const columns: any = [
     {
@@ -57,19 +70,29 @@ const MovieFormat: MyPage = () => {
 
   const components = [
     {
+      key: 'filterSection',
+      comp: <FilterSection
+      openFilter={openFilter}
+      setOpenFilter={setOpenFilter}
+      form={form}
+      onFinish={onFinish}
+      onReset={onReset}
+  />
+    },
+    {
       key: 1,
-      comp: <Link href="/admin/movie-type/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo danh sách</Button></Link>
+      comp: <Link href="/admin/movie-type/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo thể loại</Button></Link>
     },
     {
       key: 2,
-      comp: <Link href="/admin/movie"> <Button type="primary" icon={<FaArrowRight />}>Danh sách phim</Button></Link>
+      comp: <Link href="/admin/movie"> <Button type="primary" icon={<FaArrowRight />}>Ds phim</Button></Link>
     },
 
   ]
   return (
     <>
       <HeaderAction
-        title="Danh sách thể loại phim"
+        title="Ds thể loại phim"
         components={components}
       />
       <DataTable

@@ -86,10 +86,9 @@ const ProductRating = () => {
                             </Col>
                             <Col xs={24} md={6}>
                                 <Typography.Text >Bạn đã dùng sản phẩm này? </Typography.Text> <br/>
-                                <button onClick={() => setIsModalOpen(!isModalOpen)}
-                                    className="border-none outline-none text-white bg-[#cb1c22] py-2 px-8 rounded-lg mt-2">
+                                <Button type="primary" danger onClick={() => setIsModalOpen(!isModalOpen)} >
                                     GỬI ĐÁNH GIÁ
-                                </button>
+                                </Button>
                                 <Modal title="Đánh giá sản phẩm" open={isModalOpen}  onCancel={() =>{ setIsModalOpen(!isModalOpen);form.resetFields()}} footer={null}>
                                     <Row align="middle" justify="center" gutter={[8,8]}>
                                         <Col ><img style={{textAlign: "center"}} src="https://images.fpt.shop/unsafe/fit-in/96x96/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/9/8/637982457696470604_apple-watch-ultra-49mm-alpine-loop-cam-1.jpg" /></Col>
@@ -135,8 +134,8 @@ const ProductRating = () => {
                                                 </Form.Item>
                                             </Col>
                                           </Row>
-                                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                                        <Button style={{backgroundColor: "#cb1c22", color: "white"}} htmlType="submit">
+                                        <Form.Item wrapperCol={{ span: 16, offset: 4 }}>
+                                        <Button type="primary" danger htmlType="submit" style={{width: "100%"}}>
                                             Hoàn tất
                                         </Button>
                                         </Form.Item>
@@ -165,10 +164,12 @@ const ProductRating = () => {
                     <Col md={24} >
 
                         <Row gutter={[16,8]} align="stretch">
-                           <Col> <Avatar size={screens.xs? "small" : "large"} icon={<UserOutlined />} /></Col>
+                           <Col xs={0}> <Avatar size="large" icon={<UserOutlined />} /></Col>
                             <Col>
                                 <Row align="middle" gutter={[16,0]} >
-
+                                    <Col>
+                                        <Avatar size="small" icon={<UserOutlined />} />
+                                    </Col>
                                     <Col>
                                         <Typography.Title level={4}>Tuyết</Typography.Title>
                                     </Col>

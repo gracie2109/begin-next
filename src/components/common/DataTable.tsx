@@ -12,13 +12,13 @@ type Props = {
   loading?: boolean,
   scrollWidth?: any,
   PS:number,
-  selectedArr: any,
-  setSelectedArr:any,
-  filterOldCondition:ConditionType
+  selectedArr?: any,
+  setSelectedArr?:any,
+  filterOldCondition?:ConditionType,
 }
 const { Paragraph, Text } = Typography;
 const { MdSyncAlt , AiOutlineClear,BsListColumnsReverse } = SharedIcons
-export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable, loading, scrollWidth,PS, setSelectedArr }: Props) => 
+export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable,loading, scrollWidth,PS, setSelectedArr }: Props) =>
 {
 
   const pageOptionSize = () => {
@@ -96,7 +96,7 @@ export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, da
 
   return (
     <>
-      {selectedRowKeys.length > 0 && dataHasSelect.length > 0 && 
+      {selectedRowKeys.length > 0 && dataHasSelect.length > 0 &&
       (
         <Row justify="start" align="middle" gutter={[16, 16]}>
           <Col>

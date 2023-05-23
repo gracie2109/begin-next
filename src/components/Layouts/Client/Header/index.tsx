@@ -1,8 +1,9 @@
-import React,{ useState } from 'react'
-import {Layout, Row, Col, Typography, Grid, Drawer, Divider, Input, Button} from 'antd';
+import React, {useEffect, useState} from 'react'
+import {Layout, Row, Col, Typography, Grid, Dropdown, Divider,Input, Button, Avatar,Drawer,Space} from 'antd';
 import Link from 'next/link';
-import { MENU_URL, SharedIcons } from "@/utils/contants"
-const { MdWeekend,SiThemoviedatabase, MenuOutlined} = SharedIcons
+import { MENU_URL, SharedIcons } from "@/utils/contants";
+import type { MenuProps } from 'antd';
+const { MenuOutlined, SearchOutlined, UserOutlined,BsFillBagFill,LogoutOutlined} = SharedIcons
 const { useBreakpoint } = Grid;
 
 const HeaderClient = () => {
@@ -30,24 +31,25 @@ const HeaderClient = () => {
 
                     {/***** app name *****/}
                     <Col xs={12} md={4} lg={4} xl={4}>
-                        <Typography.Title level={screens.xs ? 5: 3}  style={{ color: "#0000"}}>
-                            <Link href="/" style={{ color: "#0000"}}>Mode Fashion</Link>
+                        <Typography.Title level={screens.xs ? 5: 3} >
+                            <Link href="/" >Mode Fashion</Link>
                         </Typography.Title>
                     </Col>
 
                     {/***** PC Menu *****/}
                     <Col xs={0} md={16} lg={16} xl={16}>
-                        <Row align="middle" justify="space-between" className='hidden'>
+                        <Row align="middle" justify="center" gutter={[32,4]} >
                             {MENU_URL.map((item, index) => (
                                 <Col key={index}><Link href="/" style={{color: "#000"}}>{item.name}</Link></Col>
                             ))}
                         </Row>
+
                     </Col>
                     {/**** Right Side ****/}
                     <Col xs={8} md={4} lg={4} xl={4}>
                         <Row align="middle" justify="end" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                             <Col>
-                                <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SiThemoviedatabase />}></Button>
+                                <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SearchOutlined />}></Button>
                                 <Drawer title="Tìm kiếm sản phẩm"
                                     placement="top"
                                     onClose={() => setOpenSearch(!openSearch)} open={openSearch}
@@ -73,7 +75,14 @@ const HeaderClient = () => {
                                 </Drawer>
                             </Col>
                         
-                            <Col><Link href="/"><MdWeekend /></Link></Col>
+                            <Col>
+                                <Dropdown menu={{ items }} placement="bottom" arrow>
+                                    <a onClick={(e) => e.preventDefault()}>
+                                        <Avatar size={screens.xs ? "small" : "large"}  src={"https://fptshop.com.vn/Content/v5d/account/images/img-user-update.png?v=123"} />
+                                    </a>
+                                </Dropdown>
+
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
@@ -82,4 +91,33 @@ const HeaderClient = () => {
     )
 }
 
-export default HeaderClient
+export default HeaderClient;
+const items: MenuProps['items'] = [
+    {
+        key: '1',
+        label:  (
+            <Space>
+                <UserOutlined />
+                <Link href="/account" className="text-black">Tài khoản</Link>
+            </Space>
+        )
+    },
+    {
+        key: '2',
+        label:  (
+            <Space>
+                <BsFillBagFill />
+                <Link href="/account" className="text-black">Đơn hàng của bạn</Link>
+            </Space>
+        )
+    },
+    {
+        key: '3',
+        label:  (
+            <Space>
+                <LogoutOutlined />
+                <Link href="/account" className="text-black">Đăng xuất</Link>
+            </Space>
+        )
+    },
+];

@@ -1,3 +1,3 @@
 export * from "./function";
 export * from "./contants";
-export * from "./types"
+export * from "./validateForm"

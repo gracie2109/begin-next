@@ -1,18 +1,11 @@
 import React from "react";
-import { Layout, Row, Col, Space, Input, Typography, Button, Grid } from "antd";
+import { Layout, Row, Col, Space, Input, Typography, Button } from "antd";
 import Link from "next/link";
 import { SharedIcons , Footer_IMG_Payment, Footer_IMG_Shipping, Footer_Extenal_Link} from "@/utils";
 const { Footer } = Layout;
-const { useBreakpoint } = Grid;
 
 const { FaFacebookF,FaTwitter ,FaInstagram ,FaTiktok, FaYoutube } = SharedIcons
 const FooterClient = () => {
-  const screens = useBreakpoint();
-  console.log("screens",screens);
-
-
-
-
   return (
     <Footer
       style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" , height: "auto"}}
@@ -85,7 +78,7 @@ const FooterClient = () => {
             <div className="m-4">
                   {Footer_Extenal_Link.map((item, index) => (
                     <ul key={index} className="mb-3 list-disc hover:text-gray-400"  >
-                      <li><Link href={item.url}>{item.name}</Link></li>
+                      <li><Link href={item.url} style={{color: "#000"}}>{item.name}</Link></li>
                     </ul>
                   ))}
             </div>
