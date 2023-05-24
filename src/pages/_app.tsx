@@ -8,6 +8,8 @@ import { wrapper } from "@/app/store";
 import AOS from "aos";
 import React,{ useEffect } from "react";
 import { ConfigProvider , FloatButton} from 'antd';
+import { HydrationProvider, Server, Client } from "react-hydration-provider";
+
 function MyApp({ Component, pageProps }: MyAppProps) {
   const Layout = Layouts[Component.Layout] || (({ children }:any) => (
           <div className="mx-auto container relative top-0 my-7">
@@ -20,20 +22,28 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     })
   }, []);
   return (
-      <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary: '#00b96b',
-              wireframe: true
-            },
-          }}
-      >
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+      <HydrationProvider>
+          <Client>
+              <ConfigProvider
+                  theme={{
+                      token: {
+                          colorPrimary: '#00b96b',
+                          wireframe: true
+                      },
+                  }}
+              >
+                  <Layout>
+                      <Component {...pageProps} />
+                  </Layout>
 
-      </ConfigProvider>
+              </ConfigProvider>
 
+          </Client>
+          <Server>
+              <p>Loading....</p>
+          </Server>
+      </HydrationProvider>
+      
   );
 }
 export default wrapper.withRedux(MyApp);

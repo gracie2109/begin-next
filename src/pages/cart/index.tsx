@@ -1,26 +1,19 @@
 import { useState, useEffect } from "react";
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Card, Divider, Rate, Button, InputNumber, List, Avatar, Grid as AntdGrid, Badge, Input, Form } from "antd";
-import { Products_data, vouchers_data, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
-import { VoucherCard } from '@/components/common';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, A11y, FreeMode, Grid } from "swiper";
+import { Row, Col, Typography, Card, Divider, Button, InputNumber, List, Avatar, Badge, Input, Form } from "antd";
+import { Products_data, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
 import Link from "next/link";
-import 'swiper/swiper-bundle.css'
-const { BsTruck, FaRegCheckCircle, AiFillCheckCircle, LeftOutlined, RightOutlined } = SharedIcons;
-const { useBreakpoint } = AntdGrid;
-
+import VatForm from "@/pages/cart/components/VatForm";
+import VoucherList from "@/pages/cart/components/voucherList";
+const { BsTruck, FaRegCheckCircle, AiFillCheckCircle } = SharedIcons;
 
 const Cart: MyPage = () => {
     const [form] = Form.useForm();
     const [cloneList, setCloneList] = useState([...Products_data]);
     const [money, setMoney] = useState(0);
     const [openVat, setOpenVat] = useState(false)
-    const [prevEl, setPrevEl] = useState<HTMLElement | null>(null)
-    const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
-    const [init, setInit] = useState<boolean>(false);
+
     const [value, setValue] = useState<string | number | null>('10');
-    const screens = useBreakpoint();
 
     useEffect(() => {
         const money = cloneList.reduce((acc, curr) => acc + curr.price, 0);
@@ -31,6 +24,10 @@ const Cart: MyPage = () => {
 
     const deleteItem = (item: any) => {
         setCloneList(cloneList.filter((list) => list.id !== item.id))
+    }
+
+    const handleVatForm  = (values:any) => {
+        console.log("handleVatForm", values)
     }
 
     return (
@@ -84,7 +81,6 @@ const Cart: MyPage = () => {
 
                                 <Card className="my-3" >
                                     <List
-
                                         dataSource={cloneList}
                                         renderItem={(item) => (
                                             <List.Item key={item.id} style={{ width: '100%' }}>
@@ -92,7 +88,7 @@ const Cart: MyPage = () => {
                                                     avatar={
                                                         <Badge 
                                                             count={<span className="cursor-pointer bg-red-600 text-white w-[20px] h-[20px] text-[7px] rounded-full absolute top-0 grid place-items-center" 
-                                                            onClick={() => { deleteItem(item) }}>1</span>} className="pointer-cursor">
+                                                            onClick={() => { deleteItem(item) }}>3</span>} className="pointer-cursor">
                                                             <Avatar src={item?.images?.[0] || item?.images || ""} shape="square" size={80} />
                                                         </Badge>
                                                     }
@@ -145,15 +141,7 @@ const Cart: MyPage = () => {
                                     </Row>
                                     {openVat && (
                                         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" className="mt-3">
-                                            <Form form={form}>
-                                                <Row gutter={[16, 0]}>
-                                                    <Col md={8} xs={24}>  <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...." />  </Form.Item></Col>
-                                                    <Col md={8} xs={24}><Form.Item name="companyVatCode" >  <Input placeholder="Mã số thuế...." />  </Form.Item></Col>
-                                                    <Col md={8} xs={24}><Form.Item name="companyVatEmail" >  <Input placeholder="Email...." />  </Form.Item></Col>
-                                                    <Col md={24} xs={24}><Form.Item name="companyVatAdr" >  <Input placeholder="Địa chỉ công ty...." />  </Form.Item></Col>
-                                                    <Col md={24} xs={24}><Button htmlType="submit" style={{ backgroundColor: "#dcdcdc" }}>Lưu thông tin</Button></Col>
-                                                </Row>
-                                            </Form>
+                                            <VatForm form={form} onFinish={handleVatForm} />
                                         </div>
                                     )}
 
@@ -201,42 +189,8 @@ const Cart: MyPage = () => {
                                     </Typography.Paragraph>
                                 </Card>
                             </div>
-
-
-
-                            <Card bodyStyle={{ padding: '10px' }} style={{ marginTop: "3rem 0" }} >
-                                <Row justify="space-between" gutter={[32, 16]}>
-                                    <Col span={16}> <Typography.Title level={5}> Khuyến mãi dành cho bạn</Typography.Title></Col>
-                                    <Col span={8}>
-                                        <Row justify="end" gutter={[16, 16]}>
-                                            <Col> <Button type="text" icon={<LeftOutlined />} ref={(node) => setPrevEl(node)}></Button> </Col>
-                                            <Col> <Button type="text" icon={<RightOutlined />} ref={(node) => setNextEl(node)} ></Button> </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col span={24} >
-                                        <Swiper
-                                            modules={[Navigation, Pagination, A11y, FreeMode]}
-                                            spaceBetween={30}
-                                            slidesPerView={1}
-                                            navigation={{ prevEl, nextEl }}
-                                            onInit={() => setInit(true)}
-                                            freeMode={true}
-                                        >
-                                            {vouchers_data.map((item, index) => (
-                                                <SwiperSlide key={index} >
-                                                    <VoucherCard data={item} />
-                                                </SwiperSlide>
-                                            ))}
-                                        </Swiper>
-
-                                    </Col>
-
-                                </Row>
-                            </Card>
+                          <VoucherList />
                         </Col>
-
-
-
             </Row>
         </Card>
     )

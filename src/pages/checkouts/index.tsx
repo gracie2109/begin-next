@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
-import { MyPage } from '@/models/common';
 import { Row, Col, Typography, Space, Card, Divider, Button,Input, Form,Breadcrumb } from "antd";
 import { Products_data, formatCurrency} from "@/utils";
 import Link from "next/link";
 import 'swiper/swiper-bundle.css'
 import OrderFinal from "./components/OrderFinal"
+import OrderInfoForm from "@/pages/checkouts/components/OrderInfoForm";
 
-const Checkouts:MyPage = () => {
+const Checkouts = () => {
     const [form] = Form.useForm();
     const [cloneList, setCloneList] = useState([...Products_data]);
     const [money, setMoney] = useState(0);
@@ -16,6 +16,9 @@ const Checkouts:MyPage = () => {
         setMoney(money);
     }, [cloneList]);
 
+    const handleForm = (values:any) => {
+        console.log("handleForm", values)
+    }
 
     const items = [
         { title: 'Giỏ hàng', href: '/cart'},
@@ -48,30 +51,8 @@ const Checkouts:MyPage = () => {
                             <Col span={24}>
                                 <Typography.Text>  Bạn đã có tài khoản?  <Link href="/auth/login">Đăng nhập</Link> </Typography.Text>
                             </Col>
-                            <Col span={24}>
-                                <Form form={form}>
-                                    <Row gutter={[0, 0]}>
-                                        <Col span={24}>
-                                            <Form.Item name="companyVatName" >  <Input placeholder="Tên công ty...."/>  </Form.Item>
-                                        </Col>
-                                        <Col span={24}>
-                                            <Row gutter={[4, 0]}>
-                                                <Col md={16} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                                <Col md={8} xs={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                                <Col span={24}>  <Form.Item name="companyVatName" >  <Input  placeholder="Tên công ty...."/>  </Form.Item></Col>
-                                                <Col></Col>
-                                            </Row>
-                                        </Col>
-                                        <Col span={24}>
-                                                <Row justify="space-between" gutter={[4, 4]}>
-                                                    <Col><Typography.Text><Link href="/cart">Giỏ hàng</Link> </Typography.Text></Col>
-                                                    <Col>
-                                                        <button className="outline-none border-none bg-[#338dbc] p-3"><Link href="/checkouts/step2" style={{color: "#fff"}}>Tiếp tục đến phương thức thanh toán</Link></button>
-                                                    </Col>
-                                                </Row>
-                                        </Col>
-                                    </Row>
-                                </Form>
+                            <Col span={22}>
+                                <OrderInfoForm form={form} onFinish={handleForm} />
                             </Col>
                         </Row>
                    </div>
@@ -106,4 +87,3 @@ const Checkouts:MyPage = () => {
 }
 
 export default Checkouts;
-Checkouts.Layout="Default"
