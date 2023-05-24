@@ -43,6 +43,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
               <p>Loading....</p>
           </Server>
       </HydrationProvider>
+      
   );
 }
 export default wrapper.withRedux(MyApp);
