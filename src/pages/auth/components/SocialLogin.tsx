@@ -1,14 +1,26 @@
 import {useState, useEffect} from "react";
 import {Row, Col, Space, Button} from "antd"
 import {SharedIcons} from "@/utils"
-
-const {FaTwitter, FaFacebookF, FaTiktok} = SharedIcons
+import {FcGoogle} from "react-icons/fc"
+const { BsFacebook} = SharedIcons
 const SocialLogin = () => {
     return (
         <Row gutter={[8,8]}>
-            <Col span={8} xs={24}> <Button style={{width: '100%'}}  icon={<FaTwitter />} ></Button></Col>
-            <Col span={8} xs={24}> <Button style={{width: '100%'}} icon={<FaFacebookF />}></Button></Col>
-            <Col span={8} xs={24}> <Button style={{width: '100%'}} icon={<FaTiktok />}></Button></Col>
+            <Col md={12} xs={24}>
+                <Button
+                    style={{width: '100%', display: "flex",justifyContent: "center"}}
+                    icon={<FcGoogle size={20}/>}
+                    type="default"
+                >Google
+                </Button>
+            </Col>
+            <Col md={12} xs={24}>
+                <Button
+                    style={{width: '100%',display: "flex",justifyContent: "center"}}
+                    icon={<BsFacebook size={20} fill="#1677ff" />}
+                >Facebook
+                </Button>
+            </Col>
         </Row>
     )
 }

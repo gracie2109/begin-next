@@ -28,10 +28,8 @@ const beforeUpload = (file: RcFile) => {
 };
 const UserInfo = () => {
     const screens = useBreakpoint();
-    const [formLayout, setFormLayout] = useState<any>("horizontal")
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>("https://fptshop.com.vn/Content/v5d/account/images/img-user-update.png?v=123");
-
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
             setLoading(true);
@@ -46,13 +44,6 @@ const UserInfo = () => {
         }
     };
 
-    useEffect(() => {
-        if(screens && screens.xs) {
-            setFormLayout("vertical")
-        }else{
-            setFormLayout("horizontal")
-        }
-    }, [screens])
 
     const onFinish = (values:any) => {
         console.log("values",values)
@@ -73,7 +64,6 @@ const UserInfo = () => {
 
     // eslint-disable-next-line arrow-body-style
     const disabledDate: RangePickerProps['disabledDate'] = (current) => {
-        // Can not select days before today and today
         return current && current > dayjs().endOf('day');
     };
 
@@ -88,14 +78,11 @@ const UserInfo = () => {
                </Col>
                <Col md={24} xs={24}>
                    <Card>
-                       {/* @ts-ignore */}
                        <Form
-                           layout={"horizontal"}
+                           layout={"vertical"}
                            onFinish={onFinish}
                        >
-                           {/*  avatar  */}
                            <Form.Item style={{textAlign: "center", verticalAlign: "middle"}}>
-                               {/*<Avatar size={64} icon={<AntDesignOutlined />} onClick={changeAvt}/>*/}
                                <Upload
                                    name="avatar"
                                    listType="picture-circle"
@@ -112,11 +99,11 @@ const UserInfo = () => {
 
                            {/*  name  */}
                            <Form.Item label="Họ và tên" name="username">
-                               <Input defaultValue="John Doe"  placeholder="Nhập họ tên"/>
+                               <Input placeholder="Nhập họ tên"/>
                            </Form.Item>
                            {/*  SDT   */}
                            <Form.Item label="Số điện thoại" name="phoneNumber">
-                               <Input defaultValue="0123456789" readOnly/>
+                               <Input  readOnly/>
                            </Form.Item>
                            {/*  Giới tính   */}
                            <Form.Item label="Giới tính" name="gender">
@@ -128,7 +115,7 @@ const UserInfo = () => {
                            </Form.Item>
                            {/*  Email   */}
                            <Form.Item label="Email" name="email">
-                               <Input defaultValue="johnDoe@example.com" placeholder="johnDoe@example.com"/>
+                               <Input  placeholder="johnDoe@example.com"/>
                            </Form.Item>
                            {/* Date */}
                            <Form.Item label="Ngày sinh"  >

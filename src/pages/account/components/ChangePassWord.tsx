@@ -27,7 +27,7 @@ const UserOrder = () => {
             <Col md={24} xs={24}>
                 <Card style={{width: "100%", margin: "0 auto"}}>
                     <Form
-                        layout={"horizontal"}
+                        layout={"vertical"}
                         onFinish={onFinish}
                         style={{width: "100%", margin: "0 auto"}}
                     >

@@ -15,9 +15,9 @@ const Index: MyPage = (props: Props) => {
             <Category />
          </div>
           <div className="bg-[#faefec]">
-            <HomeProductRow  data={Products_data}  title={"Sản phẩm khuyến mãi"} showTimer={true} type={"SLIDER"}/>
+            <HomeProductRow key={1}  data={Products_data}  title={"Sản phẩm khuyến mãi"} showTimer={true} type={"SLIDER"}/>
           </div>
-          <HomeProductRow  data={Products_data} title={"Sản phẩm bán chạy "} showTimer={false} type={"LIST"}/>
+          <HomeProductRow  key={2} data={Products_data} title={"Sản phẩm bán chạy "} showTimer={false} type={"LIST"}/>
       </>
    )
 }

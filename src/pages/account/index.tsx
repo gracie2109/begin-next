@@ -8,7 +8,6 @@ import ChangePassWord from "@/pages/account/components/ChangePassWord";
 const {useBreakpoint} = Grid;
 
 const Account:MyPage = () => {
-    const screens = useBreakpoint();
     const [activeKey, setActiveKey] = useState<string>('1');
     const tabs = [
         {

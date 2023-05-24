@@ -82,11 +82,11 @@ const UserOrder = () => {
             width: 150,
             render: (_:any, {status}:any) => (
                 <>
-                    {status ===0 && (  <Tag color="#2db7f5" icon={<ExclamationCircleOutlined />}>Chờ xác nhận</Tag>  )}
-                    {status ===1 && (  <Tag color="#108ee9" icon={<ExclamationCircleOutlined />}>Chờ lấy hàng  </Tag>  )}
-                    {status ===2 && (  <Tag color="processing" icon={<SyncOutlined spin />}>Đang giao</Tag>  )}
-                    {status ===3 && (  <Tag icon={<CheckCircleOutlined />} color="success"> Đã giao</Tag>  )}
-                    {status ===4 && (  <Tag icon={<CloseCircleOutlined />} color="error">Đã hủy</Tag>  )}
+                    {status === 0 && (  <Tag color="#2db7f5" icon={<ExclamationCircleOutlined />}>Chờ xác nhận</Tag>  )}
+                    {status === 1 && (  <Tag color="#108ee9" icon={<ExclamationCircleOutlined />}>Chờ lấy hàng  </Tag>  )}
+                    {status === 2 && (  <Tag color="processing" icon={<SyncOutlined spin />}>Đang giao</Tag>  )}
+                    {status === 3 && (  <Tag icon={<CheckCircleOutlined />} color="success"> Đã giao</Tag>  )}
+                    {status === 4 && (  <Tag icon={<CloseCircleOutlined />} color="error">Đã hủy</Tag>  )}
                 </>
             )
         },
@@ -105,21 +105,18 @@ const UserOrder = () => {
                     <Button type="text" onClick={() => router.push('/account/order/3')}
                             icon={ <Tooltip title="Chi tiết đơn hàng"><InfoCircleOutlined /></Tooltip>}
                     ></Button>
-                    {status === 0 || status === 1 &&(
+                    {(status === 0 ||  status === 1) &&(
 
                             <Popconfirm
-                                title="Delete the task"
-                                description="Are you sure to delete this task?"
+                                title="Hủy đơn hàng"
+                                description=" Bạn có chắc muốn hủy đơn này? "
                                 onConfirm={(e:any) =>{confirm(e)}}
-                                okText="Yes"
-                                cancelText="No"
+                                okText="Đồng ý"
+                                cancelText="Từ chối"
                             >
                                 <Button type="text" danger icon={<DeleteOutlined />}></Button>
                             </Popconfirm>
                         )
-
-
-
                     }
                 </Space>
                 </>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { MyPage } from '@/models/common';
 import {Row, Col,Typography, Card, Breadcrumb}from 'antd';
 import Link from 'next/link';
 import OrderFinal from "./components/OrderFinal";
@@ -10,7 +9,7 @@ const items = [
   { title: 'Thông tin giao hàng' },
   { title: 'Phương thức thanh toán' },
 ];
-const SecondStep:MyPage = (props: Props) => {
+const SecondStep= (props: Props) => {
   return (
     <Card>
       <Row>
@@ -38,5 +37,3 @@ const SecondStep:MyPage = (props: Props) => {
 }
 
 export default SecondStep;
-
-SecondStep.Layout="Default"

@@ -6,7 +6,6 @@ import { Pagination, Navigation, A11y, FreeMode } from "swiper";
 import CountDown from "../CountDown";
 import 'swiper/swiper-bundle.css'
 import ProductCard from "@/components/common/ProductCard";
-import ButtonCustom from "@/components/common/ButtonCustom";
 const { useBreakpoint } = Grid;
 const { LeftOutlined, RightOutlined } = SharedIcons
 type variantSlide = "SLIDER" | "LIST";
@@ -86,7 +85,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
                   <Row>
                     {Products_data.map((item, index) => (
                         <SwiperSlide key={index}>
-                          <ProductCard child={item} />
+                          <ProductCard child={item} key={index} />
                         </SwiperSlide>
                     ))}
                   </Row>
@@ -95,7 +94,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
                   <>
                     <Row justify="space-around" >
                       {Products_data.slice(0,12).map((item, index) => (
-                          <Col xs={12} md={4}><ProductCard child={item} key={index}  /></Col>
+                          <Col xs={12} md={4}  key={index}><ProductCard child={item} key={index}  /></Col>
                       ))}
                     </Row>
                   </>

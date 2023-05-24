@@ -10,20 +10,12 @@ import {MyPage} from "@/models/common";
 import { v4 as uuidv4 } from 'uuid';
 const  { BsTruck, LeftOutlined, RightOutlined } = SharedIcons
 const  OrderItem:MyPage = () => {
-    const screens = Grid.useBreakpoint();
     const [open,setOpen] = useState(false)
-    const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg'
-    const data = [
-        'Racing car sprays burning fuel into crowd.',
-        'Japanese princess to wed commoner.',
-        'Australian walks 100km after outback crash.',
-        'Man charged over missing wedding girl.',
-        'Los Angeles battles huge wildfires.',
-    ];
-
+    const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg';
 
     return (
-       <div className={`screens_orrder overflow-hidden ${!screens.xs ? "w-1/2 mx-auto" : "w-full "}`}>
+           <div className={`screens_orrder overflow-hidden`}>
+               {/*${!screens.xs ? "w-1/2 mx-auto" : "w-full "}`*/}
           <Card>
               <Row gutter={[8, 16]} >
                   <Col span={24} >
@@ -33,7 +25,7 @@ const  OrderItem:MyPage = () => {
                       </Space>
                   </Col>
                   <Col span={24} >
-                      <Card bodyStyle={{ padding: '10px' }} style={{ backgroundColor: "#d9edf7" }}>
+                          <Card style={{ backgroundColor: "#d9edf7" }}>
                           <Typography.Text strong> Đơn hàng đã hoàn thành </Typography.Text>
                           <Typography.Paragraph>
                               Cảm ơn bạn đã đánh giá mua hàng. Mọi thắc mắc xin liên hệ cho quản trị viên
@@ -41,7 +33,7 @@ const  OrderItem:MyPage = () => {
                       </Card>
                   </Col>
                   <Col span={24} >
-                      <Card bodyStyle={{padding: 0}}>
+                      <Card >
                           <Row gutter={[8,8]} align="stretch">
                               <Col span={2} style={{textAlign: "end"}}><BsTruck/></Col>
                               <Col span={22}>
@@ -57,11 +49,11 @@ const  OrderItem:MyPage = () => {
                       </Card>
                   </Col>
                   <Col span={24} >
-                      <Card bodyStyle={{padding: "10px"}} style={{boxShadow: "rgba(0, 0, 0, 0) 0px 5px 15px"}}>
-                          <Col span={4} style={{padding: "10px"}}>
+                          <Card style={{boxShadow: "rgba(0, 0, 0, 0) 0px 5px 15px"}}>
+                          <Col span={4} >
                               <img src={TestImag2} alt="product_image" style={{width: "50px", objectFit: "cover"}} />
                           </Col>
-                          <Col span={24} style={{marginBottom: "10px", padding: "10px"}}>
+                          <Col span={24}>
                               <Row>
                                   <Col span={24}>
                                       <Typography.Text> iPhone 14 Pro 128GB </Typography.Text>
@@ -141,7 +133,8 @@ const  OrderItem:MyPage = () => {
                       </Row>
                   </Col>
                   <Col span={24}>
-                      <Card bodyStyle={{padding: 0}}>
+                      {/*<Card bodyStyle={{padding: 0}}>*/}
+                      <Card>
                           <Row gutter={[8,8]} align="stretch">
                               <Col span={2} style={{textAlign: "end"}}><BsTruck/></Col>
                               <Col span={22}>
@@ -159,13 +152,13 @@ const  OrderItem:MyPage = () => {
                                 <Col span={12}><Typography.Text strong>Mã đơn hàng</Typography.Text></Col>
                                 <Col span={12} style={{textAlign: "end"}}><Typography.Text strong>{ uuidv4().slice(0, 20)}</Typography.Text></Col>
                                 <Col span={12}><Typography.Text>Thời gian đặt hàng</Typography.Text></Col>
-                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 20)}</Col>
+                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 10)}</Col>
                                 <Col span={12}><Typography.Text>Thời gian thanh toán </Typography.Text></Col>
-                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 20)}</Col>
+                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 10)}</Col>
                                 <Col span={12}><Typography.Text>Thời gian giao hàng cho vận chuyển</Typography.Text></Col>
-                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 20)}</Col>
+                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0,10)}</Col>
                                 <Col span={12}><Typography.Text>Thời gian hoàn th</Typography.Text></Col>
-                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 20)}</Col>
+                                <Col span={12} style={{textAlign: "end"}}>{ uuidv4().slice(0, 10)}</Col>
                             </Row>
                       </Card>
                   </Col>
