@@ -1,20 +1,34 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { MyPage } from "@/models/common";
-import { SliderShow } from '@/components/common';
-import { SLIDERS } from "@/utils/contants"
-import Category from '@/components/features/Category';
-import HomeProductRow from '../components/features/HomeProductRow';
+import { SLIDERS } from "@/utils/contants";
+const SliderShow = dynamic(() => import("@/components/common/SliderShow"));
+const Category = dynamic(() => import("@/components/features/Category"),{ssr: false})
+const HomeProductRow = dynamic(() => import("@/components/features/HomeProductRow"), {ssr: false});
 import {  Products_data } from "@/utils";
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 type Props = {}
 
 const Index: MyPage = (props: Props) => {
+   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin color='#FF0000'/>;
+
+   if (!(SLIDERS || Products_data)) {
+      return (
+        <div className="h-screen flex items-center justify-center bg-black w-screen">
+          <Spin indicator={antIcon} />
+        </div>
+      );
+    }
+    
    return (
       <>
+
          <SliderShow slideChildren={SLIDERS} type="slider" />
          <div className='m-[3rem]'>
             <Category />
          </div>
-          <div className="bg-[#faefec]">
+          <div className="bg-[#e1e1e1]">
             <HomeProductRow key={1}  data={Products_data}  title={"Sản phẩm khuyến mãi"} showTimer={true} type={"SLIDER"}/>
           </div>
           <HomeProductRow  key={2} data={Products_data} title={"Sản phẩm bán chạy "} showTimer={false} type={"LIST"}/>

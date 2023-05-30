@@ -38,17 +38,9 @@ const Index:MyPage = () => {
         form.resetFields();
         setOpenFilter(!openFilter)
     };
+
+
     const components = [
-        {
-            key: 'filterSection',
-            comp: <FilterSection
-                openFilter={openFilter}
-                setOpenFilter={setOpenFilter}
-                form={form}
-                onFinish={onFinish}
-                onReset={onReset}
-            />
-        },
         {
             key: 1,
             comp: <Link href="/admin/products/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo sản phẩm </Button></Link>
@@ -75,6 +67,16 @@ const Index:MyPage = () => {
             <HeaderAction
                 title="Danh sách sản phẩm"
                 components={components}
+                children={
+                    <FilterSection
+                        openFilter={openFilter}
+                        setOpenFilter={setOpenFilter}
+                        form={form}
+                        onFinish={onFinish}
+                        onReset={onReset}
+
+                    />
+                }
             />
             <Tabs
                 defaultActiveKey="1"

@@ -1,11 +1,11 @@
 import { MyPage } from '@/models/common';
 import { useRouter } from 'next/router';
-import MovieForm from "@/pages/admin/movie/components/MovieForm";
 import {Button, Form} from "antd";
 import { HeaderAction } from '@/components/common';
 import {useEffect, useState} from "react";
 import {SharedIcons} from "@/utils";
 import Link from "next/link";
+import ProductForm from "@/pages/admin/products/components/ProductForm";
 const {SiThemoviedatabase} = SharedIcons;
 const { ArrowLeftOutlined} = SharedIcons;
 
@@ -17,15 +17,16 @@ const ProductDetail: MyPage = () => {
     const [form]  = Form.useForm();
 
     useEffect(() => {
-        if(id && id?.[0] === "create"){
+        if(id && id === "create"){
             setMode("create");
             setFormType("normal")
         }else{
-            setMode(`Update: ${id?.[0]}`);
+            setMode(`Update: ${id}`);
             setFormType("normal");
             form.setFieldsValue({...data})
         }
     },[id]);
+    console.log("mode", id);
 
     const onFinish = (values:any) => {
         console.log("values")
@@ -43,7 +44,7 @@ const ProductDetail: MyPage = () => {
                     comp: <Link href="/admin/products"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
                 },
             ]}/>
-            <MovieForm
+            <ProductForm
                 form={form}
                 onFinish={onFinish}
                 onReset={onReset}
