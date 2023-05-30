@@ -1,13 +1,14 @@
 import "@/styles/globals.css";
 import 'antd/dist/reset.css'
 import 'aos/dist/aos.css'
-import 'swiper/css'
+import 'swiper/css';
 import { MyAppProps } from "@/models/common";
 import { Layouts } from "@/components/Layouts";
 import { wrapper } from "@/app/store";
 import AOS from "aos";
-import React,{ useEffect } from "react";
-import { ConfigProvider , FloatButton} from 'antd';
+import { useEffect } from "react";
+import NextNProgress from "nextjs-progressbar";
+import { ConfigProvider , Spin} from 'antd';
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 
 function MyApp({ Component, pageProps }: MyAppProps) {
@@ -21,8 +22,10 @@ function MyApp({ Component, pageProps }: MyAppProps) {
       once: true,
     })
   }, []);
+
   return (
       <HydrationProvider>
+          <NextNProgress color="#FF4500" options={{ showSpinner: false }} />
           <Client>
               <ConfigProvider
                   theme={{
@@ -40,7 +43,9 @@ function MyApp({ Component, pageProps }: MyAppProps) {
 
           </Client>
           <Server>
-              <p>Loading....</p>
+            <div style={{height: "100vh", display: "grid", placeItems: "center"}}>
+                <Spin  />
+            </div>
           </Server>
       </HydrationProvider>
       

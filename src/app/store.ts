@@ -7,11 +7,8 @@ import {
   } from '@reduxjs/toolkit';
   import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
-import { movieType } from '@/features/movie-type/reducer';
-import { movies } from '@/features/movie/reducer';
   const combinedReducer = combineReducers({
-    ...movieType,
-    ...movies
+
   });
   
   const reducer: any = (state: ReturnType<typeof combinedReducer>, action: AnyAction) => {

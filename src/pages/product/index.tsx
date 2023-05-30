@@ -9,9 +9,8 @@ import { useState } from 'react';
 import { Row, Col, Typography,Card, Button, Select, Grid ,Drawer} from "antd";
 import { AlignCenterOutlined } from '@ant-design/icons';
 import ProductSortOption from "@/pages/product/components/ProductSortOption";
-const {useBreakpoint} = Grid
 const ProductList: MyPage = () => {
-    const screens = useBreakpoint()
+    const screens = Grid.useBreakpoint()
     const [openDrawer, setOpenDrawer] = useState(false);
     const handleChangeSort = (value: string) => {
         console.log(`selected ${value}`);

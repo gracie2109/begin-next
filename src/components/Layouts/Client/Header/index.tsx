@@ -9,6 +9,7 @@ const { useBreakpoint } = Grid;
 const HeaderClient = () => {
     const [open, setOpen] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
+    const [openCart, setOpenCart] = useState(false);
     const [searchText,setSearchText]  = useState("");
     const screens = useBreakpoint();
 
@@ -74,7 +75,17 @@ const HeaderClient = () => {
                                     </Row>
                                 </Drawer>
                             </Col>
-                        
+
+                            <Col>
+                                <Button type="link" onClick={() => setOpenCart(!openCart)} icon={<BsFillBagFill fontSize={20} color="#000"/>}></Button>
+                                <Drawer title="APP_NAME"
+                                        placement="right"
+                                        onClose={() => setOpenCart(!openCart)} open={openCart}
+                                >
+
+                                </Drawer>
+                            </Col>
+
                             <Col>
                                 <Dropdown menu={{ items }} placement="bottom" arrow>
                                     <a onClick={(e) => e.preventDefault()}>
@@ -83,6 +94,7 @@ const HeaderClient = () => {
                                 </Dropdown>
 
                             </Col>
+
                         </Row>
                     </Col>
                 </Row>

@@ -46,7 +46,7 @@ const UserOrder = () => {
                             ]}
                             hasFeedback
                         >
-                            <Input.Password />
+                            <Input type="password" />
                         </Form.Item>
 
                         <Form.Item

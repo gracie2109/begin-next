@@ -10,7 +10,7 @@ type Props = {
   dataShow?: any
 };
 
-export const SliderShow = ({ slideChildren, type }: Props) => {
+ const SliderShow = ({ slideChildren, type }: Props) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>();
   return (
     <>
@@ -75,3 +75,4 @@ export const SliderShow = ({ slideChildren, type }: Props) => {
   );
 };
 
+export default SliderShow

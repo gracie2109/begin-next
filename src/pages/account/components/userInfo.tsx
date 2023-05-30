@@ -6,8 +6,6 @@ import type { RadioChangeEvent } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-const {useBreakpoint} = Grid;
-
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -27,7 +25,7 @@ const beforeUpload = (file: RcFile) => {
     return isJpgOrPng && isLt2M;
 };
 const UserInfo = () => {
-    const screens = useBreakpoint();
+    const screens = Grid.useBreakpoint();
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>("https://fptshop.com.vn/Content/v5d/account/images/img-user-update.png?v=123");
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
