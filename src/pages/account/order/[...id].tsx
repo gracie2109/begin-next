@@ -9,12 +9,10 @@ import Link from "next/link";
 import {MyPage} from "@/models/common";
 import { v4 as uuidv4 } from 'uuid';
 import clsx from "clsx";
-import dynamic from "next/dynamic";
 
 const  { BsTruck, LeftOutlined, RightOutlined } = SharedIcons
 const  OrderItem:MyPage = () => {
     const screens = Grid.useBreakpoint();
-    console.log(screens)
     const [open,setOpen] = useState(false)
     const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg';
 

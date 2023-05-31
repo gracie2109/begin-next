@@ -1,34 +1,24 @@
 import Link from 'next/link';
-import {Button, Tabs, Row, Col, Typography, Form} from 'antd';
+import dynamic from "next/dynamic";
+import {Button, Tabs, Form} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { listMovie } from '@/features/movie/actions';
-import FetchData from './components/fetchData';
-import FilterSection from "@/pages/admin/movie/components/FilterSection";
+
+const FetchData  =  dynamic(() => import('./components/fetchData'));
+const FilterSection = dynamic(() => import("./components/FilterSection"));
 const { FaArrowRight, PlusOutlined } = SharedIcons;
 
 
 const Index:MyPage = () => {
-    const dispatch = useAppDispatch()
-    const { data, pending } = useAppSelector((state) => state.listMovieReducer);
+    const dispatch = useAppDispatch();
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
     const [openFilter,setOpenFilter ] = useState<boolean>(false);
     const [form] = Form.useForm();
-
-    useEffect(() => {
-        (async () => { await dispatch(listMovie()) })();
-    }, []);
-
-    useEffect(() => {
-        if (data) {
-            setDataActive(data?.filter((item: any) => item?.status == 0));
-            setDataInActive(data?.filter((item: any) => item?.status !== 0))
-        }
-    }, [data]);
+    const pending = false;
 
     const onFinish = (values:any) => {
         console.log("onFinish", values)
@@ -39,14 +29,13 @@ const Index:MyPage = () => {
         setOpenFilter(!openFilter)
     };
 
-
-    const components = [
+    const headerActionComp = [
         {
             key: 1,
             comp: <Link href="/admin/products/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo sản phẩm </Button></Link>
         }
     ];
-    const items: any[] = [
+    const tabItems: any[] = [
         {
             key: 1,
             label: `Sản phẩm đang bán (${dataActive.length})`,
@@ -59,14 +48,11 @@ const Index:MyPage = () => {
         }
     ];
 
-
-
-
     return (
         <>
             <HeaderAction
                 title="Danh sách sản phẩm"
-                components={components}
+                components={headerActionComp}
                 children={
                     <FilterSection
                         openFilter={openFilter}
@@ -82,7 +68,7 @@ const Index:MyPage = () => {
                 defaultActiveKey="1"
                 size={"small"}
                 style={{ marginBottom: 32 }}
-                items={items}
+                items={tabItems}
             />
         </>
     )

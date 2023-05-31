@@ -918,3 +918,6 @@ export const policy_data = [
     img: "https://theme.hstatic.net/200000592359/1001008166/14/product_info2_desc3_img.png?v=147"
   },
 ]
+
+export const REG_FOMAT = /\B(?=(\d{3})+(?!\d))/g;
+export const PARSE_FOMAT = /\$\s?|(,*)/g

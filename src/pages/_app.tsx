@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
 
   return (
       <HydrationProvider>
-          <NextNProgress color="#FF4500" options={{ showSpinner: false }} />
+          <NextNProgress color="#00b96b" options={{ showSpinner: false }} />
           <Client>
               <ConfigProvider
                   theme={{

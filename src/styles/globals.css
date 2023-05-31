@@ -103,14 +103,14 @@ p{
 /*    border-top: 1px solid #000000;*/
 /*}*/
 
-.ant-col.ant-form-item-label {
-    width: 30% !important;
-    text-align: left!important;
-}
+/*.ant-col.ant-form-item-label {*/
+/*    width: 30% !important;*/
+/*    text-align: left!important;*/
+/*}*/
 
-.ant-col.ant-form-item-control{
-    width: 100% !important;
-}
+/*.ant-col.ant-form-item-control{*/
+/*    width: 100% !important;*/
+/*}*/
 
 
 
@@ -124,3 +124,13 @@ p{
 .collection-create-form_last-form-item {
     margin-bottom: 0;
 }
+
+/*.ant-layout .ant-layout-sider {*/
+/*    background-color: #0648a6 !important;*/
+/*}*/
+
+/*:where(.css-dev-only-do-not-override-u9ku1h).ant-menu-light, :where(.css-dev-only-do-not-override-u9ku1h).ant-menu-light>.ant-menu {*/
+/*    color:#ffff;*/
+/*     background: transparent !important;*/
+/*    font-weight: bolder;*/
+/*}*/

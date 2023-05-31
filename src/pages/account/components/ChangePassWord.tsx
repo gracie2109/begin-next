@@ -5,14 +5,12 @@ import {
     Typography,
     Grid, Card, Form, Input, Button,Avatar
 } from "antd";
-const {useBreakpoint} = Grid;
 
 const UserOrder = () => {
-    const screens = useBreakpoint();
+    const screens = Grid.useBreakpoint();
     const [form] = Form.useForm();
 
     const onFinish = (newPw:any) => {
-        console.log("newPw", newPw);
         form.resetFields();
     }
     return (

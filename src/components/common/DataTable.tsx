@@ -152,7 +152,8 @@ export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, da
         pagination={data &&  data?.length > PS && {
           defaultPageSize: PS,
           showSizeChanger: true,
-          pageSizeOptions: pageOptionSize()
+          pageSizeOptions: pageOptionSize(),
+
         }}
         rowSelection={rowSelection}
         scroll={{ y: 500, x: scrollWidth ? scrollWidth : {} }}
