@@ -22,7 +22,8 @@ const AuthPage:MyPage = () => {
         }else if(tmp === "register"){
             setMode("register");
         }else {
-            setMode(undefined)
+            setMode(undefined);
+            route.push("/auth/login")
         }
     },[path]);
 

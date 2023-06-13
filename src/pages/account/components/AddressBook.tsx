@@ -1,9 +1,11 @@
 import React, { useEffect, useState, memo } from 'react';
 import { Button, Card, Col, Form, Input, Modal, Radio, Row, Typography, Popconfirm, Space } from 'antd';
-import { PlusOutlined, DeleteOutlined, AppstoreOutlined, BarsOutlined,HighlightTwoTone } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined,UserOutlined,PhoneOutlined } from '@ant-design/icons';
 import type { RadioChangeEvent } from 'antd';
 import Providers from "@/components/common/Providers";
 import { v4 as uuidv4 } from 'uuid';
+
+
 interface CollectionCreateFormProps {
     open: boolean;
     onCreate: (values: any) => void;
@@ -51,14 +53,14 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
                         label="Tên người nhận"
                         rules={[{ required: true, message: 'Please input the title of collection!' }]}
                     >
-                        <Input />
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} />
                     </Form.Item>
                     <Form.Item
                         name="phoneNumber"
                         label="SDT người nhận"
                         rules={[{ required: true, message: 'Please input the title of collection!' }]}
                     >
-                        <Input />
+                        <Input prefix={<PhoneOutlined className="site-form-item-icon"/>} />
                     </Form.Item>
                     <Form.Item
                         label="Địa chỉ"
@@ -107,6 +109,7 @@ const AddressBook = () => {
     }
 
     const handleCreate = (value: any) => {
+        console.log("value", value)
         value.id = uuidv4();
         value.address = address;
         delete value.addressId;

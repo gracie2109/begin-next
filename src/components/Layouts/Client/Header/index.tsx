@@ -16,7 +16,7 @@ const HeaderClient = () => {
     return (
         <Layout.Header className='shadow-lg text-black' style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', backgroundColor: "white" }}>
             <div className="h-[4rem] container mx-auto">
-                <Row align="middle" justify="center" style={{ height: "100%" , color: "#000"}}>
+                <Row align="middle"  style={{ height: "100%" , color: "#000"}}>
                     {/***** MOBILE_MENU *****/}
                     <Col xs={4} md={0} lg={0} xl={0}>
                         <MenuOutlined onClick={() => setOpen(!open)}/>
@@ -48,7 +48,7 @@ const HeaderClient = () => {
                     </Col>
                     {/**** Right Side ****/}
                     <Col xs={8} md={4} lg={4} xl={4}>
-                        <Row align="middle" justify="end" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                        <Row align="middle" justify="end" gutter={{ xs: 4, sm: 16, md: 24, lg: 32 }}>
                             <Col>
                                 <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SearchOutlined />}></Button>
                                 <Drawer title="Tìm kiếm sản phẩm"
@@ -77,7 +77,7 @@ const HeaderClient = () => {
                             </Col>
 
                             <Col>
-                                <Button type="link" onClick={() => setOpenCart(!openCart)} icon={<BsFillBagFill fontSize={20} color="#000"/>}></Button>
+                                <Button type="link" onClick={() => setOpenCart(!openCart)} icon={<BsFillBagFill fontSize={!screens.xs ? 20 : ""} color="#000"/>}></Button>
                                 <Drawer title="APP_NAME"
                                         placement="right"
                                         onClose={() => setOpenCart(!openCart)} open={openCart}

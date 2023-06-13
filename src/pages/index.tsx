@@ -23,9 +23,8 @@ const Index: MyPage = (props: Props) => {
     
    return (
       <>
-
          <SliderShow slideChildren={SLIDERS} type="slider" />
-         <div className='m-[3rem]'>
+         <div className='mt-[3rem]'>
             <Category />
          </div>
           <div className="bg-[#e1e1e1]">

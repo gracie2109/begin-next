@@ -10,9 +10,14 @@ export type MyAppProps = AppProps & {
   };
 };
 
-export interface CommonEntity {
+export interface CommonEntity{
   _id: number;
   createdAt: Date;
-  updated_at: Date;
   updatedAt: Date;
+}
+
+export interface ResponseEntity {
+  status: number,
+  message: string,
+  object: object | undefined | null
 }
