@@ -175,7 +175,7 @@ const DetailProduct: MyPage = () => {
                                 </Row>
                             </Col>
                             {/* policy */}
-                            <Col xs={24} md={18} offset={!screens.xs ? 6 : 0}>
+                            <Col xs={0} md={18} offset={!screens.xs ? 6 : 0}>
                                 <Row gutter={[16, 32]}>
                                     {screens.xs && <Typography.Text strong>Chính sách bán hàng </Typography.Text>}
                                     {policy_data.map((item, index) => (
@@ -192,6 +192,21 @@ const DetailProduct: MyPage = () => {
                     </Card>
                     <Card>
                         <TabsProduct data={product} prId={id} />
+                    </Card>
+                    <Card>
+                        <Col xs={24} md={0} offset={!screens.xs ? 6 : 0}>
+                            <Row gutter={[16, 32]}>
+                                {screens.xs && <Typography.Text strong>Chính sách bán hàng </Typography.Text>}
+                                {policy_data.map((item, index) => (
+                                    <Col md={8} xs={24} key={index}>
+                                        <Space>
+                                            <img src={item.img} style={{ width: "30px", height: "30px", objectFit: "cover" }} />
+                                            <Typography.Text>{item.name}</Typography.Text>
+                                        </Space>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Col>
                     </Card>
                 </>
             ) : (

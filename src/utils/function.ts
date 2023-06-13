@@ -88,3 +88,16 @@ export const calcProductRateStartPercent = (input:number) => {
   const a = (input * 100) /100
   return a
 }
+
+// type = 0 => giảm theo tiền
+// type = 1 => giảm theo phần trăm
+
+export const calcDiscountPrice = (cost:number, discount:number, type:number) => {
+    if(!discount || cost === 0) {
+      return ""
+    }else if(type === 0) {
+      return Number(cost) - Number(discount)
+    }else{
+      return (Number(cost) / Number(discount)) * 100
+    }
+}

@@ -1,7 +1,13 @@
 import React, {useState, useEffect}   from "react";
 import {Row, Col, Typography, Avatar, Input, DatePicker, Upload , Card, Form,Grid, Button,message,Radio} from "antd";
 import dayjs from 'dayjs';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+    LoadingOutlined,
+    PlusOutlined,
+    MailOutlined,
+    UserOutlined,
+    PhoneOutlined
+} from '@ant-design/icons';
 import type { RadioChangeEvent } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import type { UploadChangeParam } from 'antd/es/upload';
@@ -97,11 +103,11 @@ const UserInfo = () => {
 
                            {/*  name  */}
                            <Form.Item label="Họ và tên" name="username">
-                               <Input placeholder="Nhập họ tên"/>
+                               <Input placeholder="Nhập họ tên" suffix={<UserOutlined className="site-form-item-icon"/> }/>
                            </Form.Item>
                            {/*  SDT   */}
                            <Form.Item label="Số điện thoại" name="phoneNumber">
-                               <Input  readOnly/>
+                               <Input placeholder="Nhập số điện thoại"  suffix={<PhoneOutlined className="site-form-item-icon"/>}/>
                            </Form.Item>
                            {/*  Giới tính   */}
                            <Form.Item label="Giới tính" name="gender">
@@ -113,7 +119,7 @@ const UserInfo = () => {
                            </Form.Item>
                            {/*  Email   */}
                            <Form.Item label="Email" name="email">
-                               <Input  placeholder="johnDoe@example.com"/>
+                               <Input  placeholder="johnDoe@example.com" suffix={<MailOutlined className="site-form-item-icon"/>} />
                            </Form.Item>
                            {/* Date */}
                            <Form.Item label="Ngày sinh"  >

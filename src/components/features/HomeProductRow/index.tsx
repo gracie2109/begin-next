@@ -64,8 +64,8 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
             </Row>
           </Col>
           {type === "SLIDER" && (
-              <Col  xs={24} sm={4}>
-                <Row justify="end" gutter={[48, 16]}>
+              <Col  xs={0} md={4}>
+                <Row justify="end" gutter={{ xs: 16,  md: 32 }}>
                   <Col> <Button type="text" icon={<LeftOutlined />} ref={(node) => setPrevEl(node)}></Button> </Col>
                   <Col> <Button type="text" icon={<RightOutlined />} ref={(node) => setNextEl(node)} ></Button> </Col>
                 </Row>
@@ -77,7 +77,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
             {type === "SLIDER" ? (
                 <Swiper
                     modules={[Navigation, Pagination, A11y, FreeMode]}
-                    slidesPerView={(screens.xs) ? 2 : 6 }
+                    slidesPerView={(screens.xs) ? 2.1: 6 }
                     navigation={{ prevEl, nextEl }}
                     onInit={() => setInit(true)}
                     freeMode={true}

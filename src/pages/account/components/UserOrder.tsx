@@ -27,10 +27,9 @@ import {
 } from '@ant-design/icons';
 import moment from "moment";
 import {useRouter} from "next/router";
-const {useBreakpoint} = Grid;
 
 const UserOrder = () => {
-    const screens = useBreakpoint();
+    const screens = Grid.useBreakpoint();
     const router = useRouter();
 
     function getRndInteger(min:any, max:any) {

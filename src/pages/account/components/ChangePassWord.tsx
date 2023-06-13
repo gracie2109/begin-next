@@ -5,16 +5,16 @@ import {
     Typography,
     Grid, Card, Form, Input, Button,Avatar
 } from "antd";
-const {useBreakpoint} = Grid;
-
+import { LockOutlined } from '@ant-design/icons';
 const UserOrder = () => {
-    const screens = useBreakpoint();
+    const screens = Grid.useBreakpoint();
     const [form] = Form.useForm();
 
     const onFinish = (newPw:any) => {
-        console.log("newPw", newPw);
         form.resetFields();
     }
+
+
     return (
         <div className={`${!screens.xs ? "w-1/2 mx-auto" : "w-full"}`}>
             <Row gutter={[0, 8]}>
@@ -46,7 +46,7 @@ const UserOrder = () => {
                             ]}
                             hasFeedback
                         >
-                            <Input type="password" />
+                            <Input type="password" prefix={<LockOutlined className="site-form-item-icon"/>} />
                         </Form.Item>
 
                         <Form.Item
@@ -60,7 +60,9 @@ const UserOrder = () => {
                                     message: 'Please confirm your password!',
                                 },
                                 ({ getFieldValue }) => ({
+
                                     validator(_, value) {
+
                                         if (!value || getFieldValue('password') === value) {
                                             return Promise.resolve();
                                         }
@@ -69,7 +71,8 @@ const UserOrder = () => {
                                 }),
                             ]}
                         >
-                            <Input.Password />
+                           <Input type="password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
+
                         </Form.Item>
                         <Form.Item style={{marginTop: "1rem"}}>
                             <Button

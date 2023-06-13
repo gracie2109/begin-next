@@ -89,9 +89,17 @@ const ProductRating = () => {
                                 <Button type="primary" danger onClick={() => setIsModalOpen(!isModalOpen)} >
                                     GỬI ĐÁNH GIÁ
                                 </Button>
-                                <Modal title="Đánh giá sản phẩm" open={isModalOpen}  onCancel={() =>{ setIsModalOpen(!isModalOpen);form.resetFields()}} footer={null}>
+                                <Modal
+                                    title="Đánh giá sản phẩm"
+                                    open={isModalOpen}
+                                    onCancel={() =>{ setIsModalOpen(!isModalOpen);form.resetFields()}}
+                                    footer={null}
+                                    bodyStyle={{
+                                        overflow: "scroll"
+                                    }}
+                                >
                                     <Row align="middle" justify="center" gutter={[8,8]}>
-                                        <Col ><img style={{textAlign: "center"}} src="https://images.fpt.shop/unsafe/fit-in/96x96/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/9/8/637982457696470604_apple-watch-ultra-49mm-alpine-loop-cam-1.jpg" /></Col>
+                                        <Col span={screens.xs ? 0: ""}><img style={{textAlign: "center"}} src="https://images.fpt.shop/unsafe/fit-in/96x96/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/9/8/637982457696470604_apple-watch-ultra-49mm-alpine-loop-cam-1.jpg" /></Col>
                                         <Col ><Typography.Title level={5} >Apple Watch Ultra GPS + Cellular 49mm Titanium Alpine Loop Small</Typography.Title></Col>
                                         
                                     </Row>
@@ -104,13 +112,10 @@ const ProductRating = () => {
                                         <Form.Item  name="rate_desc"  rules={[{ required: true, message: 'Please input your username!' }]} >
                                             <Input.TextArea  showCount={false}
                                                 rows={4}
-                                                style={{  resize: 'none'}}
                                                 placeholder="Hãy chia sẻ cảm nhận của bạn về sản phẩm"
                                                 />
                                         </Form.Item>
-                                        
                                         <Divider />
-
                                         <Form.Item  name="user_gender"  rules={[{ required: true, message: 'Please input your username!' }]}  >
                                             <Radio.Group name="radiogroup" defaultValue={1}>
                                                 <Radio value={1}>Anh</Radio>
@@ -134,7 +139,7 @@ const ProductRating = () => {
                                                 </Form.Item>
                                             </Col>
                                           </Row>
-                                        <Form.Item wrapperCol={{ span: 16, offset: 4 }}>
+                                        <Form.Item >
                                         <Button type="primary" danger htmlType="submit" style={{width: "100%"}}>
                                             Hoàn tất
                                         </Button>

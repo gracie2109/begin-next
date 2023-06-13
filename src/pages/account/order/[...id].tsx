@@ -8,23 +8,21 @@ import {formatCurrency, SharedIcons} from "@/utils";
 import Link from "next/link";
 import {MyPage} from "@/models/common";
 import { v4 as uuidv4 } from 'uuid';
-import clsx from "clsx";
-import dynamic from "next/dynamic";
+import {useRouter} from "next/router";
 
 const  { BsTruck, LeftOutlined, RightOutlined } = SharedIcons
 const  OrderItem:MyPage = () => {
     const screens = Grid.useBreakpoint();
-    console.log(screens)
     const [open,setOpen] = useState(false)
     const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg';
-
+    const route = useRouter();
     return (
-           <div className={clsx('screens_orrder overflow-hidden', !screens.xs ? "w-1/2 mx-auto" : "w-full ")}>
+        <div className={`${!screens.xs ? "w-1/2 mx-auto" : "w-full"} overflow-hidden`}>
           <Card>
               <Row gutter={[8, 16]} >
                   <Col span={24} >
                       <Space size="large">
-                          <Link href="/account"><LeftOutlined twoToneColor="#eb2f96" /></Link>
+                          <LeftOutlined twoToneColor="#eb2f96" onClick={() => route.back()}/>
                           <Typography.Title level={3}>  Thông tin đơn hàng </Typography.Title>
                       </Space>
                   </Col>

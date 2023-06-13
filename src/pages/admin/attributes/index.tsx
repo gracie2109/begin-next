@@ -7,7 +7,7 @@ import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
-const FetchData  =  dynamic(() => import('./components/fetchData'));
+const FetchData  =  dynamic(() => import('./components/FetchData'));
 const FilterSection = dynamic(() => import("./components/FilterSection"));
 const { FaArrowRight, PlusOutlined } = SharedIcons;
 
@@ -18,7 +18,11 @@ const Index:MyPage = () => {
     const [dataInActive, setDataInActive] = useState<any[]>([]);
     const [openFilter,setOpenFilter ] = useState<boolean>(false);
     const [form] = Form.useForm();
-    const pending = false;
+
+    useEffect(() => {
+        setDataActive(dataAttr.filter((item:any) => item.status === true));
+        setDataInActive(dataAttr.filter((item:any) => item.status === false))
+    },[dataAttr])
 
     const onFinish = (values:any) => {
         console.log("onFinish", values)
@@ -32,26 +36,26 @@ const Index:MyPage = () => {
     const headerActionComp = [
         {
             key: 1,
-            comp: <Link href="/admin/products/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo sản phẩm </Button></Link>
+            comp: <Link href="/admin/attributes/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo thuộc tính</Button></Link>
         }
     ];
     const tabItems: any[] = [
         {
             key: 1,
-            label: `Sản phẩm đang bán (${dataActive.length})`,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="active"/>
+            label: `thuộc tính đang sử dụng  (${dataActive.length})`,
+            children: <FetchData dataSource={dataActive}  compStatus="active"/>
         },
         {
             key: 2,
-            label: `Sản phẩm ngừng kinh doanh (${dataInActive.length}) `,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="inActive"/>
+            label: `Thuộc tính ngừng sử dụng (${dataInActive.length}) `,
+            children: <FetchData dataSource={dataInActive}  compStatus="inActive"/>
         }
     ];
 
     return (
         <>
             <HeaderAction
-                title="Danh sách sản phẩm"
+                title="Danh sách thuộc tính"
                 components={headerActionComp}
                 children={
                     <FilterSection
@@ -60,7 +64,6 @@ const Index:MyPage = () => {
                         form={form}
                         onFinish={onFinish}
                         onReset={onReset}
-
                     />
                 }
             />
@@ -76,3 +79,40 @@ const Index:MyPage = () => {
 
 export default Index;
 Index.Layout="Admin";
+
+export const dataAttr  = [
+    {
+        name: "mau sac",
+        desc: "mau sac",
+        status: false,
+        isParent: true,
+        value: "mau-sac",
+        children: [
+            {
+                name: "vang",
+                desc: "vang",
+                status: true,
+                isParent: false,
+                value: "vang",
+                children: []
+            },
+            {
+                name: "den",
+                desc: "den",
+                status: true,
+                isParent: true,
+                value: "den",
+                children: []
+            },
+        ]
+    },
+    {
+        name: "kich thuoc",
+        desc: "kich thuoc",
+        status: true,
+        isParent: true,
+        value: "kich-thuoc",
+       children: []
+    }
+
+]

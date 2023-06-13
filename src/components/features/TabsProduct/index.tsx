@@ -25,11 +25,6 @@ const TabsProduct = ({data, prId} : Props) => {
           children: <ProductRating />,
         },
         {
-          key: '3',
-          label:  <Typography.Title level={!screens.xs ? 4: 5} style={{color: `${activeKey === "3" ? "#000" : "#dcdcdc"}`}}> Chính sách đổi trả</Typography.Title>,
-          children: <Policy />,
-        },
-        {
             key: '4',
             label:  <Typography.Title level={!screens.xs ? 4: 5} style={{color: `${activeKey === "4" ? "#000" : "#dcdcdc"}`}}>Điều khoản dịch vụ</Typography.Title>,
             children: <Policy />,

@@ -50,7 +50,7 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}:Props) => {
                   name="email"
                   rules={[{ type: 'email' , required: true}]}
               >
-                  <Input prefix={<MailOutlined />} />
+                  <Input prefix={<MailOutlined className="site-form-item-icon"/>} />
               </Form.Item>
 
 
@@ -59,7 +59,7 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}:Props) => {
                       label="Tên đăng nhập"
                       name="name"
                   >
-                      <Input prefix={<UserOutlined/>} />
+                      <Input prefix={<UserOutlined className="site-form-item-icon"/>} />
                   </Form.Item>
               )}
 
@@ -71,13 +71,13 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}:Props) => {
               >
                   {!isLogin ? (
                       <Input
-                          prefix={<LockOutlined />}
+                          prefix={<LockOutlined className="site-form-item-icon"/>}
                           type="password"
                           placeholder="Password"
                       />
                   ):(
                       <Input.Password
-                          prefix={<LockOutlined/>}
+                          prefix={<LockOutlined className="site-form-item-icon"/>}
                           type="password"
                           placeholder="Password"
                       />

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {  Col, Row, Button, Typography, Grid } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Category_data ,formatWord} from "@/utils";
-import { Pagination, Navigation, A11y, FreeMode } from "swiper";
+import { Pagination, Navigation, A11y, FreeMode, EffectFade } from "swiper";
 import 'swiper/swiper-bundle.css';
 import Link from "next/link";
 const { useBreakpoint } = Grid;
@@ -15,21 +15,19 @@ const Category = () => {
   const [init, setInit] = useState(false);
   const screens = useBreakpoint();
 
-
   return (
-    <div>
-      <>
+    <div className={`${screens.xs ? "p-3" : ""}`}>
         <Row align="middle" justify="space-between" >
-          <Col span={8} xs={12}>
-           <Typography.Title 
-             data-aos="fade-right" 
-             data-aos-offset="300"  
+          <Col span={8} xs={16}>
+           <Typography.Title
+             data-aos="fade-right"
+             data-aos-offset="300"
              data-aos-easing="ease-in-sine"
              level={screens.xs ? 4 : 1}
              >Danh mục nổi bật</Typography.Title>
           </Col>
-          <Col span={8} xs={12}>
-            <Row justify="end" gutter={[48, 16]}>
+          <Col span={8} xs={8}>
+            <Row justify="end" gutter={{ xs: 16,  md: 32 }}>
               <Col> <Button type="text" icon={<LeftOutlined />} ref={(node) => setPrevEl(node)}></Button> </Col>
               <Col> <Button type="text" icon={<RightOutlined />} ref={(node) => setNextEl(node)} ></Button> </Col>
             </Row>
@@ -37,13 +35,12 @@ const Category = () => {
         </Row>
         <div>
           <Swiper
-            modules={[Navigation, Pagination, A11y, FreeMode]}
+            modules={[Navigation, Pagination, A11y, FreeMode, EffectFade]}
             spaceBetween={30}
-            slidesPerView={screens.xs ? 2 : 4}
+            slidesPerView={screens.xs ? 1.5 : 4}
             navigation={{ prevEl, nextEl }}
             onInit={() => setInit(true)}
             freeMode={true}
-            className="mobile:hidden tablet:block"
           >
 
             {Category_data.map((item, index) => (
@@ -68,8 +65,6 @@ const Category = () => {
           </Swiper>
 
         </div>
-
-      </>
     </div>
   )
 }
