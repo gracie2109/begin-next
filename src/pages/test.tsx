@@ -17,16 +17,16 @@ const Test  = () => {
             }
     }
 
-    useEffect(() => {
+useLayoutEffect(() => {
         console.log("running in uselayouteffect")
-       // if(listClick) {
-       //     colors.map((item, index) => {
-       //         if(listClick.includes(item)) {
-       //             console.log("item", item);
-       //
-       //         }
-       //     })
-       // }
+       if(listClick) {
+           colors.map((item, index) => {
+               if(listClick.includes(item)) {
+                   console.log("item", item);
+       
+               }
+           })
+       }
     },[listClick]);
 console.log("listClick", listClick)
     return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState, memo } from 'react';
 import { Button, Card, Col, Form, Input, Modal, Radio, Row, Typography, Popconfirm, Space } from 'antd';
 import { PlusOutlined, DeleteOutlined,UserOutlined,PhoneOutlined } from '@ant-design/icons';
 import type { RadioChangeEvent } from 'antd';
-import Providers from "@/components/common/Providers";
+import Providers from "@/components/common/Providers/Providers";
 import { v4 as uuidv4 } from 'uuid';
 
 

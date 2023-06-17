@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ProductCard from '@/components/common/ProductCard';
+import ProductCard from '@/components/common/ProductCard/ProductCard';
 import {
     ProductPage_Options,
     Products_data

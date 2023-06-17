@@ -8,6 +8,8 @@ import {
     Select,
     Row, Col
 } from "antd";
+import styled from 'styled-components';
+
 
 type Props = {
     form: any,
@@ -65,14 +67,14 @@ const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent
                     </Col>
                 </Row>
 
-                <Form.Item style={{ width: "100%", display: "flex" }} >
-                    <Button type="primary" htmlType="submit" style={{ width: "400px", marginRight: "10px" }}>
+                <ButtonGroup>
+                    <Button type="primary" htmlType="submit" >
                         Submit
                     </Button>
-                    <Button htmlType="button" onClick={onReset} style={{ width: "200px" }}>
+                    <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
-                </Form.Item>
+                </ButtonGroup>
             </Card>
 
         </Form>
@@ -81,3 +83,18 @@ const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent
 }
 
 export default AttributesForm;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0;
+
+    button[type =submit]{
+        flex: 1;
+    }
+    button[type =button]{
+        flex: none;
+    }
+
+`

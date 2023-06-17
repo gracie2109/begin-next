@@ -13,8 +13,9 @@ const  AdminTheme = ({children}:PropsWithChildren) => {
   return (
       <Layout className="layout" >
         <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="xs">
-            <div className='logo'>
-              <Link href="/">APP NAME</Link>
+            <div className='logo h-[64px] flex items-center justify-start gap-4 pl-7'>
+              <ArrowLeftOutlined style={{color: "#ffff"}} />
+              <Link href="/" className="font-bold	text-white">APP NAME</Link>
             </div>
           <MenuAdmin />
         </Sider>

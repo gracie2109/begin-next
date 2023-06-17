@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
 import {Col, Row, Typography} from 'antd';
+import styled from "styled-components";
+
 
 type Props = {
     title: string,
@@ -11,7 +13,7 @@ const { Title } = Typography;
 
 export const HeaderAction = ({ title, components, children}: Props) => {
     return (
-        <>
+        <HeaderActionApp>
             <Head>
                 <title>{title}</title>
             </Head>
@@ -34,6 +36,14 @@ export const HeaderAction = ({ title, components, children}: Props) => {
                     </Row>
                 </Col>
             </Row>
-        </>
+        </HeaderActionApp>
     )
-}
+};
+
+const HeaderActionApp = styled.div`
+
+
+
+
+
+`
