@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import { Row, Col, Typography, Space, Card, Divider, Button,Input, Form,Breadcrumb } from "antd";
 import Link from "next/link";
-import Providers from "@/components/common/Providers";
+import Providers from "@/components/common/Providers/Providers";
 import {v4 as uuidv4} from "uuid";
 
 type Props = {

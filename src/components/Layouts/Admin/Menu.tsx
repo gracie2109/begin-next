@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SharedIcons } from "@/utils";
-const { ClusterOutlined, UserOutlined, MdWeekend, MdMovieCreation } = SharedIcons;
+const {  UserOutlined, MdWeekend, PieChartOutlined } = SharedIcons;
 
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -24,21 +24,15 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem(
-    <Link href="/admin/users">Người dùng</Link>,
-    "user",
-    <UserOutlined />
-  ),
-  // getItem(
-  //   <Link href="/admin/movie">Phòng chiếu</Link>,
-  //   "room",
-  //   <ClusterOutlined />
-  // ),
-  // getItem(<Link href="/admin/movie">Phim</Link>, "movie", <MdMovieCreation />, [
-  //   getItem(<Link href="/admin/movie-type">Thể loại phim</Link>, "movie-type", <MdMovieCreation />),
-  // ]),
-  getItem(<Link href="/admin/voucher">Voucher</Link>, "voucher", <MdWeekend />),
+  getItem(  <Link href="/admin">Thống kê</Link>,  "dashboard",<PieChartOutlined />),
+  getItem(  <Link href="/admin/users">Người dùng</Link>,  "user",<UserOutlined />),
+  getItem(<Link href="/admin/vouchers">Voucher</Link>, "vouchers", <MdWeekend />),
   getItem(<Link href="/admin/products">Sản phẩm</Link>, "products", <MdWeekend />),
+  getItem(<Link href="/admin/attributes">Attributes</Link>, "attributes", <MdWeekend />),
+  getItem(<Link href="/admin/categories">Danh mục</Link>, "categories", <MdWeekend />),
+  getItem(<Link href="/admin/sliders">Sliders</Link>, "sliders", <MdWeekend />),
+  getItem(<Link href="/admin/settings">Cài đặt</Link>, "settings", <MdWeekend />),
+  
 ];
 
 // submenu keys of first level

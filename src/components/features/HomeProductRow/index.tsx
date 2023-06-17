@@ -5,7 +5,7 @@ import { SharedIcons, Products_data, formatWord } from "@/utils";
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
 import CountDown from "../CountDown";
 import 'swiper/swiper-bundle.css'
-import ProductCard from "@/components/common/ProductCard";
+import ProductCard from "@/components/common/ProductCard/ProductCard";
 const { useBreakpoint } = Grid;
 const { LeftOutlined, RightOutlined } = SharedIcons
 type variantSlide = "SLIDER" | "LIST";
@@ -23,7 +23,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
   const [init, setInit] = useState<boolean>(false);
   const screens = useBreakpoint();
-
+  console.log("HomeProductRow is runnning")
   const SEVEN_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000; // Expires after 1 days!!!
   const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterSevenDays = NOW_IN_MS + SEVEN_DAYS_IN_MS;
@@ -64,8 +64,8 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
             </Row>
           </Col>
           {type === "SLIDER" && (
-              <Col  xs={0} md={4}>
-                <Row justify="end" gutter={{ xs: 16,  md: 32 }}>
+              <Col  xs={24} sm={4}>
+                <Row justify="end" gutter={[48, 16]}>
                   <Col> <Button type="text" icon={<LeftOutlined />} ref={(node) => setPrevEl(node)}></Button> </Col>
                   <Col> <Button type="text" icon={<RightOutlined />} ref={(node) => setNextEl(node)} ></Button> </Col>
                 </Row>
@@ -77,7 +77,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
             {type === "SLIDER" ? (
                 <Swiper
                     modules={[Navigation, Pagination, A11y, FreeMode]}
-                    slidesPerView={(screens.xs) ? 2.1: 6 }
+                    slidesPerView={(screens.xs) ? 2 : 6 }
                     navigation={{ prevEl, nextEl }}
                     onInit={() => setInit(true)}
                     freeMode={true}

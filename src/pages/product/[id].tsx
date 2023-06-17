@@ -11,7 +11,7 @@ import { Products_data, vouchers_data, policy_data, formatWord, SharedIcons } fr
 import { VoucherCard } from '@/components/common';
 
 const TabsProduct = dynamic(() => import("@/components/features/TabsProduct")) ;
-const SliderShow = dynamic(() => import("@/components/common/SliderShow"));
+const SliderShow = dynamic(() => import("@/components/common/SliderShow/SliderShow"));
 const { LeftOutlined, RightOutlined, BsFacebook, BsPinterest, FaFacebookMessenger, AiFillTwitterCircle, ImLink, AiFillThunderbolt } = SharedIcons;
 
 const DetailProduct: MyPage = () => {

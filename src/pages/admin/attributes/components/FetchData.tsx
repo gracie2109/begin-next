@@ -46,13 +46,9 @@ const  FetchData = ({dataSource, loading, compStatus}:Props) => {
 
     return (
         <>
-            <DataTable
-                data={data}
+            <Table
+                dataSource={data}
                 columns={columns}
-                expandTable={true}
-                PS={5}
-                selectedArr = {selectedArr}
-                setSelectedArr = {setSelectedArr}
             />
         </>
     )

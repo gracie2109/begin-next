@@ -3,6 +3,7 @@ import React from 'react';
 const AdminPage = () => {
   return (
     <div>
+      Dashbaord page
     </div>
   )
 }

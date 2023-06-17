@@ -2,7 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { MyPage } from "@/models/common";
 import { SLIDERS } from "@/utils/contants";
-const SliderShow = dynamic(() => import("@/components/common/SliderShow"));
+const SliderShow = dynamic(() => import("@/components/common/SliderShow/SliderShow"));
 const Category = dynamic(() => import("@/components/features/Category"),{ssr: false})
 const HomeProductRow = dynamic(() => import("@/components/features/HomeProductRow"), {ssr: false});
 import {  Products_data } from "@/utils";

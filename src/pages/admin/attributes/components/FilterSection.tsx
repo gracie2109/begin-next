@@ -2,7 +2,7 @@ import {Button,  DatePicker, Row, Col, Typography, Form, Card, Input,Space, Auto
 import {FilterOutlined } from "@ant-design/icons";
 import {useState} from "react";
 import type { DatePickerProps } from 'antd';
-
+import styled from "styled-components";
 
 
 type Props = {
@@ -37,17 +37,16 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
         <>
             <Button type="default" onClick={() => setOpenFilter(!openFilter)} icon={<FilterOutlined />}>Bộ lọc</Button>
             {openFilter && (
-                <Card bodyStyle={{padding: 0}} style={{width: "calc(100% + 25%)", marginTop: "0.5rem", padding: "3rem"}}>
+                <CardCustom bodyStyle={{padding: '10px'}}>
                     <Form
                         layout="horizontal"
                         onFinish={onFinish}
                         form={form}
-                        labelCol={{ flex: '110px' }}
                         labelAlign="left"
                         labelWrap
+                        labelCol={{ flex: '110px' }}
                         wrapperCol={{ flex: 1 }}
                         colon={false}
-                        style={{ maxWidth: 600 }}
                     >
                         <Row gutter={[16,0]}>
                             <Col span={12}>
@@ -72,23 +71,36 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
                                 </Form.Item>
                             </Col>
                             <Col span={24} push={12}>
-                                <Form.Item>
-                                    <Space>
-                                        <Button type="primary" htmlType="submit" style={{width: "200px"}}>
+                                <ButtonGroup>
+                                        <Button type="primary" htmlType="submit">
                                             Tìm kiếm
                                         </Button>
                                         <Button htmlType="button" onClick={onReset}>
                                             Reset
                                         </Button>
-                                    </Space>
-                                </Form.Item>
+                                </ButtonGroup>
                             </Col>
                         </Row>
                     </Form>
-                </Card>
+                </CardCustom>
             )}
         </>
     )
 }
-export default FilterSection
+export default FilterSection;
 
+const CardCustom = styled(Card)`
+    border: 1px solid red;
+    margin-top: 1rem;
+    width: 100%;
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    gap: 10px;
+    button[type=submit]{
+        width: 38%;
+    }
+    
+
+`

@@ -2,52 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,700;1,400;1,700&display=swap');
-*, *::after, *::before{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    user-select: none;
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
 }
-/**::-webkit-scrollbar{*/
-/*  display: none;*/
-/*}*/
-body, html{
+
+body, html {
   background-color: #fff;
 }
 
 .ant-typography a {
-    color: initial;
+  color: initial;
 }
 
 .trigger {
-    padding: 0 24px;
-    font-size: 18px;
-    line-height: 64px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-   .trigger:hover {
-    color: #1890ff;
-  }
-  
-   .logo {
-    display: grid;
-    place-items: center;
-  }
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
 
-   .logo > a{
-       color: #dfe1e4;
-   }
-  
-  .site-layout .site-layout-background {
-    background: #fff;
-  }
-  
-  .layout {
-    min-height: 100vh ;
-    height: auto;
-  }
+.trigger:hover {
+  color: #1890ff;
+}
+
+
+.logo>a {
+  color: #dfe1e4;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.layout {
+  min-height: 100vh;
+  height: auto;
+}
 
 .swiper {
   width: 100%;
@@ -57,7 +52,8 @@ body, html{
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: transparent!important;;
+  background: transparent !important;
+  ;
 
   /* Center slide text vertically */
   display: flex;
@@ -71,25 +67,6 @@ body, html{
   height: 100%;
   object-fit: cover;
 }
-
-#components-collapse-demo-collapsible .ant-space {
-  width: 100%;
-}
-.ant-collapse-header{
-  align-items: center !important;
-  padding: .5rem 0 !important;
-}
-
-.ant-tag-checkable:not(.ant-tag-checkable-checked):hover, .ant-tag-checkable-checked {
-    background-color: transparent!important;
-}
-
-p{
-   color: #444b52
-}
-.ant-form-item{
-    margin-bottom: 10px !important;
-}
-.site-form-item-icon{
-    color: rgba(0, 0, 0, 0.25);
+p {
+  color: #444b52
 }

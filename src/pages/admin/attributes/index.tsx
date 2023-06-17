@@ -21,7 +21,7 @@ const Index:MyPage = () => {
 
     useEffect(() => {
         setDataActive(dataAttr.filter((item:any) => item.status === true));
-        setDataInActive(dataAttr.filter((item:any) => item.status === false))
+        setDataInActive(dataAttr.filter((item:any) => item.status === false));
     },[dataAttr])
 
     const onFinish = (values:any) => {
@@ -30,7 +30,6 @@ const Index:MyPage = () => {
 
     const onReset = () => {
         form.resetFields();
-        setOpenFilter(!openFilter)
     };
 
     const headerActionComp = [
@@ -84,7 +83,7 @@ export const dataAttr  = [
     {
         name: "mau sac",
         desc: "mau sac",
-        status: false,
+        status: true,
         isParent: true,
         value: "mau-sac",
         children: [
