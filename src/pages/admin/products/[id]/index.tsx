@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { SharedIcons } from "@/utils";
 import Link from "next/link";
 import ProductForm from "@/pages/admin/products/components/ProductForm";
-const { SiThemoviedatabase } = SharedIcons;
 const { ArrowLeftOutlined } = SharedIcons;
 
 const ProductDetail: MyPage = () => {
@@ -31,17 +30,19 @@ const ProductDetail: MyPage = () => {
 
     useEffect(() => {
         if(mode && id && (mode !== "create" && id !== "create")){
-            setIsPublish(data.isPushlish);
-            setIsPromotion(data.isPromotion);
-            setDiscountType(data.discount.type);
-            setDiscountValue(data.discount.value)
-            form.setFieldsValue({
-                ...data
-            });
+            resetData();
         }
     },[id, mode])
 
-
+    const resetData = () => {
+        setIsPublish(data.isPushlish);
+        setIsPromotion(data.isPromotion);
+        setDiscountType(data.discount.type);
+        setDiscountValue(data.discount.value)
+        form.setFieldsValue({
+            ...data
+        });
+    }
 
     const onFinish = (values: any) => {
         console.log("values", values);
@@ -56,7 +57,11 @@ const ProductDetail: MyPage = () => {
     }
 
     const onReset = () => {
-        form.resetFields()
+        if(mode === "create"){
+            form.resetFields();
+        }else{
+            resetData()
+        }
     }
 
     return (

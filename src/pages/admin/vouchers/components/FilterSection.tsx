@@ -17,16 +17,7 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
     const [options, setOptions] = useState<{ value: string }[]>([]);
 
     const handleSearch = (value: string) => {
-        let res: { value: string; label: string }[] = [];
-        if (!value || value.indexOf('@') >= 0) {
-            res = [];
-        } else {
-            res = ['gmail.com', '163.com', 'qq.com'].map((domain) => ({
-                value,
-                label: `${value}@${domain}`,
-            }));
-        }
-        setOptions(res);
+
     };
 
     const onChange: DatePickerProps['onChange'] = (date, dateString) => {
@@ -50,25 +41,19 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
                         style={{ maxWidth: 600 }}
                     >
                         <Row gutter={[16,0]}>
-                            <Col span={12}>
-                                <Form.Item label="Tên phim"  name="name">
-                                    <Input placeholder="Nhập tên phim" />
-                                </Form.Item>
-                                <Form.Item label="Thể loại" name="category">
-                                    {/*<Input name="category" placeholder="Nhập tên phim" />*/}
-                                    <AutoComplete
-                                        onSearch={handleSearch}
-                                        placeholder="input here"
-                                        options={options}
-                                    />
+                            <Col span={24}>
+                                <Form.Item label="Tên voucher"  name="name">
+                                    <Input placeholder="Nhập tên voucher" />
                                 </Form.Item>
                             </Col>
-                            <Col span={12}>
-                                <Form.Item label="Tên diễn viên" name="actor_name">
-                                    <Input  placeholder="Nhập tên diễn viên " />
+                            <Col span={24}>
+                                <Form.Item label="Ngày bắt đầu" name="releaseDay">
+                                    <DatePicker onChange={onChange}  style={{width: "100%"}} placeholder="Ngày bắt đầu"/>
                                 </Form.Item>
-                                <Form.Item label="Ngày khởi chiếu" name="releaseDay">
-                                    <DatePicker onChange={onChange}  style={{width: "100%"}} placeholder="Ngày khởi chiếu"/>
+                            </Col>
+                            <Col span={24}>
+                                <Form.Item label="Ngày kết thúc" name="releaseDay">
+                                    <DatePicker onChange={onChange}  style={{width: "100%"}} placeholder="Ngày kết thúc"/>
                                 </Form.Item>
                             </Col>
                             <Col span={24} push={12}>

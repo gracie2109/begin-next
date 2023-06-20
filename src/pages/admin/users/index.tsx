@@ -28,7 +28,10 @@ const Index:MyPage = () => {
         form.resetFields();
         setOpenFilter(!openFilter)
     };
-
+    useEffect(() =>{
+        setDataActive(data?.filter((item) => item.status == 0))
+        setDataInActive(data?.filter((item) => item.status !== 0))
+    },[data])
     const headerActionComp = [
         {
             key: 1,
@@ -39,12 +42,12 @@ const Index:MyPage = () => {
         {
             key: 1,
             label: `Người dùng đang hoạt động (${dataActive.length})`,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="active"/>
+            children: <FetchData dataSource={dataActive} loading={pending} compStatus="active"/>
         },
         {
             key: 2,
             label: `Người dùng ngừng hoạt động (${dataInActive.length}) `,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="inActive"/>
+            children: <FetchData dataSource={dataInActive} loading={pending} compStatus="inActive"/>
         }
     ];
 
@@ -76,3 +79,36 @@ const Index:MyPage = () => {
 
 export default Index;
 Index.Layout="Admin";
+
+const data = [
+    {
+        _id: 1,
+        name: "Ussers1",
+        phone: "0327072255",
+        status: 1,
+        gender: 1,
+        images: undefined,
+        googleId: "123123123123",
+        facebookId: undefined,
+        email: "admin@gmail.com",
+        fullName: "Trijnh Phuong thai",
+        role: 1,
+        dob:undefined,
+        address: undefined
+    },
+    {
+        _id: 2,
+        name: "ussers 2",
+        phone: "0327072255",
+        status: 0,
+        gender: 1,
+        images: undefined,
+        googleId: "123123123123",
+        facebookId: undefined,
+        email: "admin@gmail.com",
+        fullName: "Trijnh Phuong thai",
+        role: 1,
+        dob:undefined,
+        address: undefined
+    }
+]

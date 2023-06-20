@@ -4,7 +4,7 @@ import {Button, Tabs, Form} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
 const FetchData  =  dynamic(() => import('./components/fetchData'));
@@ -20,6 +20,7 @@ const Index:MyPage = () => {
     const [form] = Form.useForm();
     const pending = false;
 
+    
     const onFinish = (values:any) => {
         console.log("onFinish", values)
     }
@@ -28,6 +29,12 @@ const Index:MyPage = () => {
         form.resetFields();
         setOpenFilter(!openFilter)
     };
+    
+    useLayoutEffect(() =>{
+        setDataActive(products.filter((item) => item.status === true));
+        setDataInActive(products.filter((item) => item.status !== true))
+    },[products])
+
 
     const headerActionComp = [
         {
@@ -39,12 +46,12 @@ const Index:MyPage = () => {
         {
             key: 1,
             label: `Sản phẩm đang bán (${dataActive.length})`,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="active"/>
+            children: <FetchData dataSource={dataActive} loading={pending} compStatus="active"/>
         },
         {
             key: 2,
             label: `Sản phẩm ngừng kinh doanh (${dataInActive.length}) `,
-            children: <FetchData dataSource={undefined} loading={pending} compStatus="inActive"/>
+            children: <FetchData dataSource={dataInActive} loading={pending} compStatus="inActive"/>
         }
     ];
 
@@ -76,3 +83,93 @@ const Index:MyPage = () => {
 
 export default Index;
 Index.Layout="Admin";
+export const products = [
+    {
+        id: 1, 
+        name: "Sản phẩm 1",
+        images: [
+            {
+                url: "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+            }
+        ],
+        cost: 123000,
+        quantity: 1200,
+        lastQuantity: 1200,
+        status: true,
+        isPromotion: true,
+        discount: {
+            type: 0,
+            value: 1200 
+        },
+        price: 1000,
+        discountAt: null,
+        short_desc: "short_desc",
+        desc: "desc"
+    },
+    {
+        id: 4, 
+        name: "Sản phẩm 4",
+        images: [
+            {
+                url: "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+            }
+        ],
+        cost: 123000,
+        quantity: 1200,
+        lastQuantity: 1,
+        status: true,
+        isPromotion: true,
+        discount: {
+            type: 0,
+            value: 1200 
+        },
+        price: 1000,
+        discountAt: null,
+        short_desc: "short_desc",
+        desc: "desc"
+    },
+    {
+        id: 3, 
+        name: "Sản phẩm 3",
+        images: [
+            {
+                url: "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+            }
+        ],
+        cost: 123000,
+        quantity: 1200,
+        lastQuantity: 1200,
+        status: true,
+        isPromotion: true,
+        discount: {
+            type: 1,
+            value: 1200 
+        },
+        price: 900,
+        discountAt: null,
+        short_desc: "short_desc",
+        desc: "desc"
+    },
+    {
+        id: 2, 
+        name: "Sản phẩm 2",
+        images: [
+            {
+                url: "https://product.hstatic.net/200000592359/product/untitled-1_43743bcf461a4d8f8c12b191b7be91f7_master.jpg"
+            }
+        ],
+        cost: 123000,
+        quantity: 1200,
+        lastQuantity: 1200,
+        status: false,
+        isPromotion: true,
+        discount: {
+            type: 0,
+            value: 1200 
+        },
+        price: 1000,
+        discountAt: null,
+        short_desc: "short_desc",
+        desc: "desc"
+    }
+];

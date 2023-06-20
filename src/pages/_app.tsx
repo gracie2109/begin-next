@@ -6,21 +6,22 @@ import { MyAppProps } from "@/models/common";
 import { Layouts } from "@/components/Layouts";
 import { wrapper } from "@/app/store";
 import AOS from "aos";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import NextNProgress from "nextjs-progressbar";
-import { ConfigProvider , Spin} from 'antd';
+import { ConfigProvider , Spin,App} from 'antd';
 import { HydrationProvider, Server, Client } from "react-hydration-provider";
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const Layout = Layouts[Component.Layout] || (({ children }:any) => (
-          <div className="mx-auto container relative top-0 my-7">
-              {children}
-          </div>)
+            <App>
+                <div className="mx-auto container relative top-0 my-7">
+                    {children}
+                </div>
+            </App>
+    )
   );
-  useEffect(() => {
-    AOS.init({
-      once: true,
-    })
+  useLayoutEffect(() => {
+    AOS.init()
   }, []);
 
   return (
@@ -35,10 +36,11 @@ function MyApp({ Component, pageProps }: MyAppProps) {
                       },
                   }}
               >
+                <App>
                   <Layout>
                       <Component {...pageProps} />
                   </Layout>
-
+                </App>
               </ConfigProvider>
 
           </Client>
