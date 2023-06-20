@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useLayoutEffect} from "react";
+import {useEffect} from "react";
 import {
     Row,
     Col,
@@ -12,7 +12,7 @@ import {
     InputNumber, DatePicker
 } from "antd";
 import UploadFile from "@/components/common/UploadFile/UploadFile";
-import {REG_FOMAT, PARSE_FOMAT, calcDiscountPrice, formatCurrency,} from "@/utils";
+import {REG_FOMAT, PARSE_FOMAT, calcDiscountPrice,} from "@/utils";
 import type {RangePickerProps} from 'antd/es/date-picker';
 import type {TabsProps} from 'antd';
 import dayjs from 'dayjs';
@@ -44,7 +44,7 @@ const dicountTypeInstant = [
         value: 1
     }
 ];
-const ProductForm = ({
+const VoucherForm = ({
                          form,
                          onFinish,
                          onReset,
@@ -61,14 +61,10 @@ const ProductForm = ({
     const cost = Form.useWatch('cost', form);
 
     useEffect(() => {
-        if (cost && discountValue) {
-            const res: number = calcDiscountPrice(cost, discountValue, discountType);
-            console.log("res", res, cost, discountValue, discountType)
-            form.setFieldsValue({
-                price: formatCurrency(res)
-            })
-        }
-
+        const res = calcDiscountPrice(cost, discountValue, discountType);
+        form.setFieldsValue({
+            price: res
+        })
     }, [cost, discountType, discountValue])
 
 
@@ -88,17 +84,17 @@ const ProductForm = ({
         >
             <Row gutter={[32, 8]}>
                 <Col span={12}>
-                    <Form.Item name="images" label="Ảnh" className="no-style-form"><br/><br/>
+                    <Form.Item name="images" label="Ảnh đại diện" className="no-style-form"><br/>
                         <UploadFile max={3} isMultiple={true}/>
                     </Form.Item>
-                    <Form.Item name="name" label="Tên">
-                        <Input placeholder="Nhập vào tên của sản phẩm" allowClear/>
+                    <Form.Item name="name" label="Tên voucher">
+                        <Input placeholder="Nhập vào tên của voucher" allowClear/>
                     </Form.Item>
-                    <Form.Item name="cost" label="Giá niêm yết">
+                    <Form.Item name="cost" label="Giá tối thiểu của đơn hàng">
                         <InputNumber
                             min={1}
                             step={10000}
-                            placeholder="Nhập vào giá của sản phẩm"
+                            placeholder="Nhập vào giá tối thiểu của đơn hàng"
                             style={{width: "100%"}}
                             addonBefore="VND"
                             formatter={(value: any) => `${value}`.replace(REG_FOMAT, ',')}
@@ -107,31 +103,30 @@ const ProductForm = ({
                         />
 
                     </Form.Item>
-                    <Form.Item name="quantity" label="Số lượng">
+                    <Form.Item name="quantity" label="Số lượng voucher">
                         <InputNumber
                             style={{width: "100%"}}
-                            placeholder="Nhập vào giá của sản phẩm"
+                            placeholder="Nhập vào số lượng voucher"
                             formatter={(value) => `${value}`.replace(REG_FOMAT, ',')}
                             parser={(value) => value!.replace(PARSE_FOMAT, '')}
                         />
                     </Form.Item>
-                    <Row justify="space-between">
-                        <Col span={12}>
-                            <Form.Item name="status" label="Tải sản phẩm lên" style={{width: "100%"}}>
-                                <Switch onChange={(e: any) => setIsPublish(e)} checked={isPublish}/>
-                            </Form.Item>
 
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item name="isPromotion" label="Chọn làm sản phẩm tiêu biểu">
-                                <Switch onChange={(e: any) => setIsPromotion(e)} checked={isPromotion}/>
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                    <Form.Item name="isPushlish" label="Tải voucher lên" style={{width: "100%"}}>
+                        <Switch onChange={(e: any) => setIsPublish(e)} checked={isPublish}/>
+                    </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Row align="bottom" gutter={[8, 8]}>
                         <Col>
+                            <Form.Item name="maxUsed" label="Tần suất sử dụng">
+                                <InputNumber
+                                    style={{width: "100%"}}
+                                    placeholder="Nhập vào số lần được sử dụng"
+                                    min={1}
+                                    max={99}
+                                />
+                            </Form.Item>
                             <Form.Item name={['discount', 'type']} label="Giảm giá">
                                 <Select
                                     style={{width: 220}}
@@ -160,9 +155,6 @@ const ProductForm = ({
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Form.Item label="Giá sau giảm" name="price">
-                        <Input placeholder="giá sau giảm" disabled/>
-                    </Form.Item>
                     <Form.Item name="discountAt" label={`Thời gian giảm giá`}>
                         <DatePicker.RangePicker
                             showTime
@@ -170,6 +162,7 @@ const ProductForm = ({
                             style={{width: "100%"}}
                         />
                     </Form.Item>
+
                     <Form.Item name="short_desc" label="Mô tả ngắn">
                         <Input.TextArea placeholder="Nhập vào mô tả" style={{height: "50px", resize: 'none'}}/>
                     </Form.Item>
@@ -187,10 +180,9 @@ const ProductForm = ({
                     Reset
                 </Button>
             </Form.Item>
-
         </Form>
     )
 }
 
-export default ProductForm;
+export default VoucherForm;
 

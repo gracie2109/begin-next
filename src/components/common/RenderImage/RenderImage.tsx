@@ -18,7 +18,7 @@ export const RenderImage = ({ source , width,preview}: Props) => {
     }, [source])
     return (
         <Image
-            width={width ??"60px"}
+            width={width ?? "50px"}
             src={path ?? "error"}
             preview={preview}
         />

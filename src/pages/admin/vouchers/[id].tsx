@@ -5,7 +5,7 @@ import { HeaderAction } from '@/components/common';
 import { useEffect, useState } from "react";
 import { SharedIcons } from "@/utils";
 import Link from "next/link";
-import ProductForm from "@/pages/admin/products/components/ProductForm";
+import VoucherForm from "./components/VoucherForm";
 const { SiThemoviedatabase } = SharedIcons;
 const { ArrowLeftOutlined } = SharedIcons;
 
@@ -65,10 +65,10 @@ const ProductDetail: MyPage = () => {
             <HeaderAction title={`${mode === "create" ? "Thêm mới" : `${mode}`}`} components={[
                 {
                     key: 1,
-                    comp: <Link href="/admin/products"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
+                    comp: <Link href="/admin/vouchers"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
                 },
             ]} />
-            <ProductForm
+            <VoucherForm
                 form={form}
                 onFinish={onFinish}
                 onReset={onReset}

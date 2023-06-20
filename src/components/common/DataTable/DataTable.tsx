@@ -15,10 +15,11 @@ type Props = {
   selectedArr?: any,
   setSelectedArr?:any,
   filterOldCondition?:ConditionType,
+  onChange?:any
 }
 const { Paragraph, Text } = Typography;
-const { MdSyncAlt , AiOutlineClear,BsListColumnsReverse } = SharedIcons
-export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns, expandTable,loading, scrollWidth,PS, setSelectedArr }: Props) =>
+const { MdSyncAlt , AiOutlineClear,BsListColumnsReverse } = SharedIcons;
+export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, data, columns,onChange, expandTable,loading, scrollWidth,PS, setSelectedArr }: Props) =>
 {
 
   const pageOptionSize = () => {
@@ -66,16 +67,6 @@ export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, da
     selectedRowKeys,
     onChange: onSelectChange,
     selections: [
-      {
-        key: 'release',
-        text: 'Release > 1 month',
-        onSelect: () => {
-          const response = filterOldDataByDate(data, filterOldCondition);
-          const key = response.map((item) => Number(item.key) + 1);
-          setSelectedRowKeys(key);
-          setDataHasSelect(response);
-        },
-      },
       {
         key: "all",
         text: "Select all data",
@@ -126,6 +117,7 @@ export const DataTable = ({filterOldCondition, columnsExpanded, dataExpanded, da
       )}
 
       <Table
+        onChange={onChange}
         dataSource={data?.map((item: any, index: number) => {
           return { ...item, key: index + 1};
         })}

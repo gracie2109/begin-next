@@ -1,10 +1,13 @@
-import React, {useEffect, useState, memo} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Form, Input, Modal, Radio, Row, Typography, Popconfirm, Space} from 'antd';
-import {PlusOutlined, DeleteOutlined, UserOutlined, PhoneOutlined} from '@ant-design/icons';
+import {PlusOutlined, DeleteOutlined, UserOutlined, PhoneOutlined, ArrowLeftOutlined} from '@ant-design/icons';
 import type {RadioChangeEvent} from 'antd';
 import Providers from "@/components/common/Providers/Providers";
 import {v4 as uuidv4} from 'uuid';
-
+import {HeaderAction} from "@/components/common";
+import Link from  "next/link";
+import {MyPage} from "@/models/common";
+import {formatCurrency} from "@/utils";
 
 interface CollectionCreateFormProps {
     open: boolean;
@@ -13,7 +16,6 @@ interface CollectionCreateFormProps {
     setAddress: any;
     form: any
 }
-
 const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
     ({
          open,
@@ -52,20 +54,20 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
                     <Form.Item
                         name="name"
                         label="Tên người nhận"
-                        rules={[{required: true, message: 'Please input the title of collection!'}]}
+                        rules={[{required: true, message: 'Nhập tên người nhận!'}]}
                     >
                         <Input prefix={<UserOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                     <Form.Item
-                        name="phoneNumber"
+                        name="phone"
                         label="SDT người nhận"
-                        rules={[{required: true, message: 'Please input the title of collection!'}]}
+                        rules={[{required: true, message: 'Nhập số điện thoại!'}]}
                     >
                         <Input prefix={<PhoneOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                     <Form.Item
                         label="Địa chỉ"
-                        rules={[{required: true, message: 'Please input the title of collection!'}]}
+                        rules={[{required: true, message: 'Chọn địa chỉ!'}]}
                     >
                         <Providers setAddress={setAddress}/>
                     </Form.Item>
@@ -81,14 +83,21 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
         );
     };
 
-const AddressBook = () => {
+const AddressBook:MyPage = () => {
     const [form] = Form.useForm()
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
     const [addresses, setAddresses] = useState<any>([...dataAddress]);
     const [address, setAddress] = useState<any>(undefined);
 
-
+    useEffect(() => {
+        if(user) {
+            form.setFieldsValue({
+                name: user?.fullName,
+                phone: user?.phone
+            })
+        }
+    },[user])
     useEffect(() => {
         if (addresses && addresses.length > 0) {
             const main = addresses.find((item: any) => item.isMain === true);
@@ -138,9 +147,12 @@ const AddressBook = () => {
 
     return (
         <div className="p-5">
-            <div className="grid place-items-center">
-                <Typography.Title level={3}> Sổ địa chỉ </Typography.Title>
-            </div>
+            <HeaderAction title="Sổ địa chỉ" components={[
+                {
+                    key: 1,
+                    comp: <Link href="/admin/users"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
+                },
+            ]} />
             <Button
                 type="dashed"
                 onClick={() => {
@@ -167,7 +179,7 @@ const AddressBook = () => {
                                         định</Typography.Text>
                                     <Typography.Paragraph>
                                         <b>Tên</b>: {data?.name} <br/>
-                                        <b>SDT</b>: {data?.phoneNumber}<br/>
+                                        <b>SDT</b>: {data?.phone}<br/>
                                         <b>Địa chỉ</b>: {renderAddress(data?.address)}
                                     </Typography.Paragraph>
                                 </Col>
@@ -205,13 +217,14 @@ const AddressBook = () => {
     )
 }
 
-export default AddressBook
+export default AddressBook;
+AddressBook.Layout="Admin"
 
 
 export const dataAddress = [
     {
         name: "dấd",
-        phoneNumber: "ádasd",
+        phone: "ádasd",
         isMain: true,
         id: "6f7da6db-2bd9-47e4-9375-66c47ab3f438",
         address: {
@@ -233,4 +246,20 @@ export const dataAddress = [
             desc: "sssas"
         }
     }
-]
+];
+
+export const user = {
+    _id: 1,
+    name: "Ussers1",
+    phone: "0327072255",
+    status: 1,
+    gender: 1,
+    images: undefined,
+    googleId: "123123123123",
+    facebookId: undefined,
+    email: "admin@gmail.com",
+    fullName: "Trijnh Phuong thai",
+    role: 1,
+    dob:undefined,
+    address: undefined
+}
