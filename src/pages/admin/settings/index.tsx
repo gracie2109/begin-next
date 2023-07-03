@@ -1,149 +1,202 @@
-import Link from 'next/link';
+import {HeaderAction} from '@/components/common';
+import {MyPage} from '@/models/common';
+import {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
+import UploadFile from '@/components/common/UploadFile/UploadFile';
 import {
-    App,
     Button,
-    Tag,
-    Tooltip,
-    } from 'antd';
-import { DataTable, HeaderAction } from '@/components/common';
-import { getColumnTable, SharedIcons } from '@/utils';
-import { MyPage } from '@/models/common';
-import { RenderImage } from '@/components/common';
-import { useAppDispatch } from '@/app/hooks';
-import { useRouter } from 'next/router';
-import { useSearchTable } from '@/hooks';
-import styled from "styled-components";
-const { MdModeEditOutline, PlusOutlined ,EyeOutlined} = SharedIcons;
+    Col,
+    Form,
+    Input,
+    Row,
+    Switch,
+    App
+} from 'antd';
+import {SharedIcons} from '@/utils';
 
-const Index:MyPage = () => {
-    const dispatch = useAppDispatch();
-    const { modal } = App.useApp();
-    const router = useRouter();
-    const { getColumnSearchProps } = useSearchTable();
+const {PlusOutlined, MinusCircleOutlined} = SharedIcons;
 
+const Index: MyPage = () => {
+    const [form] = Form.useForm();
+    const [isMaintain, setIsMaintain] = useState<any>(false);
+    const {message, modal, notification} = App.useApp();
 
-    const headerActionComp = [
-        {
-            key: 1,
-            comp: <Link href="/admin/settings/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo cài đặt mới </Button></Link>
-        }
-    ];
+    useEffect(() => {
+        resetdata()
+    }, []);
 
-    const columns = [
-        { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px",fixed: 'left'},
-        { ...getColumnTable("name"), ...getColumnSearchProps("name"), sorter: (a: any, b: any) => a.name.localeCompare(b.name),fixed: 'left' },
-        {
-            ...getColumnTable("status"), render: (_: any, { status }: any) => (
-                <>
-                    <Tag color={status ? "#2db7f5" : "#108ee9"}>
-                        {status ? `Đang hoạt động` : ``}
-                    </Tag>
-                </>
-            ),
-            filters: [
-                { text: 'Đang hoạt động', value: true },
-                { text: 'Không hoạt động', value: false },
-            ],
-            onFilter: (value: string, record: any) => record?.status == value,
-        },
-        {
-            ...getColumnTable("maintain"), render: (_: any, { maintain }: any) => (
-                <>
-                    <Tag color={maintain ? "#2db7f5" : "#108ee9"}>
-                        {maintain ? `Đang bảo trì` : ``}
-                    </Tag>
-                </>
-            ),
-            filters: [
-                { text: 'Đang bảo trì', value: true },
-                { text: 'Không bảo trì', value: false },
-            ],
-            onFilter: (value: string, record: any) => record?.maintain == value,
-        },
-        {
-            title: 'Action',
-            key: 'operation',
-            render: (_:any, record:any) => (
-                <div className="flex gap-2">
-                     <Tooltip title="Xem nhanh">
-                        <Button icon={<EyeOutlined />} 
-                        onClick={() => handleModal(record)}></Button>
-                    </Tooltip>
-                    <Tooltip title="Chỉnh sửa">
-                        <Button icon={<MdModeEditOutline />} 
-                        onClick={() => router.push(`/admin/settings/${record?._id}`)}></Button>
-                    </Tooltip>
-                </div>
-            ),
-            width: "100px"
-        }
-    ];
-    const handleModal = (values:any) => {
-        modal.info({
-            title: `Cửa hàng: ${values?.name}`,
-            width: '1000px',
-            content: (
-               <ModalApp>
-                    <ModalGroup>
-                        <ModalName>Địa chỉ</ModalName>
-                        <ModalValue>{values?.address?.map((item:any) => <div>{item}</div>)}</ModalValue>
-                    </ModalGroup>
-                    <ModalGroup>
-                        <ModalName>Số điện thoại</ModalName>
-                        <ModalValue>{values?.phone}</ModalValue>
-                    </ModalGroup>
-                    <ModalGroup>
-                        <ModalName>Email</ModalName>
-                        <ModalValue>{values?.email}</ModalValue>
-                    </ModalGroup>
-                    <ModalGroup>
-                        <ModalName>Trạng thái</ModalName>
-                        <ModalValue>{values?.status ? "Đang hoạt động" : "Dừng hoạt động"}</ModalValue>
-                    </ModalGroup>
-                    <ModalGroup>
-                        <ModalName>Mô tả</ModalName>
-                        <ModalValue>{values?.desc}</ModalValue>
-                    </ModalGroup>
-                    <ModalGroup>
-                        <ModalName>Mạng xã hội</ModalName>
-                        <ModalTable>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Địa chỉ</th>
-                            </tr>
-                           
-                            {values?.social?.map((item:any, index:any) => (
-                                <tr key={index}>
-                                    <td>{item?.name}</td>
-                                    <td><Link href={item?.value}>{item?.value}</Link></td>
-                                </tr>
-                            ))}
+    const onFinish = (values: any) => {
+        modal.confirm({
+            title: "Bạn có chắc muốn cập nhật dữ liệu ?",
+            onOk() {
+                console.log('values', values);
+                setTimeout(() => {
+                    message.success('Success!');
+                }, 2000)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
 
-                            </ModalTable>
-                    </ModalGroup>
-               </ModalApp>
-            )
-        })
     }
+    const resetdata = () => {
+        setIsMaintain(data.maintain);
+        form.setFieldsValue({
+            ...data
+        });
+    }
+    const onReset = () => {
+        resetdata()
+    }
+
+
     return (
         <>
-            <HeaderAction
-                title="Cài đặt trang web"
-                components={headerActionComp}
-            />
-           <DataTable  
-                PS={5} 
-                columns={columns} 
-                data={data} 
-                expandTable={false}
-            />
+            <HeaderAction title="Cài đặt trang web"/>
+            <Form
+                form={form}
+                layout="vertical"
+                onFinish={onFinish}
+            >
+                <Row gutter={[32, 8]}>
+                    <Col span={12}>
+                        <Form.Item name="images" label="Logo" className="no-style-form">
+                            <UploadFile max={1} isMultiple={false}/>
+                        </Form.Item>
+                        <Form.Item name="name" label="Tên cửa hàng">
+                            <Input placeholder="Nhập vào tên cửa hàng" allowClear/>
+                        </Form.Item>
+                        <Form.Item name="email" label="email">
+                            <Input placeholder="Nhập vào email cửa hàng" allowClear/>
+                        </Form.Item>
+                        <Form.Item name="phone" label="phone cửa hàng">
+                            <Input placeholder="Nhập vào phone cửa hàng" allowClear/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name="maintain" label="Bảo trì">
+                            <Switch onChange={(e: any) => setIsMaintain(e)} checked={isMaintain}/>
+                        </Form.Item>
+                        <Form.Item name="desc" label="Mô tả cửa hàng">
+                            <Input.TextArea placeholder="Nhập vào mô tả" style={{height: "50px", resize: 'none'}}/>
+                        </Form.Item>
+                        <Form.List name="social">
+                            {(fields, {add, remove}) => (
+                                <>
+                                    <label htmlFor="">Mạng xã hội</label>
+                                    {fields.map(({key, name, ...restField}) => (
+                                        <Row key={key} style={{margin: '.5rem 0', gap: 3}}>
+                                            <Col span={11}>
+                                                <Form.Item
+                                                    {...restField}
+                                                    name={[name, 'name']}
+                                                    rules={[{required: true, message: 'Missing first name'}]}
+                                                >
+                                                    <Input placeholder="First Name" style={{width: '100%'}}/>
+                                                </Form.Item>
+                                            </Col>
+                                            <Col span={11}>
+                                                <Form.Item
+                                                    {...restField}
+                                                    name={[name, 'value']}
+                                                    rules={[{required: true, message: 'Missing last name'}]}
+                                                >
+                                                    <Input placeholder="Last Name" style={{width: '100%'}}/>
+                                                </Form.Item>
+                                            </Col>
+                                            <Col span={1}>
+                                                <MinusCircleOutlined onClick={() => remove(name)}/>
+                                            </Col>
+                                        </Row>
+                                    ))}
+                                    <Form.Item>
+                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined/>}>
+                                            Thêm mạng xã hội
+                                        </Button>
+                                    </Form.Item>
+                                </>
+                            )}
+                        </Form.List>
+                        <Form.List
+                            name="address"
+                            rules={[
+                                {
+                                    validator: async (_, names) => {
+                                        if (!names || names.length < 1) {
+                                            return Promise.reject(new Error('At least 1 passengers'));
+                                        }
+                                    },
+                                },
+                            ]}
+                        >
+                            {(fields, {add, remove}, {errors}) => (
+                                <>
+                                    {fields?.map((field, index) => (
+                                        <Form.Item
+                                            label={index === 0 ? 'Địa chỉ' : ''}
+                                            required={false}
+                                            key={field.key}
+                                        >
+                                            <Form.Item
+                                                {...field}
+                                                validateTrigger={['onChange', 'onBlur']}
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        whitespace: true,
+                                                        message: "Nhập vào địa chỉ hoặc xóa filed này.",
+                                                    },
+                                                ]}
+                                                noStyle
+                                            >
+                                                <Input placeholder="Nhập địa chỉ" style={{width: '97%'}}/>
+                                            </Form.Item>
+                                            {fields.length > 1 ? (
+                                                <MinusCircleOutlined
+                                                    className="dynamic-delete-button"
+                                                    onClick={() => remove(field.name)}
+                                                />
+                                            ) : null}
+                                        </Form.Item>
+                                    ))}
+                                    <Form.Item>
+                                        <Button
+                                            type="dashed"
+                                            onClick={() => add()}
+                                            style={{width: '100%'}}
+                                            icon={<PlusOutlined/>}
+                                        >
+                                            Thêm địa chỉ
+                                        </Button>
+                                        <Form.ErrorList errors={errors}/>
+                                    </Form.Item>
+                                </>
+                            )}
+                        </Form.List>
+                    </Col>
+
+                </Row>
+                <Form.Item style={{width: "100%", display: "flex", justifyContent: "flex-end"}}>
+                    <Button type="primary" htmlType="submit" style={{width: "200px", marginRight: "10px"}}>
+                        Submit
+                    </Button>
+                    <Button htmlType="button" style={{width: "100px"}} onClick={onReset}>
+                        Reset
+                    </Button>
+                </Form.Item>
+
+            </Form>
+
         </>
     )
 }
 
 export default Index;
-Index.Layout="Admin";
-export const data: any[] = [
+Index.Layout = "Admin";
+
+
+export const data =
     {
         _id: 1,
         name: "Eccommerce",
@@ -169,32 +222,4 @@ export const data: any[] = [
             },
 
         ]
-    },
-
-];
-
-const ModalApp = styled.div`
-    width: 100%;
-`;
-const ModalGroup  = styled.div `
-    display: flex;
-    margin-bottom: 1rem;
-`;
-
-const ModalName = styled.div`
-    width: 30%;
-    font-weight: bold;
-`;
-const ModalValue = styled.div`
-   width: calc(100% - 30%);
-`;
-const ModalTable = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-    table, td, th {
-        border: 1px solid;
     }
-    td, th{
-        padding: 0 1rem;
-    }
-`;
