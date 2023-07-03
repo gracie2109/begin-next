@@ -15,15 +15,17 @@ type Props = {
     form: any,
     onFinish: any,
     onReset: any,
-    formMode: any,
-    isParent:any,
-    setIsParent:any,
-    attrOptions:any,
-    setAttrOptions:any,
-    data:any
+    formMode?: any,
+    isParent?:any,
+    setIsParent?:any,
+    attrOptions?:any,
+    setAttrOptions?:any,
+    parents?:any,
+    status:any,
+    setStatus?:any
 }
 
-const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent,attrOptions, setAttrOptions, data }: Props) => {
+const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent,attrOptions, setAttrOptions, parents,status,setStatus }: Props) => {
 
     return (
         <div className="w-1/2 mx-auto">
@@ -43,7 +45,7 @@ const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent
                     <Input.TextArea  placeholder="Nhập vào mô tả" style={{ height: "100px",resize: 'none' }}/>
                 </Form.Item>
                 <Form.Item name="status" label="Trạng thái">
-                    <Switch />
+                    <Switch onChange={(e: any) => setStatus(e)}  checked={status}/>
                 </Form.Item>
                 <Row justify="space-between" align="stretch">
                     <Col>
@@ -58,8 +60,8 @@ const AttributesForm = ({ form, onFinish, onReset, formMode,isParent,setIsParent
                                     style={{ width: 220 }}
                                     onChange={(a:any) => setAttrOptions(a)}
                                 >
-                                    {data.map((item:any, index:any) => (
-                                        <Select.Option value={item?.value} key={item?.value}>{item.title}</Select.Option>
+                                    {parents && parents?.map((item:any, index:any) => (
+                                        <Select.Option value={item?.value} key={item?.value}>{item?.title}</Select.Option>
                                     ))}
                                 </Select>
                             </Form.Item>

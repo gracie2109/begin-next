@@ -4,11 +4,11 @@ import {Button, Tabs, Form} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
-const FetchData  =  dynamic(() => import('./components/FetchData'));
-const FilterSection = dynamic(() => import("./components/FilterSection"));
+const FetchData  =  dynamic(() => import('./components/FetchData'), {ssr: false});
+const FilterSection = dynamic(() => import("./components/FilterSection"), {ssr: false});
 const { FaArrowRight, PlusOutlined } = SharedIcons;
 
 
@@ -20,9 +20,11 @@ const Index:MyPage = () => {
     const [form] = Form.useForm();
 
     useEffect(() => {
-        setDataActive(dataAttr.filter((item:any) => item.status === true));
-        setDataInActive(dataAttr.filter((item:any) => item.status === false));
-    },[dataAttr])
+        if(data) {
+            setDataActive(data?.filter((item:any) => item?.status === true) as any) ;
+            setDataInActive(data?.filter((item:any) => item?.status === false) as any) ;
+        }
+    },[data])
 
     const onFinish = (values:any) => {
         console.log("onFinish", values)
@@ -79,39 +81,42 @@ const Index:MyPage = () => {
 export default Index;
 Index.Layout="Admin";
 
-export const dataAttr  = [
+export const data = [
     {
-        name: "mau sac",
-        desc: "mau sac",
-        status: true,
-        isParent: true,
-        value: "mau-sac",
-        children: [
-            {
-                name: "vang",
-                desc: "vang",
-                status: true,
-                isParent: false,
-                value: "vang",
-                children: []
-            },
-            {
-                name: "den",
-                desc: "den",
-                status: true,
-                isParent: true,
-                value: "den",
-                children: []
-            },
-        ]
+      _id: "1",
+      name: "mau sac",
+      desc: "mau sac",
+      status: true,
+      isParent: true,
+      value: "mau-sac",
+      children: [
+        {
+          name: "vang",
+          desc: "vang",
+          status: true,
+          isParent: false,
+          value: "vang",
+          _id: "1.1",
+          children: [],
+        },
+        {
+          name: "den",
+          desc: "den",
+          status: true,
+          isParent: true,
+          value: "den",
+          _id: "1.2",
+          children: [],
+        },
+      ],
     },
     {
-        name: "kich thuoc",
-        desc: "kich thuoc",
-        status: true,
-        isParent: true,
-        value: "kich-thuoc",
-       children: []
-    }
-
-]
+      name: "kich thuoc",
+      desc: "kich thuoc",
+      status: true,
+      isParent: true,
+      value: "kich-thuoc",
+      children: [],
+      _id: "2",
+    },
+  ];

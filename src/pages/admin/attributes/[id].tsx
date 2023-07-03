@@ -1,68 +1,81 @@
-import {MyPage} from '@/models/common';
-import {useRouter} from 'next/router';
-import {Button, Form, message} from "antd";
-import {HeaderAction} from '@/components/common';
-import {useEffect, useState} from "react";
-import {SharedIcons} from "@/utils";
-import Link from "next/link";
-import AttributesForm from "@/pages/admin/attributes/components/AttributesForm";
+import AttributesForm from '@/pages/admin/attributes/components/AttributesForm';
+import Link from 'next/link';
+import slug from "slug";
+import { Button, Form, App } from 'antd';
+import { HeaderAction } from '@/components/common';
+import { MyPage } from '@/models/common';
+import { SharedIcons } from '@/utils';
+import { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+const { ArrowLeftOutlined } = SharedIcons;
 
-const {ArrowLeftOutlined} = SharedIcons;
-import slug from "slug"
-
-const AttributeDetail: MyPage = () => {
-    const [mode, setMode] = useState("");
+ 
+const EditAttribute:MyPage = () => {
+    const [form]= Form.useForm();
     const route = useRouter();
     const id = route.query.id;
-    const [form] = Form.useForm();
     const [isParent, setIsParent] = useState<boolean>(false);
     const [attrOptions, setAttrOptions] = useState<string | undefined>(undefined);
-    const [fakeList, setFakeList] = useState<any>([])
+    const [status, setStatus] = useState<boolean>(false);
+    const [mode, setMode]= useState<any>(null);
+
+    const items = useMemo(() => { return data.find((item) => item?._id === id) },[id]);
+    const parents = useMemo(() => { return data.filter((item) => item.status == true ) },[]);
+
 
     useEffect(() => {
-        if (id == "create" || id === undefined) {
-            setMode("create");
-        } else {
-            setMode(`Update: ${id}`);
-        }
+        if (id == "create" || id === undefined) setMode("create");
+        else setMode(`Update: ${id}`);
     }, [id]);
 
 
-    useEffect(() => {
-        if (mode && id && (mode !== "create" && id !== "create")) {
-            // form.setFieldsValue({
-            //     ...data
-            // });
+    useEffect(() =>{ 
+        if(mode && id && (mode !== "create" && id !== "create"))  renderData();
+        
+    },[items,mode]);
+
+
+    const renderData = () => {
+        if(items && mode !== "create") {
+            setIsParent(items?.isParent);
+            setStatus(items?.status);
+            form.setFieldsValue({
+                ...items
+            });
         }
-    }, [id, mode])
+    }
 
-
+    const onReset = () => { 
+        if(items && mode !== "create") {
+            renderData();
+        }else{
+            form.resetFields();
+            setAttrOptions(undefined);
+            setIsParent(false);
+            setStatus(true)  
+        }
+        
+    }
+  
     const onFinish = (values: any) => {
+       if(mode === "create"){
         values.isParent = isParent;
         values.value = slug(values.name);
-        if (mode === "create" || id === "create") {
             if (isParent) {
                 values.children = [];
-                setFakeList([...fakeList, values])
                 route.push("/admin/attributes")
             } else {
                 values.parent = isParent ? undefined : attrOptions;
-                const findParent = fakeList.find((item: any) => item.value === values.parent);
-                findParent.children.push(values);
+                const findParent = parents.find((item: any) => item.value === values.parent);
+                if(findParent){
+                    findParent.children.push(values);
+                }
             }
-        }
+       }
     }
-
-    console.log("fakeList", fakeList)
-    const onReset = () => {
-        form.resetFields();
-        setAttrOptions(undefined);
-        setIsParent(false)
-    }
-
     return (
         <>
-            <HeaderAction title={`${mode === "create" ? "Thêm mới" : `${mode}`}`} components={[
+          <HeaderAction title={mode === "create" ? "Thêm mới" : "Cập nhật"} components={[
                 {
                     key: 1,
                     comp: <Link href="/admin/attributes"> <Button type="dashed" icon={<ArrowLeftOutlined/>}>Quay
@@ -73,18 +86,56 @@ const AttributeDetail: MyPage = () => {
                 form={form}
                 onFinish={onFinish}
                 onReset={onReset}
-                formMode={mode}
+                parents={parents}
                 isParent={isParent}
                 setIsParent={setIsParent}
                 attrOptions={attrOptions}
                 setAttrOptions={setAttrOptions}
-                data={fakeList}
-            />
+                status={status}
+                setStatus={setStatus}
+             />
         </>
     )
 }
+export default  EditAttribute;
+EditAttribute.Layout="Admin";
 
-export default AttributeDetail;
-AttributeDetail.Layout = "Admin";
-
-
+export const data = [
+    {
+      _id: "1",
+      name: "mau sac",
+      desc: "mau sac",
+      status: true,
+      isParent: true,
+      value: "mau-sac",
+      children: [
+        {
+          name: "vang",
+          desc: "vang",
+          status: true,
+          isParent: false,
+          value: "vang",
+          _id: "1.1",
+          children: [],
+        },
+        {
+          name: "den",
+          desc: "den",
+          status: true,
+          isParent: true,
+          value: "den",
+          _id: "1.2",
+          children: [],
+        },
+      ],
+    },
+    {
+      name: "kich thuoc",
+      desc: "kich thuoc",
+      status: true,
+      isParent: true,
+      value: "kich-thuoc",
+      children: [],
+      _id: "2",
+    },
+  ];

@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import dynamic from "next/dynamic";
-import {Button, Tabs, Form} from 'antd';
+import {Button, Tabs, Form, Row, Col, Tooltip} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect, useMemo} from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-
+import {FileExcelOutlined, FilePdfOutlined} from "@ant-design/icons";
+import { useExport } from "@/hooks"
 const FetchData  =  dynamic(() => import('./components/fetchData'));
 const FilterSection = dynamic(() => import("./components/FilterSection"));
-const { FaArrowRight, PlusOutlined } = SharedIcons;
+const { PlusOutlined } = SharedIcons;
 
 
 const Index:MyPage = () => {
@@ -17,10 +18,14 @@ const Index:MyPage = () => {
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
     const [openFilter,setOpenFilter ] = useState<boolean>(false);
+    const [selectedArr,setSelectedArr] = useState<any>([])
     const [form] = Form.useForm();
+    const [tabKey, setTabKey]= useState<any>("1");
     const pending = false;
 
-    
+    const { exportPdf, exportExcel } = useExport(tabKey === "1" ? dataActive : dataInActive, 'products' )
+
+
     const onFinish = (values:any) => {
         console.log("onFinish", values)
     }
@@ -46,15 +51,30 @@ const Index:MyPage = () => {
         {
             key: 1,
             label: `Sản phẩm đang bán (${dataActive.length})`,
-            children: <FetchData dataSource={dataActive} loading={pending} compStatus="active"/>
+            children: <FetchData dataSource={dataActive}
+                                 loading={pending}
+                                 compStatus="active"
+                                 selectedArr={selectedArr}
+                                 setSelectedArr={setSelectedArr}
+            />
         },
         {
             key: 2,
             label: `Sản phẩm ngừng kinh doanh (${dataInActive.length}) `,
-            children: <FetchData dataSource={dataInActive} loading={pending} compStatus="inActive"/>
+            children: <FetchData
+                        dataSource={dataInActive}
+                        loading={pending}
+                        compStatus="inActive"
+                        selectedArr={selectedArr}
+                        setSelectedArr={setSelectedArr}
+            />
         }
     ];
 
+
+    const onChange = (key: string) => {
+        setTabKey(key);
+    };
     return (
         <>
             <HeaderAction
@@ -71,11 +91,24 @@ const Index:MyPage = () => {
                     />
                 }
             />
+            <Row gutter={[8,8]}>
+                <Col>
+                    <Tooltip title="export exel">
+                        <Button onClick={exportExcel}  icon={<FileExcelOutlined />}></Button>
+                    </Tooltip>
+                </Col>
+                <Col>
+                    <Tooltip title="export pdf">
+                        <Button onClick={exportPdf}  icon={<FilePdfOutlined />}></Button>
+                    </Tooltip>
+                </Col>
+            </Row>
             <Tabs
                 defaultActiveKey="1"
                 size={"small"}
                 style={{ marginBottom: 32 }}
                 items={tabItems}
+                onChange={onChange}
             />
         </>
     )

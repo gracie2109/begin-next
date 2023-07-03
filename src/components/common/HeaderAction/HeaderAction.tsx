@@ -18,11 +18,11 @@ export const HeaderAction = ({ title, components, children}: Props) => {
                 <title>{title}</title>
             </Head>
             <Row align="stretch">
-                <Col span={components ? 5 : 24} >
+                <Col span={components && components ? 5 : 24} >
                     <Title level={3}>{title}</Title>
                 </Col>
                 <Col span={13}>
-                    {children}
+                    {children && children}
                 </Col>
                 <Col span={6}>
                     <Row justify="end" align="middle" gutter={[16, 16]}>

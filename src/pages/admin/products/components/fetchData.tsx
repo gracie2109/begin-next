@@ -1,19 +1,22 @@
-import { Tag, Tooltip, Button} from "antd";
-import { SetStateAction, useState } from "react";
+import { Tag, Tooltip, Button, Row, Col } from "antd";
+import {SetStateAction, useState, useRef, useEffect} from "react";
 import { DataTable } from "@/components/common";
 import { getColumnTable,SharedIcons } from "@/utils";
 import { useSearchTable } from "@/hooks";
 import { RenderImage } from './../../../../components/common/RenderImage/RenderImage';
 import type { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { useRouter } from 'next/router';
+import {FileExcelOutlined,FilePdfOutlined,FileOutlined   } from "@ant-design/icons";
 
 type Props = {
     dataSource: any,
     loading: any,
-    compStatus: any
+    compStatus: any,
+    selectedArr:any,
+    setSelectedArr:any,
 }
 const { SettingOutlined,MdModeEditOutline } = SharedIcons
-const FetchData = ({ dataSource, loading, compStatus }: Props) => {
+const FetchData = ({ dataSource, loading, compStatus, selectedArr, setSelectedArr }: Props) => {
     const router = useRouter();
     const [filteredInfo, setFilteredInfo] = useState<Record<string, FilterValue | null>>({});
     const [sortedInfo, setSortedInfo] = useState<SorterResult<any>>({});
@@ -25,8 +28,8 @@ const FetchData = ({ dataSource, loading, compStatus }: Props) => {
         setSortedInfo(sorter as SorterResult<any>);
     };
 
-
     const { getColumnSearchProps } = useSearchTable();
+
     const data = dataSource && dataSource?.map((item: any) => {
         return {
             id: item.id,
@@ -45,7 +48,7 @@ const FetchData = ({ dataSource, loading, compStatus }: Props) => {
         }
     });
 
-    const columns = [
+    const columnsTable = [
         { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px",fixed: 'left'},
         { ...getColumnTable("name"), ...getColumnSearchProps("name"), sorter: (a: any, b: any) => a.name.localeCompare(b.name),fixed: 'left' },
         { ...getColumnTable("price"), ...getColumnSearchProps("price"), sorter: (a: any, b: any) => Number(a.price) - Number(b.price) },
@@ -79,11 +82,11 @@ const FetchData = ({ dataSource, loading, compStatus }: Props) => {
             render: (_:any, record:any) => (
                 <div className="flex gap-2">
                      <Tooltip title="Chỉnh sửa">
-                        <Button icon={<MdModeEditOutline />} 
+                        <Button icon={<MdModeEditOutline />}
                         onClick={() => router.push(`/admin/products/${record?.id}`)}></Button>
                     </Tooltip>
                     <Tooltip title="Cài đặt">
-                        <Button icon={<SettingOutlined />} 
+                        <Button icon={<SettingOutlined />}
                         onClick={() => router.push(`/admin/products/${record?.id}/settings`)}></Button>
                     </Tooltip>
                 </div>
@@ -91,14 +94,21 @@ const FetchData = ({ dataSource, loading, compStatus }: Props) => {
         }
     ];
 
+
+
     return (
-        <DataTable
-            data={data}
-            columns={columns}
-            PS={5}
-            expandTable={false}
-            onChange={handleChange}
-        />
+       <>
+
+           <DataTable
+               data={data}
+               columns={columnsTable}
+               PS={5}
+               expandTable={false}
+               onChange={handleChange}
+               selectedArr={selectedArr}
+               setSelectedArr={setSelectedArr}
+           />
+       </>
     )
 }
 
