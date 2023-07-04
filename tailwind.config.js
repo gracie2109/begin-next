@@ -7,9 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {  
-      boxShadow: {
-        'custom': 'rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;',
-      }
     },
   },
   corePlugins: {
