@@ -8,6 +8,7 @@ const HomeProductRow = dynamic(() => import("@/components/features/HomeProductRo
 import {  Products_data } from "@/utils";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+
 type Props = {}
 
 const Index: MyPage = (props: Props) => {
@@ -24,7 +25,7 @@ const Index: MyPage = (props: Props) => {
    return (
       <div style={{overflow: "hidden"}}>
          <SliderShow slideChildren={SLIDERS} type="slider" />
-         <div className='mt-[3rem] p-7'>
+         <div className='mt-[3rem]'>
             <Category />
          </div>
           <div className="bg-[whitesmoke]">

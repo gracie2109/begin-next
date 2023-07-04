@@ -11,7 +11,7 @@ const { AiFillThunderbolt } = SharedIcons
 const ProductCard = ({ child }: Props) => {
   const router = useRouter()
   return (
-    <div className='h-auto mx-auto max-w-[250px] mr-3 mb-5 transition ease-in-out delay-150 overflow-hidden bg-white hover:shadow-lg duration-300' >
+    <div className='h-auto mx-auto max-w-[250px] mr-3 mb-5 transition ease-in-out delay-150 overflow-hidden rounded bg-white hover:shadow-lg duration-300' >
         <div 
             className="max-h-[70%] min-h-[200px] z-1 cursor-pointer"
             style={{ backgroundImage: `url(${child.images?.[0]})`,

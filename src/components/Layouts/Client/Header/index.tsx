@@ -48,7 +48,7 @@ const HeaderClient = () => {
                     </Col>
                     {/**** Right Side ****/}
                     <Col xs={8} md={4} lg={4} xl={4}>
-                        <Row align="middle" justify="end" gutter={{ xs: 4, sm: 16, md: 24, lg: 32 }}>
+                        <Row align="stretch" justify="end" gutter={{ xs: 1, sm: 16, md: 24, lg: 32 }}>
                             <Col>
                                 <Button type="link" onClick={() => setOpenSearch(!openSearch)} icon={<SearchOutlined />}></Button>
                                 <Drawer title="Tìm kiếm sản phẩm"
