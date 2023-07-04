@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MyPage } from '@/models/common';
-import { Row, Col, Typography, Card, Divider, Button, InputNumber, List, Avatar, Badge, Input, Form } from "antd";
+import { Row, Col, Typography, Card, Divider, Button, InputNumber, List, Avatar, Badge, Input, Form,Alert } from "antd";
 import { Products_data, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
 import Link from "next/link";
 import VatForm from "@/pages/cart/components/VatForm";
@@ -31,9 +31,9 @@ const Cart: MyPage = () => {
     }
 
     return (
-        <Card className="my-3" bodyStyle={{padding: 5}}>
+        <Card className="my-3 px-5" bodyStyle={{padding: 5}} style={{overflow: "hidden"}}>
             <Row gutter={[32, 16]} align="stretch" >
-                <Col span={14} xs={24} md={14}>
+                <Col  xs={24} md={16}>
                     {/* title */}
                     <Row justify="space-between">
                         <Col>
@@ -58,18 +58,18 @@ const Cart: MyPage = () => {
                                             <Typography.Text>Bạn cần mua thêm <Typography.Text strong>{needMore} để được MIỄN PHÍ VẬN CHUYỂN</Typography.Text></Typography.Text>
                                         )}
                                     </Col>
-
+                                            
                                     <Col span={24}>
                                         <div className="cart-shipping__bar relative top-0 my-[10px] bg-[#e9e9e9] w-full h-[8px] rounded mt-2">
                                             {needMore && needMore !== 0 ? (
                                                 <span className="shipping-bar bg-[#ffbc11] relative h-full block transition-[width] rounded ease-in-out duration-[0.4s] delay-0 " style={{ width: `${percent}` }} >
-                                                    <span className="icon bg-[#ffbc11] text-[#ffbc11] top-[-15px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full absolute right-0  translate-y-[-50%] translate-x-1/2">
+                                                    <span className="icon bg-[#ffbc11] text-[#ffbc11] top-[-15px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full absolute right-0   translate-x-1/2">
                                                         <BsTruck style={{ color: "#fff" }} />
                                                     </span>
                                                 </span>
                                             ) : (
                                                 <span className="shipping-bar bg-[#3d9851] relative h-full block transition-[width] rounded ease-in-out duration-[0.4s] delay-0 " style={{ width: "100%" }} >
-                                                    <span className="icon bg-[#3d9851] text-[#3d9851] top-[-15px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full absolute  right-0  translate-y-[-50%] translate-x-1/2">
+                                                    <span className="icon bg-[#3d9851] text-[#3d9851] top-[-15px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full absolute  right-0   translate-x-1/2">
                                                         <BsTruck style={{ color: "#fff" }} />
                                                     </span>
                                                 </span>
@@ -77,6 +77,7 @@ const Cart: MyPage = () => {
                                         </div>
 
                                     </Col>
+                                    <Col span={24}>  <Alert message="Bạn có thể click vào sl sp bên trái để xóa sp" type="warning" showIcon closable /></Col>   
                                 </Row>
 
                                 <Card className="my-3" >
@@ -148,6 +149,7 @@ const Cart: MyPage = () => {
                                 </Card>
 
                             </div>
+                       
                         </>
                     ) : (
                          <Row align="middle" justify="center">
@@ -160,7 +162,7 @@ const Cart: MyPage = () => {
                     )}
 
                 </Col>
-                <Col span={8} xs={24} md={8}>
+                <Col xs={24} md={6}>
                             <Card title={<Typography.Text strong>Thông tin đơn hàng</Typography.Text>}>
                                 <Row justify={"space-between"}>
                                     <Col><Typography.Text strong> Tổng tiền: </Typography.Text></Col>

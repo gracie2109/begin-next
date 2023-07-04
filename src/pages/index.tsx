@@ -24,7 +24,7 @@ const Index: MyPage = (props: Props) => {
    return (
       <div style={{overflow: "hidden"}}>
          <SliderShow slideChildren={SLIDERS} type="slider" />
-         <div className='mt-[3rem]'>
+         <div className='mt-[3rem] p-7'>
             <Category />
          </div>
           <div className="bg-[whitesmoke]">

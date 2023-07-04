@@ -13,8 +13,9 @@ const AuthTheme = ({ children }: PropsWithChildren) => {
         placeItems: "flex-end",
         position: "absolute",
         left: 0,
-        top: "13%",
-        right: "10%"
+        top: "11%",
+        right: "10%",
+        overflowY: "hidden"
     }
 
     return (

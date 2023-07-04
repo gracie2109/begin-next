@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { Row, Col, Typography,Card, Button, Select, Grid ,Drawer} from "antd";
 import { AlignCenterOutlined } from '@ant-design/icons';
 import ProductSortOption from "@/pages/product/components/ProductSortOption";
+
 const ProductList: MyPage = () => {
     const screens = Grid.useBreakpoint()
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -17,7 +18,7 @@ const ProductList: MyPage = () => {
     };
 
     return (
-        <div className='w-full'>
+        <div className={`w-full overflow-hidden ${!screens.xs ? "p-5" : ""}`} >
             <div className="my-7">
                 Trang chủ / Tất cả sản phẩm
             </div>
@@ -54,7 +55,7 @@ const ProductList: MyPage = () => {
                                     <Col xs={6}><Typography.Text style={{fontSize: `${screens.xs ? "11px" : "13px"}`}}>Sắp xếp theo</Typography.Text></Col>
                                     <Col xs={8}>
                                         <Select
-                                            style={{width: "8rem"}}
+                                            style={{width: `${screens.xs ? '8rem' : '23rem'}`}}
                                             onChange={handleChangeSort}
                                             options={ProductPage_Options}
                                             size={"large"}

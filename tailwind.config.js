@@ -6,7 +6,11 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {  },
+    extend: {  
+      boxShadow: {
+        'custom': 'rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;',
+      }
+    },
   },
   corePlugins: {
     preflight: false,
