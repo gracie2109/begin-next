@@ -143,7 +143,7 @@ export const DataTable: React.FC<Props> = ({
                     {
                         title: "#",
                         dataIndex: "key",
-                        width: 60,
+                        width: 30,
                         fixed: "left",
                     },
                     ...columns,

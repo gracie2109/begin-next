@@ -107,6 +107,7 @@ const FetchData = ({ dataSource, loading, compStatus, selectedArr, setSelectedAr
                onChange={handleChange}
                selectedArr={selectedArr}
                setSelectedArr={setSelectedArr}
+               scrollWidth={1000}
            />
        </>
     )

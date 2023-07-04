@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import dynamic from "next/dynamic";
-import {Button, Tabs, Form, Row, Col, Tooltip} from 'antd';
+import {Button, Tabs, Form, Row, Col, Tooltip,Grid} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
 import { MyPage } from '@/models/common';
@@ -22,7 +22,7 @@ const Index:MyPage = () => {
     const [form] = Form.useForm();
     const [tabKey, setTabKey]= useState<any>("1");
     const pending = false;
-
+    const screen = Grid.useBreakpoint()
     const { exportPdf, exportExcel } = useExport(tabKey === "1" ? dataActive : dataInActive, 'products' )
 
 
@@ -34,7 +34,7 @@ const Index:MyPage = () => {
         form.resetFields();
         setOpenFilter(!openFilter)
     };
-    
+
     useLayoutEffect(() =>{
         setDataActive(products.filter((item) => item.status === true));
         setDataInActive(products.filter((item) => item.status !== true))
@@ -45,6 +45,23 @@ const Index:MyPage = () => {
         {
             key: 1,
             comp: <Link href="/admin/products/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo sản phẩm </Button></Link>
+        },
+        {
+            key: 2,
+            comp: (
+                <Row gutter={[8,16]} justify={screen.xs ? "end" : "center"}>
+                    <Col>
+                        <Tooltip title="export exel">
+                            <Button onClick={exportExcel}  icon={<FileExcelOutlined />}></Button>
+                        </Tooltip>
+                    </Col>
+                    <Col>
+                        <Tooltip title="export pdf">
+                            <Button onClick={exportPdf}  icon={<FilePdfOutlined />}></Button>
+                        </Tooltip>
+                    </Col>
+                </Row>
+            )
         }
     ];
     const tabItems: any[] = [
@@ -91,18 +108,7 @@ const Index:MyPage = () => {
                     />
                 }
             />
-            <Row gutter={[8,8]}>
-                <Col>
-                    <Tooltip title="export exel">
-                        <Button onClick={exportExcel}  icon={<FileExcelOutlined />}></Button>
-                    </Tooltip>
-                </Col>
-                <Col>
-                    <Tooltip title="export pdf">
-                        <Button onClick={exportPdf}  icon={<FilePdfOutlined />}></Button>
-                    </Tooltip>
-                </Col>
-            </Row>
+
             <Tabs
                 defaultActiveKey="1"
                 size={"small"}
@@ -118,7 +124,7 @@ export default Index;
 Index.Layout="Admin";
 export const products = [
     {
-        id: 1, 
+        id: 1,
         name: "Sản phẩm 1",
         images: [
             {
@@ -132,7 +138,7 @@ export const products = [
         isPromotion: true,
         discount: {
             type: 0,
-            value: 1200 
+            value: 1200
         },
         price: 1000,
         discountAt: null,
@@ -140,7 +146,7 @@ export const products = [
         desc: "desc"
     },
     {
-        id: 4, 
+        id: 4,
         name: "Sản phẩm 4",
         images: [
             {
@@ -154,7 +160,7 @@ export const products = [
         isPromotion: true,
         discount: {
             type: 0,
-            value: 1200 
+            value: 1200
         },
         price: 1000,
         discountAt: null,
@@ -162,7 +168,7 @@ export const products = [
         desc: "desc"
     },
     {
-        id: 3, 
+        id: 3,
         name: "Sản phẩm 3",
         images: [
             {
@@ -176,7 +182,7 @@ export const products = [
         isPromotion: true,
         discount: {
             type: 1,
-            value: 1200 
+            value: 1200
         },
         price: 900,
         discountAt: null,
@@ -184,7 +190,7 @@ export const products = [
         desc: "desc"
     },
     {
-        id: 2, 
+        id: 2,
         name: "Sản phẩm 2",
         images: [
             {
@@ -198,7 +204,7 @@ export const products = [
         isPromotion: true,
         discount: {
             type: 0,
-            value: 1200 
+            value: 1200
         },
         price: 1000,
         discountAt: null,
