@@ -22,16 +22,16 @@ const Index: MyPage = (props: Props) => {
     }
     
    return (
-      <>
+      <div style={{overflow: "hidden"}}>
          <SliderShow slideChildren={SLIDERS} type="slider" />
          <div className='mt-[3rem]'>
             <Category />
          </div>
-          <div className="bg-[#e1e1e1]">
+          <div className="bg-[whitesmoke]">
             <HomeProductRow key={1}  data={Products_data}  title={"Sản phẩm khuyến mãi"} showTimer={true} type={"SLIDER"}/>
           </div>
           <HomeProductRow  key={2} data={Products_data} title={"Sản phẩm bán chạy "} showTimer={false} type={"LIST"}/>
-      </>
+      </div>
    )
 }
 
