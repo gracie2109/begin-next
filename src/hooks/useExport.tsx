@@ -2,7 +2,6 @@ import {useRef, useState} from "react"
 
 const useExport = (dataSource: any, exportFileName: string) => {
     const [columns, setColumns] = useState([]);
-    console.log("dataSource", dataSource);
 
     function getDiscountDescription(discount:any) {
         if (discount.type === 0) {

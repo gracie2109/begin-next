@@ -21,7 +21,7 @@ export const HeaderAction = ({ title, components, children}: Props) => {
             <Row align="stretch">
                 <Col xs={24}   >
                     {screens && screens.xs ? (
-                        <Typography.Title>{title}</Typography.Title>
+                        <Typography.Title className={screens.xs ? "pl-5" : ""}>{title}</Typography.Title>
                     ):(
                         <Title level={3}>{title}</Title>
                     )}
@@ -31,7 +31,7 @@ export const HeaderAction = ({ title, components, children}: Props) => {
                     {children}
                 </Col>
                 <Col md={6} xs={24}>
-                    <Row justify="end" align="middle" gutter={[16, 16]}>
+                    <Row  align="middle" gutter={[16, 16]}>
                         {components && components.map((item: any, index: any) => {
                             if(item.key !== "filterSection") {
                                 return (
@@ -47,7 +47,7 @@ export const HeaderAction = ({ title, components, children}: Props) => {
 };
 
 const HeaderActionApp = styled.div`
-
+  
 
 
 

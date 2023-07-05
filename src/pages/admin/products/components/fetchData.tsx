@@ -49,8 +49,8 @@ const FetchData = ({ dataSource, loading, compStatus, selectedArr, setSelectedAr
     });
 
     const columnsTable = [
-        { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px",fixed: 'left'},
-        { ...getColumnTable("name"), ...getColumnSearchProps("name"), sorter: (a: any, b: any) => a.name.localeCompare(b.name),fixed: 'left' },
+        { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px"},
+        { ...getColumnTable("name"), ...getColumnSearchProps("name"), sorter: (a: any, b: any) => a.name.localeCompare(b.name),width: "100px" },
         { ...getColumnTable("price"), ...getColumnSearchProps("price"), sorter: (a: any, b: any) => Number(a.price) - Number(b.price) },
         { ...getColumnTable("cost"), ...getColumnSearchProps("cost"), sorter: (a: any, b: any) => Number(a.price) - Number(b.price) },
         { ...getColumnTable("quantity"), ...getColumnSearchProps("quantity"), sorter: (a: any, b: any) => Number(a.price) - Number(b.price) },
@@ -98,7 +98,6 @@ const FetchData = ({ dataSource, loading, compStatus, selectedArr, setSelectedAr
 
     return (
        <>
-
            <DataTable
                data={data}
                columns={columnsTable}

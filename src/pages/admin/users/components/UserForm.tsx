@@ -6,7 +6,8 @@ import {
     Form,
     Input,
     Switch,
-    InputNumber, DatePicker, Radio, RadioChangeEvent
+    InputNumber, DatePicker, Radio, RadioChangeEvent,
+    Grid
 } from "antd";
 import UploadFile from "@/components/common/UploadFile/UploadFile";
 import {CkUpload} from "@/components/common";
@@ -33,6 +34,8 @@ const UserForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}: 
         setValue(e.target.value);
     };
 
+    const screens = Grid.useBreakpoint();
+
     return (
         <Form
             name={formMode}
@@ -41,8 +44,8 @@ const UserForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}: 
             onFinish={onFinish}
             layout="vertical"
         >
-            <Row gutter={[32, 8]}>
-                <Col span={12}>
+            <Row className={`${screens.xs ? "block" : ""}`} gutter={[32, 8]}>
+                <Col xl={12} md={24}>
                     <Form.Item name="avt" label="Ảnh" className="no-style-form"><br/><br/>
                         <UploadFile max={3} isMultiple={true}/>
                     </Form.Item>
@@ -58,7 +61,7 @@ const UserForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}: 
                     </Form.Item>
 
                 </Col>
-                <Col span={12}>
+                <Col xl={12} md={24}>
                     <Form.Item label="Giới tính" name="gender">
                         <Radio.Group onChange={onChange} value={value} name="gender">
                             <Radio value={1}>Nam</Radio>
@@ -85,13 +88,19 @@ const UserForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}: 
                     </Form.Item>
                 </Col>
             </Row>
-            <Form.Item style={{width: "100%", display: "flex", justifyContent: "flex-end"}}>
-                <Button type="primary" htmlType="submit" style={{width: "200px", marginRight: "10px"}}>
-                    Submit
-                </Button>
-                <Button htmlType="button" onClick={onReset} style={{width: "100px"}}>
-                    Reset
-                </Button>
+            <Form.Item>
+                <Row gutter={[4,4]}>
+                    <Col>
+                        <Button type="primary" htmlType="submit" style={{minWidth: "15rem", width: "17rem"}}>
+                            Submit
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button htmlType="button" onClick={onReset} >
+                            Reset
+                        </Button>
+                    </Col>
+                </Row>
             </Form.Item>
         </Form>
     )

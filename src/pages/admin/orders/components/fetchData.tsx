@@ -17,13 +17,11 @@ const FetchData = ({dataSource, loading, compStatus}: Props) => {
         {
             ...getColumnTable("orderCode"), ...getColumnSearchProps("orderCode"),
             sorter: (a: any, b: any) => a.orderCode.localeCompare(b.orderCode),
-            fixed: 'left'
         },
         {
             ...getColumnTable("shippingInfo"),
             sorter: (a: any, b: any) => a?.shippingInfo?.phone.localeCompare(b?.shippingInfo?.phone),
             render: (_:any, {shippingInfo}:any) => <Tooltip title={shippingInfo?.email}>{shippingInfo?.phone}</Tooltip>,
-            fixed: 'left'
         },
         {
             ...getColumnTable("totalPrice"), ...getColumnSearchProps("totalPrice"),

@@ -16,8 +16,8 @@ const  FetchData = ({dataSource, loading, compStatus}:Props) => {
 
 
     const columns: any = [
-        { title: 'Name', dataIndex: 'name', key: 'name' },
-        { title: 'Status', dataIndex: 'status', key: 'status',
+        { title: 'Name', dataIndex: 'name', key: 'name', width: 150},
+        { title: 'Status', dataIndex: 'status', key: 'status',width: 100,
             render: (_:any, {status}:any) => (
                 <>
                     <Tag color={status ? "green" : "volcano"}>
@@ -26,7 +26,7 @@ const  FetchData = ({dataSource, loading, compStatus}:Props) => {
                 </>
 
             )},
-        { title: 'Desc', dataIndex: 'desc', key: 'desc' },
+        { title: 'Desc', dataIndex: 'desc', key: 'desc', },
         { title: 'Action', key: 'operation', render: (_:any, record:any) => (
            <>
             <Tooltip title="Chỉnh sửa">
@@ -76,6 +76,7 @@ const  FetchData = ({dataSource, loading, compStatus}:Props) => {
                     showSizeChanger: true,
                     pageSizeOptions: pageOptionSize()
                   }}
+                scroll={{y: 500, x: 1000}}
             />
         </>
     )

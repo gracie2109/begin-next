@@ -5,7 +5,7 @@ import type {RadioChangeEvent} from 'antd';
 import Providers from "@/components/common/Providers/Providers";
 import {v4 as uuidv4} from 'uuid';
 import {HeaderAction} from "@/components/common";
-import Link from  "next/link";
+import Link from "next/link";
 import {MyPage} from "@/models/common";
 import {formatCurrency} from "@/utils";
 
@@ -16,6 +16,7 @@ interface CollectionCreateFormProps {
     setAddress: any;
     form: any
 }
+
 const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
     ({
          open,
@@ -67,7 +68,6 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
                     </Form.Item>
                     <Form.Item
                         label="Địa chỉ"
-                        rules={[{required: true, message: 'Chọn địa chỉ!'}]}
                     >
                         <Providers setAddress={setAddress}/>
                     </Form.Item>
@@ -83,7 +83,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
         );
     };
 
-const AddressBook:MyPage = () => {
+const AddressBook: MyPage = () => {
     const [form] = Form.useForm()
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
@@ -91,13 +91,13 @@ const AddressBook:MyPage = () => {
     const [address, setAddress] = useState<any>(undefined);
 
     useEffect(() => {
-        if(user) {
+        if (user) {
             form.setFieldsValue({
                 name: user?.fullName,
                 phone: user?.phone
             })
         }
-    },[user])
+    }, [user])
     useEffect(() => {
         if (addresses && addresses.length > 0) {
             const main = addresses.find((item: any) => item.isMain === true);
@@ -150,9 +150,9 @@ const AddressBook:MyPage = () => {
             <HeaderAction title="Sổ địa chỉ" components={[
                 {
                     key: 1,
-                    comp: <Link href="/admin/users"> <Button type="dashed" icon={<ArrowLeftOutlined />}>Quay lại</Button></Link>
+                    comp: <Link href="/admin/users"> <Button type="dashed" icon={<ArrowLeftOutlined/>}>Quay lại</Button></Link>
                 },
-            ]} />
+            ]}/>
             <Button
                 type="dashed"
                 onClick={() => {
@@ -218,7 +218,7 @@ const AddressBook:MyPage = () => {
 }
 
 export default AddressBook;
-AddressBook.Layout="Admin"
+AddressBook.Layout = "Admin"
 
 
 export const dataAddress = [
@@ -260,6 +260,6 @@ export const user = {
     email: "admin@gmail.com",
     fullName: "Trijnh Phuong thai",
     role: 1,
-    dob:undefined,
+    dob: undefined,
     address: undefined
 }

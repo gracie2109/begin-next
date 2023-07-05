@@ -18,11 +18,11 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
     const handleSearch = (value: string) => { };
 
     return (
-        <>
+        <div style={{boxSizing: "border-box"}}>
             <Button type="default" onClick={() => setOpenFilter(!openFilter)} icon={<FilterOutlined/>}>Bộ lọc</Button>
             {openFilter && (
-                <Card bodyStyle={{padding: 0}}
-                      style={{width: "calc(100% + 25%)", marginTop: "0.5rem", padding: "3rem"}}>
+                <Card bodyStyle={{padding: 10}}
+                      style={{ marginTop: "1.5rem"}}>
                     <Form
                         layout="horizontal"
                         onFinish={onFinish}
@@ -32,7 +32,7 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
                         labelWrap
                         wrapperCol={{flex: 1}}
                         colon={false}
-                        style={{maxWidth: 600}}
+
                     >
                         <Row gutter={[16, 0]}>
 
@@ -54,7 +54,7 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
                             <Col span={24}>
                                 <Form.Item>
                                     <Space>
-                                        <Button type="primary" htmlType="submit" style={{width: "200px"}}>
+                                        <Button type="primary" htmlType="submit" >
                                             Tìm kiếm
                                         </Button>
                                         <Button htmlType="button" onClick={onReset}>
@@ -67,7 +67,7 @@ const FilterSection = ({openFilter, setOpenFilter, form, onFinish, onReset}: Pro
                     </Form>
                 </Card>
             )}
-        </>
+        </div>
     )
 }
 export default FilterSection

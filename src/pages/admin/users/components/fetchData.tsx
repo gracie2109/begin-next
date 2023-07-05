@@ -43,7 +43,7 @@ const FetchData = ({ dataSource, loading, compStatus }: Props) => {
     });
 
     const columns = [
-        { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px",fixed: 'left'},
+        { ...getColumnTable("images"), render: (_: any, { images }: any) => <RenderImage source={images} preview />,width: "100px"},
         { ...getColumnTable("email"), ...getColumnSearchProps("email"), sorter: (a: any, b: any) => a.email.localeCompare(b.email) },
         { ...getColumnTable("name"), ...getColumnSearchProps("name"), sorter: (a: any, b: any) => a.name.localeCompare(b.name) },
         { ...getColumnTable("fullName"), ...getColumnSearchProps("fullName"), sorter: (a: any, b: any) => a.fullName.localeCompare(b.fullName) },

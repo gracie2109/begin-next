@@ -5,7 +5,7 @@ import { MENU_URL, SharedIcons } from "@/utils/contants";
 import type { MenuProps } from 'antd';
 const { MenuOutlined, SearchOutlined, UserOutlined,BsFillBagFill,LogoutOutlined} = SharedIcons
 const { useBreakpoint } = Grid;
-
+import Cart from "@/pages/cart"
 const HeaderClient = () => {
     const [open, setOpen] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
@@ -81,8 +81,8 @@ const HeaderClient = () => {
                                 <Drawer title="APP_NAME"
                                         placement="right"
                                         onClose={() => setOpenCart(!openCart)} open={openCart}
-                                >
 
+                                >
                                 </Drawer>
                             </Col>
 
@@ -111,15 +111,6 @@ const items: MenuProps['items'] = [
             <Space>
                 <UserOutlined />
                 <Link href="/account" className="text-black">Tài khoản</Link>
-            </Space>
-        )
-    },
-    {
-        key: '2',
-        label:  (
-            <Space>
-                <BsFillBagFill />
-                <Link href="/account" className="text-black">Đơn hàng của bạn</Link>
             </Space>
         )
     },

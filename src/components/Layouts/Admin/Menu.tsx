@@ -4,7 +4,7 @@ import {SharedIcons} from "@/utils";
 const {UserOutlined, MdWeekend, PieChartOutlined} = SharedIcons;
 
 import type {MenuProps} from "antd";
-import {Menu} from "antd";
+import {Grid, Menu} from "antd";
 import Link from "next/link";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -42,7 +42,7 @@ const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
 
 const MenuAdmin = () => {
     const [openKeys, setOpenKeys] = useState(["sub1"]);
-
+    const screen = Grid.useBreakpoint()
     const onOpenChange: MenuProps["onOpenChange"] = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
@@ -54,7 +54,6 @@ const MenuAdmin = () => {
 
     return (
         <Menu
-            mode="inline"
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             theme="light"

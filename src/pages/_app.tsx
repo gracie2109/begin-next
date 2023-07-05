@@ -6,7 +6,7 @@ import {MyAppProps} from "@/models/common";
 import {Layouts} from "@/components/Layouts";
 import {wrapper} from "@/app/store";
 import AOS from "aos";
-import {useEffect} from "react";
+import {useEffect, useMemo,useCallback} from "react";
 import NextNProgress from "nextjs-progressbar";
 import {ConfigProvider, Spin, App} from 'antd';
 import {HydrationProvider, Server, Client} from "react-hydration-provider";
@@ -23,7 +23,6 @@ function MyApp({Component, pageProps}: MyAppProps) {
     useEffect(() => {
         AOS.init()
     }, []);
-
     return (
         <HydrationProvider>
             <NextNProgress color="#3f50b5" options={{showSpinner: false}}/>

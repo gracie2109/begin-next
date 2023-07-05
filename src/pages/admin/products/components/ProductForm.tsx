@@ -9,7 +9,8 @@ import {
     Select,
     InputNumber,
     DatePicker,
-    Grid
+    Grid,
+    Layout
 } from "antd";
 import UploadFile from "@/components/common/UploadFile/UploadFile";
 import {REG_FOMAT, PARSE_FOMAT, calcDiscountPrice, formatCurrency,} from "@/utils";
@@ -84,6 +85,7 @@ const ProductForm = ({
     if(formMode=== "settings" && children.length  < 1) {
         return <p>Attribute này chưa có giá trị</p>
     }
+    const screens = Grid.useBreakpoint();
     return (
         <>
                 <>
@@ -94,11 +96,11 @@ const ProductForm = ({
                         onFinish={onFinish}
                         layout="vertical"
                     >
-                        <Row gutter={[32, 8]}>
+                        <Row className={`${screens.xs ? "block" : ""}`}  gutter={[32, 8]}>
                             <Col xl={12} md={24}>
                                 {formMode !== "settings" ?
                                     <Form.Item name="images" label="Ảnh" className="no-style-form"><br/><br/>
-                                        <UploadFile max={3} isMultiple={true}/>
+                                           <UploadFile max={125} isMultiple={true}/>
                                     </Form.Item> : null}
 
                                 {formMode === "settings" ? (
@@ -161,10 +163,9 @@ const ProductForm = ({
                             </Col>
                             <Col xl={12} md={24}>
                                 <Row align="bottom" gutter={[8, 8]}>
-                                    <Col>
+                                    <Col span={12}>
                                         <Form.Item name={['discount', 'type']} label="Giảm giá">
                                             <Select
-                                                style={{width: 220}}
                                                 onChange={(e) => setDiscountType(e)}
                                             >
                                                 {dicountTypeInstant.map((item, index) => (
@@ -174,7 +175,7 @@ const ProductForm = ({
                                             </Select>
                                         </Form.Item>
                                     </Col>
-                                    <Col>
+                                    <Col span={12}>
                                         <Form.Item name={['discount', 'value']}>
                                             <InputNumber
                                                 onChange={(e: any) => setDiscountValue(e)}
@@ -214,13 +215,19 @@ const ProductForm = ({
                                 ) : null}
                             </Col>
                         </Row>
-                        <Form.Item style={{width: "100%", display: "flex", justifyContent: "flex-end"}}>
-                            <Button type="primary" htmlType="submit" style={{width: "200px", marginRight: "10px"}}>
-                                Submit
-                            </Button>
-                            <Button htmlType="button" onClick={onReset} style={{width: "100px"}}>
-                                Reset
-                            </Button>
+                        <Form.Item>
+                           <Row gutter={[4,4]}>
+                               <Col>
+                                   <Button type="primary" htmlType="submit" style={{minWidth: "15rem", width: "17rem"}}>
+                                       Submit
+                                   </Button>
+                               </Col>
+                               <Col>
+                                   <Button htmlType="button" onClick={onReset} >
+                                       Reset
+                                   </Button>
+                               </Col>
+                           </Row>
                         </Form.Item>
 
                     </Form>

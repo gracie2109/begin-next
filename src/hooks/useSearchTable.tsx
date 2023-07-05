@@ -28,7 +28,7 @@ export const useSearchTable = () => {
 
    const getColumnSearchProps = (dataIndex: any): ColumnType<any> => ({
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-         <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+         <div style={{ padding: 6 }} onKeyDown={(e) => e.stopPropagation()}>
             <Input
                ref={searchInput}
                placeholder={`Search ${dataIndex}`}
@@ -43,14 +43,12 @@ export const useSearchTable = () => {
                   onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
                   icon={<SearchOutlined />}
                   size="small"
-                  style={{ width: 90 }}
                >
                   Search
                </Button>
                <Button
                   onClick={() => clearFilters && handleReset(clearFilters)}
                   size="small"
-                  style={{ width: 90 }}
                >
                   Reset
                </Button>

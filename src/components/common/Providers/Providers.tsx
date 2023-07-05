@@ -74,6 +74,7 @@ const Providers = ({setAddress}: Props) => {
                 <Form.Item
                     name={['addressId', 'province']}
                     noStyle
+                    rules={[{ required: true, message: 'Province is required' }]}
                 >
                     <Select
                         placeholder="Chọn tỉnh/thành phố"
@@ -96,6 +97,7 @@ const Providers = ({setAddress}: Props) => {
                 <Form.Item
                     name={['addressId', 'district']}
                     noStyle
+                    rules={[{ required: true, message: 'district is required' }]}
                 >
                     <Select
                         showSearch
@@ -116,6 +118,7 @@ const Providers = ({setAddress}: Props) => {
                 <Form.Item
                     name={['addressId', 'ward']}
                     noStyle
+                    rules={[{ required: true, message: 'ward is required' }]}
                 >
                     <Select
                         placeholder="Chọn phường/xã"

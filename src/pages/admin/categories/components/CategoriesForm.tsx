@@ -5,12 +5,9 @@ import {
     Form,
     Input,
     Switch,
-    InputNumber, DatePicker
+    Grid
 } from "antd";
 import UploadFile from "@/components/common/UploadFile/UploadFile";
-import {REG_FOMAT, PARSE_FOMAT} from "@/utils";
-import {CkUpload} from "@/components/common";
-
 
 type Props = {
     form: any,
@@ -29,8 +26,9 @@ const CategoriesForm = ({
                             isPublish,
                             setIsPublish
                         }: Props) => {
+    const screens = Grid.useBreakpoint();
     return (
-        <div className="w-1/2 mx-auto">
+        <div className={`${screens.xs ? "w-full mt-3" : "w-1/2 mx-auto"}`}>
             <Form
                 name={formMode}
                 key={formMode}
@@ -38,8 +36,8 @@ const CategoriesForm = ({
                 onFinish={onFinish}
                 layout="vertical"
             >
-                <Row gutter={[32, 8]}>
-                    <Col span={12}>
+                <Row gutter={[32, 8]} className={`${screens.xs ? "block" : ""}`}>
+                    <Col >
                         <Form.Item name="avt" label="Ảnh" className="no-style-form"><br/><br/>
                             <UploadFile max={1} isMultiple={true}/>
                         </Form.Item>

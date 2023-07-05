@@ -41,6 +41,7 @@ const Settings: MyPage = () => {
             ),
             width: "90vw",
             okText: "Thoát",
+            bodyStyle: {padding: '0 0 10 0', height: "90vh", overflowY: "scroll"},
             content: (
                 <ProductForm
                     form={form}
@@ -79,7 +80,7 @@ const Settings: MyPage = () => {
             {paId && paId.map((item: any, index: any) => (
                 <Card style={{marginTop: "1rem", marginBottom: "10px"}} key={index}>
                     <Row gutter={[4, 8]}>
-                        <Col span={8}>{item?.name}</Col>
+                        <Col span={12}>{item?.name}</Col>
                         <Col>
                             <Button type={"dashed"} icon={<PlusOutlined/>} onClick={() => handleModal(item)}>
                                 Thêm sản phẩm

@@ -166,7 +166,7 @@ export const DataTable: React.FC<Props> = ({
 
                 }}
                 rowSelection={rowSelection}
-                scroll={{y: 500, x: scrollWidth ? scrollWidth : {}}}
+                scroll={{y: 500, x: scrollWidth ? scrollWidth : 1000}}
                 expandable={{
                     expandedRowRender: expandTable ? renderTableExpand : undefined,
                     expandRowByClick: expandTable ? true : false,

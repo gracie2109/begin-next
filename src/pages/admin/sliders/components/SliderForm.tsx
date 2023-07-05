@@ -4,7 +4,7 @@ import {
     Button,
     Form,
     Input,
-    Switch
+    Switch, Grid
 } from "antd";
 import UploadFile from "@/components/common/UploadFile/UploadFile";
 
@@ -17,8 +17,9 @@ type Props = {
     setIsPublish: any
 }
 const SliderForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}: Props) => {
+    const screens = Grid.useBreakpoint();
     return (
-        <div className="w-1/2 mx-auto">
+        <div className={`${screens.xs ? "w-full mt-3" : "w-1/2 mx-auto"}`}>
             <Form
                 name={formMode}
                 key={formMode}
@@ -26,8 +27,8 @@ const SliderForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}
                 onFinish={onFinish}
                 layout="vertical"
             >
-                <Row gutter={[32, 8]}>
-                    <Col span={12}>
+                <Row gutter={[32, 8]} className={`${screens.xs ? "block" : ""}`}>
+                    <Col >
                         <Form.Item name="avt" label="Ảnh" className="no-style-form"><br/><br/>
                             <UploadFile max={3} isMultiple={true}/>
                         </Form.Item>
@@ -35,7 +36,7 @@ const SliderForm = ({form, onFinish, onReset, formMode, isPublish, setIsPublish}
                             <Input placeholder="Nhập vào tên của sản phẩm" allowClear/>
                         </Form.Item>
                         <Row justify="space-between">
-                            <Col span={12}>
+                            <Col>
                                 <Form.Item name="isPushlish" label="Tải sản phẩm lên" style={{width: "100%"}}>
                                     <Switch onChange={(e: any) => setIsPublish(e)} checked={isPublish}/>
                                 </Form.Item>

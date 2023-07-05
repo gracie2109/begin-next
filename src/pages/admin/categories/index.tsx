@@ -1,26 +1,26 @@
 import Link from 'next/link';
 import dynamic from "next/dynamic";
 import {Button, Tabs, Form} from 'antd';
-import { SharedIcons } from '@/utils';
-import { HeaderAction } from '@/components/common';
-import { MyPage } from '@/models/common';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import {SharedIcons} from '@/utils';
+import {HeaderAction} from '@/components/common';
+import {MyPage} from '@/models/common';
+import {useEffect, useState} from 'react';
+import {useAppDispatch, useAppSelector} from "@/app/hooks";
 
-const FetchData  =  dynamic(() => import('./components/fetchData'));
+const FetchData = dynamic(() => import('./components/fetchData'));
 const FilterSection = dynamic(() => import("./components/FilterSection"));
-const { FaArrowRight, PlusOutlined } = SharedIcons;
+const {FaArrowRight, PlusOutlined} = SharedIcons;
 
 
-const Index:MyPage = () => {
+const Index: MyPage = () => {
     const dispatch = useAppDispatch();
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
-    const [openFilter,setOpenFilter ] = useState<boolean>(false);
+    const [openFilter, setOpenFilter] = useState<boolean>(false);
     const [form] = Form.useForm();
     const pending = false;
 
-    const onFinish = (values:any) => {
+    const onFinish = (values: any) => {
         console.log("onFinish", values)
     }
 
@@ -32,7 +32,8 @@ const Index:MyPage = () => {
     const headerActionComp = [
         {
             key: 1,
-            comp: <Link href="/admin/categories/create"> <Button type="dashed" icon={<PlusOutlined />}>Tạo danh mục </Button></Link>
+            comp: <Link href="/admin/categories/create"> <Button type="dashed" icon={<PlusOutlined/>}>Tạo danh
+                mục </Button></Link>
         }
     ];
     const tabItems: any[] = [
@@ -67,7 +68,7 @@ const Index:MyPage = () => {
             <Tabs
                 defaultActiveKey="1"
                 size={"small"}
-                style={{ marginBottom: 32 }}
+                style={{marginBottom: 32}}
                 items={tabItems}
             />
         </>
@@ -75,4 +76,4 @@ const Index:MyPage = () => {
 }
 
 export default Index;
-Index.Layout="Admin";
+Index.Layout = "Admin";
