@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { Pagination, Navigation, A11y, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css';
-import { MyPage } from '@/models/common';
 import { Row, Col, Typography, Space, Card, Divider, Rate, Button, InputNumber, Skeleton, Grid, Tag } from "antd";
 import { Products_data, vouchers_data, policy_data, formatWord, SharedIcons } from "@/utils";
 import { VoucherCard } from '@/components/common';
@@ -14,7 +13,7 @@ const TabsProduct = dynamic(() => import("@/components/features/TabsProduct")) ;
 const SliderShow = dynamic(() => import("@/components/common/SliderShow/SliderShow"));
 const { LeftOutlined, RightOutlined, BsFacebook, BsPinterest, FaFacebookMessenger, AiFillTwitterCircle, ImLink, AiFillThunderbolt } = SharedIcons;
 
-const DetailProduct: MyPage = () => {
+const DetailProduct = () => {
     const router = useRouter();
     const [product, setProduct] = useState<any>()
     const id = router.query.id;
@@ -220,4 +219,3 @@ const DetailProduct: MyPage = () => {
 }
 
 export default DetailProduct;
-DetailProduct.Layout = "Main"

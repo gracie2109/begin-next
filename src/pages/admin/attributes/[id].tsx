@@ -3,14 +3,13 @@ import Link from 'next/link';
 import slug from "slug";
 import { Button, Form, App } from 'antd';
 import { HeaderAction } from '@/components/common';
-import { MyPage } from '@/models/common';
 import { SharedIcons } from '@/utils';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 const { ArrowLeftOutlined } = SharedIcons;
 
  
-const EditAttribute:MyPage = () => {
+const EditAttribute = () => {
     const [form]= Form.useForm();
     const route = useRouter();
     const id = route.query.id;
@@ -98,7 +97,6 @@ const EditAttribute:MyPage = () => {
     )
 }
 export default  EditAttribute;
-EditAttribute.Layout="Admin";
 
 export const data = [
     {

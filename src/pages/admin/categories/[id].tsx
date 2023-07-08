@@ -1,4 +1,4 @@
-import { MyPage } from '@/models/common';
+
 import { useRouter } from 'next/router';
 import { Button, Form , message } from "antd";
 import { HeaderAction } from '@/components/common';
@@ -8,7 +8,7 @@ import Link from "next/link";
 import CategoriesForm from "./components/CategoriesForm";
 const { ArrowLeftOutlined } = SharedIcons;
 
-const ProductDetail: MyPage = () => {
+const ProductDetail = () => {
     const [mode, setMode] = useState("");
     const route = useRouter();
     const id = route.query.id;
@@ -73,7 +73,6 @@ const ProductDetail: MyPage = () => {
 }
 
 export default ProductDetail;
-ProductDetail.Layout = "Admin";
 
 export const data =
     {

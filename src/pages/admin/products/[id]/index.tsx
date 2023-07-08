@@ -1,4 +1,4 @@
-import { MyPage } from '@/models/common';
+
 import { useRouter } from 'next/router';
 import { Button, Form , message } from "antd";
 import { HeaderAction } from '@/components/common';
@@ -8,7 +8,7 @@ import Link from "next/link";
 import ProductForm from "@/pages/admin/products/components/ProductForm";
 const { ArrowLeftOutlined } = SharedIcons;
 
-const ProductDetail: MyPage = () => {
+const ProductDetail= () => {
     const [mode, setMode] = useState("");
     const [messageApi, contextHolder] = message.useMessage();
     const route = useRouter();
@@ -92,7 +92,6 @@ const ProductDetail: MyPage = () => {
 }
 
 export default ProductDetail;
-ProductDetail.Layout = "Admin";
 
 export const data =
     {

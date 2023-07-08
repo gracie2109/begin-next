@@ -1,4 +1,4 @@
-import { MyPage } from '@/models/common';
+
 import { useRouter } from 'next/router';
 import { Button, Form , message } from "antd";
 import { HeaderAction } from '@/components/common';
@@ -8,7 +8,7 @@ import Link from "next/link";
 import SliderForm from "./components/SliderForm";
 const { ArrowLeftOutlined } = SharedIcons;
 
-const SliderDetail: MyPage = () => {
+const SliderDetail = () => {
     const [mode, setMode] = useState("");
     const [messageApi, contextHolder] = message.useMessage();
     const route = useRouter();
@@ -74,7 +74,6 @@ const SliderDetail: MyPage = () => {
 }
 
 export default SliderDetail;
-SliderDetail.Layout = "Admin";
 
 export const data =
     {

@@ -1,4 +1,4 @@
-import {MyPage} from '@/models/common';
+
 import {HeaderAction} from '@/components/common';
 import  { useState, useMemo, useId} from "react";
 import {SharedIcons} from "@/utils";
@@ -9,7 +9,7 @@ import {data} from "@/pages/admin/products/[id]/index";
 
 const {ArrowLeftOutlined, PlusOutlined} = SharedIcons;
 
-const Settings: MyPage = () => {
+const Settings = () => {
     const [paId, setPaId] = useState<any>([]);
     const [openModal, setOpenModal] = useState<boolean>(false);
     const {message, modal, notification} = App.useApp();
@@ -95,7 +95,6 @@ const Settings: MyPage = () => {
 
 
 export default Settings;
-Settings.Layout = "Admin";
 
 export const AttrData = [
     {

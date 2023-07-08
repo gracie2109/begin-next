@@ -20,7 +20,7 @@ const AdminTheme = ({children}: PropsWithChildren) => {
             </Sider>
             <Layout>
                 <BreadcrumbCustom />
-                <Content style={{ margin: '24px 2px' , background: "#ffff", minHeight: "100vh"}}>
+                <Content style={{ margin: '24px 2px',paddingLeft: "16px" , background: "#ffff", minHeight: "100vh", boxSizing: "border-box", overflow: "hidden"}}>
                     {children}
                 </Content>
 

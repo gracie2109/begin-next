@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import {Button, Tabs, Form, Row, Col, Tooltip,Grid} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
-import { MyPage } from '@/models/common';
 import { useState, useLayoutEffect, useMemo} from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import {FileExcelOutlined, FilePdfOutlined} from "@ant-design/icons";
@@ -13,7 +12,7 @@ const FilterSection = dynamic(() => import("./components/FilterSection"));
 const { PlusOutlined } = SharedIcons;
 
 
-const Index:MyPage = () => {
+const Index= () => {
     const dispatch = useAppDispatch();
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
@@ -121,7 +120,6 @@ const Index:MyPage = () => {
 }
 
 export default Index;
-Index.Layout="Admin";
 export const products = [
     {
         id: 1,

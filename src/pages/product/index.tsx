@@ -10,7 +10,7 @@ import { Row, Col, Typography,Card, Button, Select, Grid ,Drawer} from "antd";
 import { AlignCenterOutlined } from '@ant-design/icons';
 import ProductSortOption from "@/pages/product/components/ProductSortOption";
 
-const ProductList: MyPage = () => {
+const ProductList = () => {
     const screens = Grid.useBreakpoint()
     const [openDrawer, setOpenDrawer] = useState(false);
     const handleChangeSort = (value: string) => {
@@ -83,4 +83,3 @@ const ProductList: MyPage = () => {
 }
 
 export default ProductList
-ProductList.Layout = "Main"

@@ -6,26 +6,34 @@ import {MyAppProps} from "@/models/common";
 import {Layouts} from "@/components/Layouts";
 import {wrapper} from "@/app/store";
 import AOS from "aos";
-import {useEffect, useMemo,useCallback} from "react";
+import React, {useEffect,ReactDOM} from "react";
 import NextNProgress from "nextjs-progressbar";
 import {ConfigProvider, Spin, App} from 'antd';
 import {HydrationProvider, Server, Client} from "react-hydration-provider";
+import {useRouter} from 'next/router';
 
 function MyApp({Component, pageProps}: MyAppProps) {
-    const Layout = Layouts[Component.Layout] || (({children}: any) => (
-            <App>
-                <div className="mx-auto container relative top-0 my-7">
-                    {children}
-                </div>
-            </App>
-        )
-    );
     useEffect(() => {
         AOS.init()
     }, []);
+    const {asPath} = useRouter();
+
+    const LayoutByPath = ({children}: ReactDOM | Element | any) => {
+        if (asPath.includes("/admin")) {
+            return <Layouts.Admin>{children}</Layouts.Admin>;
+        } else if (asPath.includes("/auth")) {
+            return <Layouts.Auth>{children}</Layouts.Auth>;
+        } else if (asPath.includes("/")) {
+            return <Layouts.Main>{children}</Layouts.Main>;
+        }
+        return (
+            <div className="mx-auto container relative top-0 my-7">
+                {children}
+            </div>
+        );
+    };
     return (
         <HydrationProvider>
-            <NextNProgress color="#3f50b5" options={{showSpinner: false}}/>
             <Client>
                 <ConfigProvider
                     theme={{
@@ -36,9 +44,9 @@ function MyApp({Component, pageProps}: MyAppProps) {
                     }}
                 >
                     <App>
-                        <Layout>
+                        <LayoutByPath>
                             <Component {...pageProps} />
-                        </Layout>
+                        </LayoutByPath>
                     </App>
                 </ConfigProvider>
 
@@ -48,6 +56,7 @@ function MyApp({Component, pageProps}: MyAppProps) {
                     <Spin/>
                 </div>
             </Server>
+            <NextNProgress color="#3f50b5" options={{showSpinner: false}}/>
         </HydrationProvider>
 
     );

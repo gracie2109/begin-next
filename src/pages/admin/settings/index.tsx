@@ -1,6 +1,5 @@
 import {HeaderAction} from '@/components/common';
-import {MyPage} from '@/models/common';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import UploadFile from '@/components/common/UploadFile/UploadFile';
 import {
@@ -10,16 +9,17 @@ import {
     Input,
     Row,
     Switch,
-    App
+    App, Grid
 } from 'antd';
 import {SharedIcons} from '@/utils';
 
 const {PlusOutlined, MinusCircleOutlined} = SharedIcons;
 
-const Index: MyPage = () => {
+const Index = () => {
     const [form] = Form.useForm();
     const [isMaintain, setIsMaintain] = useState<any>(false);
     const {message, modal, notification} = App.useApp();
+    const screens = Grid.useBreakpoint();
 
     useEffect(() => {
         resetdata()
@@ -59,8 +59,8 @@ const Index: MyPage = () => {
                 layout="vertical"
                 onFinish={onFinish}
             >
-                <Row gutter={[32, 8]}>
-                    <Col span={12}>
+                <Row gutter={[32, 8]} className={`${screens.xs ? "block" : ""}`}>
+                    <Col xl={12} md={24}>
                         <Form.Item name="images" label="Logo" className="no-style-form">
                             <UploadFile max={1} isMultiple={false}/>
                         </Form.Item>
@@ -74,7 +74,7 @@ const Index: MyPage = () => {
                             <Input placeholder="Nhập vào phone cửa hàng" allowClear/>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xl={12} md={24}>
                         <Form.Item name="maintain" label="Bảo trì">
                             <Switch onChange={(e: any) => setIsMaintain(e)} checked={isMaintain}/>
                         </Form.Item>
@@ -111,7 +111,8 @@ const Index: MyPage = () => {
                                         </Row>
                                     ))}
                                     <Form.Item>
-                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined/>}>
+                                        <Button style={{width: '93%'}} type="dashed" onClick={() => add()} block
+                                                icon={<PlusOutlined/>}>
                                             Thêm mạng xã hội
                                         </Button>
                                     </Form.Item>
@@ -150,12 +151,13 @@ const Index: MyPage = () => {
                                                 ]}
                                                 noStyle
                                             >
-                                                <Input placeholder="Nhập địa chỉ" style={{width: '97%'}}/>
+                                                <Input placeholder="Nhập địa chỉ" style={{width: '95%'}}/>
                                             </Form.Item>
                                             {fields.length > 1 ? (
                                                 <MinusCircleOutlined
                                                     className="dynamic-delete-button"
                                                     onClick={() => remove(field.name)}
+
                                                 />
                                             ) : null}
                                         </Form.Item>
@@ -164,7 +166,7 @@ const Index: MyPage = () => {
                                         <Button
                                             type="dashed"
                                             onClick={() => add()}
-                                            style={{width: '100%'}}
+                                            style={{width: '95%'}}
                                             icon={<PlusOutlined/>}
                                         >
                                             Thêm địa chỉ
@@ -177,15 +179,20 @@ const Index: MyPage = () => {
                     </Col>
 
                 </Row>
-                <Form.Item style={{width: "100%", display: "flex", justifyContent: "flex-end"}}>
-                    <Button type="primary" htmlType="submit" style={{width: "200px", marginRight: "10px"}}>
-                        Submit
-                    </Button>
-                    <Button htmlType="button" style={{width: "100px"}} onClick={onReset}>
-                        Reset
-                    </Button>
+                <Form.Item>
+                    <Row gutter={[4, 4]}>
+                        <Col>
+                            <Button type="primary" htmlType="submit" style={{minWidth: "15rem", width: "17rem"}}>
+                                Submit
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Button htmlType="button" onClick={onReset}>
+                                Reset
+                            </Button>
+                        </Col>
+                    </Row>
                 </Form.Item>
-
             </Form>
 
         </>
@@ -193,7 +200,6 @@ const Index: MyPage = () => {
 }
 
 export default Index;
-Index.Layout = "Admin";
 
 
 export const data =

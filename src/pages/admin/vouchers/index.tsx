@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import {Button, Tabs, Form} from 'antd';
 import { SharedIcons } from '@/utils';
 import { HeaderAction } from '@/components/common';
-import { MyPage } from '@/models/common';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
@@ -12,7 +11,7 @@ const FilterSection = dynamic(() => import("./components/FilterSection"));
 const { FaArrowRight, PlusOutlined } = SharedIcons;
 
 
-const Index:MyPage = () => {
+const Index = () => {
     const dispatch = useAppDispatch();
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
@@ -75,4 +74,3 @@ const Index:MyPage = () => {
 }
 
 export default Index;
-Index.Layout="Admin";

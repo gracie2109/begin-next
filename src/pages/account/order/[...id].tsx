@@ -5,12 +5,11 @@ import {
     Typography, Button, Card, Space, Grid
 } from "antd";
 import {formatCurrency, SharedIcons} from "@/utils";
-import {MyPage} from "@/models/common";
 import {v4 as uuidv4} from 'uuid';
 import {useRouter} from "next/router";
 
 const {BsTruck, LeftOutlined, RightOutlined} = SharedIcons
-const OrderItem: MyPage = () => {
+const OrderItem= () => {
     const screens = Grid.useBreakpoint();
     const [open, setOpen] = useState(false)
     const TestImag2 = 'https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638107858632184994_iphone-14-pro-dd-1.jpg';
@@ -195,4 +194,3 @@ const OrderItem: MyPage = () => {
 }
 
 export default OrderItem;
-OrderItem.Layout = "Main"

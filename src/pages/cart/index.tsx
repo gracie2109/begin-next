@@ -1,5 +1,4 @@
-import {useState, useEffect, memo} from "react";
-import { MyPage } from '@/models/common';
+import {useState, useEffect} from "react";
 import { Row, Col, Typography, Card, Divider, Button, InputNumber, List, Avatar, Badge, Input, Form,Alert } from "antd";
 import { Products_data, SharedIcons, calcShippingFee, FREE_SHIP_MONEY, formatCurrency } from "@/utils";
 import Link from "next/link";
@@ -7,7 +6,7 @@ import VatForm from "@/pages/cart/components/VatForm";
 import VoucherList from "@/pages/cart/components/voucherList";
 const { BsTruck, FaRegCheckCircle, AiFillCheckCircle } = SharedIcons;
 
-const Cart: MyPage = () => {
+const Cart = () => {
     const [form] = Form.useForm();
     const [cloneList, setCloneList] = useState([...Products_data]);
     const [money, setMoney] = useState(0);
@@ -227,4 +226,3 @@ const Cart: MyPage = () => {
 
 
 export default Cart;
-Cart.Layout = "Main";

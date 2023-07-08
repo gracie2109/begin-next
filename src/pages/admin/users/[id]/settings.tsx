@@ -6,7 +6,6 @@ import Providers from "@/components/common/Providers/Providers";
 import {v4 as uuidv4} from 'uuid';
 import {HeaderAction} from "@/components/common";
 import Link from "next/link";
-import {MyPage} from "@/models/common";
 import {formatCurrency} from "@/utils";
 
 interface CollectionCreateFormProps {
@@ -83,7 +82,7 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> =
         );
     };
 
-const AddressBook: MyPage = () => {
+const AddressBook = () => {
     const [form] = Form.useForm()
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");

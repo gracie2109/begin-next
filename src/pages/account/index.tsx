@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {Tabs, Card, Typography} from "antd";
-import {MyPage} from "@/models/common";
 import {v4 as uuidv4} from 'uuid';
 import dynamic from 'next/dynamic';
 
@@ -10,7 +9,7 @@ const AddressBook = dynamic(() => import("./components/AddressBook"));
 const ChangePassWord = dynamic(() => import("@/pages/account/components/ChangePassWord"));
 
 
-const Account: MyPage = () => {
+const Account = () => {
     const [activeKey, setActiveKey] = useState<string>("1");
     //@ts-ignore
     const tabs = [
@@ -64,4 +63,3 @@ const Account: MyPage = () => {
     )
 }
 export default Account;
-Account.Layout = "Main"

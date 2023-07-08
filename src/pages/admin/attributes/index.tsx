@@ -12,7 +12,7 @@ const FilterSection = dynamic(() => import("./components/FilterSection"), {ssr: 
 const {FaArrowRight, PlusOutlined} = SharedIcons;
 
 
-const Index: MyPage = () => {
+const Index= () => {
     const dispatch = useAppDispatch();
     const [dataActive, setDataActive] = useState<any[]>([]);
     const [dataInActive, setDataInActive] = useState<any[]>([]);
@@ -80,7 +80,6 @@ const Index: MyPage = () => {
 }
 
 export default Index;
-Index.Layout = "Admin";
 
 export const data = [
     {

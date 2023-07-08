@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { MyPage } from '@/models/common';
 
 
-const Menu:MyPage = () => {
+const Menu = () => {
     return (
         <>Menu</>
     )
 }
 
 export default Menu;
-Menu.Layout="Admin";

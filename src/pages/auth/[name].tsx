@@ -1,14 +1,12 @@
 import {useState, useEffect} from "react";
-import {MyPage} from "@/models/common";
 import {useRouter} from "next/router";
 import AuthForm from "@/pages/auth/components/AuthForm";
 import { Form, Result,Button ,Card } from "antd";
 import Link from 'next/link';
-import axios from "axios";
 
 type AuthMode = "login" | "register" | undefined;
 
-const AuthPage:MyPage = () => {
+const AuthPage = () => {
     const route = useRouter();
     const [mode,setMode] = useState<AuthMode>("login");
     const path = route.asPath.split('/');
@@ -59,4 +57,3 @@ const AuthPage:MyPage = () => {
     )
 }
 export  default AuthPage;
-AuthPage.Layout = "Auth"
