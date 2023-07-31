@@ -6,6 +6,9 @@ import {
     ThunkAction,
   } from '@reduxjs/toolkit';
   import { createWrapper, HYDRATE } from 'next-redux-wrapper';
+import createSagaMiddleware from 'redux-saga';
+
+
 
   const combinedReducer = combineReducers({
 
@@ -39,6 +42,9 @@ import {
     Action<string>
   >;
   
-  export const wrapper = createWrapper(makeStore, { debug: true });
+  export const wrapper = createWrapper(makeStore, {
+      debug: true,
+
+  });
   
   

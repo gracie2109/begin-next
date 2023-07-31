@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import {Button, Tabs, Form} from 'antd';
 import {SharedIcons} from '@/utils';
 import {HeaderAction} from '@/components/common';
-import {MyPage} from '@/models/common';
 import {useContext, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/hooks";
 

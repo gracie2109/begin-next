@@ -6,11 +6,13 @@ import {MyAppProps} from "@/models/common";
 import {Layouts} from "@/components/Layouts";
 import {wrapper} from "@/app/store";
 import AOS from "aos";
-import React, {useEffect,ReactDOM} from "react";
+import React, {useEffect, ReactDOM, Suspense} from "react";
 import NextNProgress from "nextjs-progressbar";
 import {ConfigProvider, Spin, App} from 'antd';
-import {HydrationProvider, Server, Client} from "react-hydration-provider";
 import {useRouter} from 'next/router';
+import {HydrationProvider, Server, Client} from "react-hydration-provider";
+import {LoadingCustom} from "@/components/common";
+
 
 function MyApp({Component, pageProps}: MyAppProps) {
     useEffect(() => {
@@ -34,31 +36,20 @@ function MyApp({Component, pageProps}: MyAppProps) {
     };
     return (
         <HydrationProvider>
-            <Client>
-                <ConfigProvider
-                    theme={{
-                        token: {
-                            colorPrimary: '#3f50b5',
-                            wireframe: true
-                        },
-                    }}
-                >
-                    <App>
-                        <LayoutByPath>
-                            <Component {...pageProps} />
-                        </LayoutByPath>
-                    </App>
-                </ConfigProvider>
-
-            </Client>
+           <Client>
+               <ConfigProvider theme={{token: {colorPrimary: '#3f50b5'}}}>
+                   <App>
+                       <LayoutByPath>
+                           <Component {...pageProps} />
+                       </LayoutByPath>
+                   </App>
+               </ConfigProvider>
+               <NextNProgress color="#3f50b5" options={{showSpinner: false}}/>
+           </Client>
             <Server>
-                <div style={{height: "100vh", display: "grid", placeItems: "center"}}>
-                    <Spin/>
-                </div>
+                <LoadingCustom />
             </Server>
-            <NextNProgress color="#3f50b5" options={{showSpinner: false}}/>
         </HydrationProvider>
-
     );
 }
 

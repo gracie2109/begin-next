@@ -14,7 +14,8 @@ type Props = {
 }
 const styleMd: CSSProperties = {
     margin: "0 auto",
-    width: "100%"
+    width: "100%",
+    padding: "10px 20px 40px 20px"
 }
 const styleMobile: CSSProperties = {
     padding: "10px",
@@ -26,7 +27,6 @@ const {useBreakpoint} = Grid;
 const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
     const screens = useBreakpoint();
     const [, forceUpdate] = useState({});
-    // To disable submit button at the beginning.
     useEffect(() => {
         forceUpdate({});
     }, [mode]);
@@ -38,13 +38,10 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                 form={form}
                 style={{width: `${screens.xs ? "100%" : "450px"}`}}
                 layout="vertical"
-
             >
                 <Typography.Title level={2} style={{textAlign: "center"}}>
                     {title}
                 </Typography.Title>
-
-
                 <Form.Item
                     label="Địa chỉ email"
                     name="email"
@@ -52,8 +49,6 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                 >
                     <Input prefix={<MailOutlined className="site-form-item-icon"/>}/>
                 </Form.Item>
-
-
                 {!isLogin && (
                     <Form.Item
                         label="Tên đăng nhập"
@@ -62,8 +57,6 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                         <Input prefix={<UserOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                 )}
-
-
                 <Form.Item
                     name="password"
                     label="Mật khẩu"
@@ -83,8 +76,6 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                         />
                     )}
                 </Form.Item>
-
-
                 {!isLogin && (
                     <Form.Item
                         name="confirm"
@@ -109,7 +100,6 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                         <Input type="password" prefix={<LockOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                 )}
-
                 <Form.Item>
                     {isLogin ? (
                         <Row justify="end" gutter={[16, 16]}>
@@ -155,10 +145,10 @@ const AuthForm = ({form, isLogin, onFinish, title, isLoading, mode}: Props) => {
                         </Button>
                     )}
                 </Form.Item>
-                <Form.Item>
+                <div >
                     <Divider plain>Hoặc đăng nhập bằng</Divider>
                     <SocialLogin/>
-                </Form.Item>
+                </div>
             </Form>
         </Card>
     )

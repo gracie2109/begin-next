@@ -51,7 +51,7 @@ const ProductDetail = () => {
                 content: 'Action in progress..',
                 duration: 2.5,
             })
-            .then(() => message.success('Loading finished', 2.5))
+            .then(() => message.success('LoadingCustom finished', 2.5))
             // .then(() => route.push('/admin/products'))
     }
 

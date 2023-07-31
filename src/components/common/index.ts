@@ -5,4 +5,5 @@ export * from "./RenderImage/RenderImage";
 export * from "./ProductCard/ProductCard";
 export * from "./VoucherCard/VoucherCard";
 export * from "./SliderShow/SliderShow";
-export * from "./CkUpload"
+export * from "./CkUpload";
+export * from "./LoadingCustom"

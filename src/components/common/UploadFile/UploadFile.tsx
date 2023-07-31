@@ -1,12 +1,12 @@
-import { Upload } from 'antd';
-import ImgCrop from 'antd-img-crop';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
-import React, { useState } from 'react';
+import {Upload} from 'antd';
+import type {RcFile, UploadFile, UploadProps} from 'antd/es/upload/interface';
+import React, {useState} from 'react';
+
 type Props = {
     max: number,
     isMultiple: boolean
 }
-const UploadFile = ({max,isMultiple}:Props) => {
+const UploadFile = ({max, isMultiple}: Props) => {
     const [fileList, setFileList] = useState<UploadFile[]>([
         {
             uid: '-1',
@@ -16,7 +16,7 @@ const UploadFile = ({max,isMultiple}:Props) => {
         },
     ]);
 
-    const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+    const onChange: UploadProps['onChange'] = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
 
@@ -37,32 +37,22 @@ const UploadFile = ({max,isMultiple}:Props) => {
 
     const UploadMain = () => {
         return (
-               <Upload
-                   action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                   listType="picture-card"
-                   fileList={fileList}
-                   onChange={onChange}
-                   onPreview={onPreview}
-                   maxCount={max}
-                   multiple={isMultiple}
-               >
-                   {fileList.length < max && '+ Upload'}
-               </Upload>
+            <Upload
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture-card"
+                fileList={fileList}
+                onChange={onChange}
+                onPreview={onPreview}
+                maxCount={max}
+                multiple={isMultiple}
+            >
+                {fileList.length < max && '+ Upload'}
+            </Upload>
         )
     }
     return (
-        <>
-            {isMultiple ? (
-                <ImgCrop rotationSlider>
-                    <UploadMain />
-                </ImgCrop>
-            ):(
-                <UploadMain />
-            )}
-
-        </>
-
+        <UploadMain/>
     );
 
 }
-export  default UploadFile;
+export default UploadFile;

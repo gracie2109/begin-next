@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cd5a8b4d-29ee-40c5-bf66-9dd4e25b51e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/common/LoadingCustom/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cgv-fullstack.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/Auth/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/Auth/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/Client/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/Client/Header/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/Client/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/Client/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/FadeInOnScroll/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/UploadFile/UploadFile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/UploadFile/UploadFile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/CountDown/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/CountDown/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/features/HomeProductRow/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/HomeProductRow/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useDebounce.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useDebounce.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/attributes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/attributes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/orders/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/orders/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/products/[id]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/products/[id]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/vouchers/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/vouchers/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/[name].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/components/AuthForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/components/AuthForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/product/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/features/SearchHome/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SjSVFVkN7XzsnZD4gTA9oRlPyq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "D:/myPJ/crash/eccommerce_base_nextjs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "D:\\myPJ\\crash\\eccommerce_base_nextjs\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd5a8b4d-29ee-40c5-bf66-9dd4e25b51e4" name="Changes" comment="" />
+      <created>1689658523880</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689658523880</updated>
+      <workItem from="1689658539075" duration="24488000" />
+      <workItem from="1690040890666" duration="33000" />
+      <workItem from="1690378461267" duration="614000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

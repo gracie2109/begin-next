@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo, useEffect, useCallback, useRef } from "react";
 import { Col, Row, Button, Typography, Grid } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SharedIcons, Products_data, formatWord } from "@/utils";
@@ -23,10 +23,16 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null)
   const [init, setInit] = useState<boolean>(false);
   const screens = useBreakpoint();
-  console.log("HomeProductRow is runnning")
-  const SEVEN_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000; // Expires after 1 days!!!
-  const NOW_IN_MS = new Date().getTime();
-  const dateTimeAfterSevenDays = NOW_IN_MS + SEVEN_DAYS_IN_MS;
+  const coutdownRef = useRef<any>(null);
+
+  useEffect(() => {
+    if(showTimer){
+      const SEVEN_DAYS_IN_MS = 1 * 24 * 60 * 60 * 1000 
+      const NOW_IN_MS =new Date().getTime()
+      let  dateTimeAfterSevenDays = NOW_IN_MS + SEVEN_DAYS_IN_MS ;
+      coutdownRef.current = dateTimeAfterSevenDays
+    }
+  },[showTimer])
 
   return (
 
@@ -44,10 +50,10 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
               </Col>
               <Col>
                 <Typography.Title
-                data-aos="fade-up"
-                data-aos-anchor-placement="top-bottom"
-                level={screens.xs ? 4: 1}
-                className="inline-block">{formatWord(title, "title")}</Typography.Title>
+                  data-aos="fade-up"
+                  data-aos-anchor-placement="top-bottom"
+                  level={screens.xs ? 4: 1}
+                  className="inline-block">{formatWord(title, "title")}</Typography.Title>
               </Col>
               </Row>
 
@@ -56,7 +62,7 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
                 showTimer && (
                       <Col>
                         <div data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                          <CountDown targetDate={dateTimeAfterSevenDays} />
+                          <CountDown targetDate={coutdownRef.current} ref={coutdownRef} />
                         </div>
                       </Col>
                   )
@@ -111,4 +117,4 @@ const HomeProductRow = ({ data,  title,showTimer,type}:Props) => {
   )
 }
 
-export default HomeProductRow
+export default memo(HomeProductRow)

@@ -42,7 +42,7 @@ const AuthPage = () => {
 
                 />
             ):(
-                <Card>
+                <Card bodyStyle={{padding: "10px 20px"}}>
                     <Result
                         status="404"
                         title="404"

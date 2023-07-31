@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cgv-fullstack.iml" filepath="$PROJECT_DIR$/.idea/cgv-fullstack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/eccommerce_base_nextjs.iml" filepath="$PROJECT_DIR$/.idea/eccommerce_base_nextjs.iml" />
     </modules>
   </component>
 </project>
